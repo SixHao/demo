@@ -172,19 +172,18 @@
 
 //前台登录模块
 
-//    登录模块
-
-//    验证登录
-
-
-
+// 登录模块
+    Route::get('/home/login','Home\LoginController@login');
+//处理登录数据的路由
+    Route::post('/home/dologin','Home\LoginController@dologin');
 
 //前台注册模块
 
 //    注册用户
+Route::get('/home/zhuce','Home\ZhuceController@zhuce');
 
-//    验证注册信息
-
+//   注册的验证
+Route::post('/home/dozhuce','Home\ZhuceController@dozhuce');
 
 
 
