@@ -178,7 +178,6 @@
     Route::post('/home/dologin','Home\LoginController@dologin');
 
 //前台注册模块
-
 //    注册用户
 Route::get('/home/zhuce','Home\ZhuceController@zhuce');
 

@@ -5,25 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>注册</title>
-  <link href="/Home/css/bootstrap.min.css"  rel="stylesheet">
-  <link href="/Home/css/normalize.css"  rel="stylesheet">
-  <link href="/Home/css/public.css"  rel="stylesheet">
-  <link href="/Home/css/validator.css"  rel="stylesheet">
-  <link href="/Home/css/completer.css" rel="stylesheet">
-  <link href="/Home/css/jedate.css"  rel="stylesheet">
-  <link href="/Home/css/date.css"  rel="stylesheet">
-  <link href="/Home/css/magic-check.css"  rel="stylesheet" >
-  <link href="/Home/css/jquery-ui.css"  rel="stylesheet">  
-  <link href="/Home/css/index.css"  rel="stylesheet">  
-  <script src="/Home/js/jquery.min.js" ></script>
-  <script src="/Home/js/bootstrap.min.js" ></script>
- <script type="text/javascript" src="/Home/js/public.js" ></script>
-  <script type="text/javascript" src="/Home/js/jedate.js" ></script>
-  <script type="text/javascript" src="/Home/js/date.js" ></script>
-  <script type="text/javascript" src="/Home/js/jquery-validate.js" ></script>
-  <script type="text/javascript" src="/Home/js/validator.js" ></script>
-  <script type="text/javascript" src="/Home/js/jquery-ui-1.10.2.js" ></script>
-  <script type="text/javascript" src="/Home/js/index.js" ></script>
+  <link href="{{asset('/Home/css/bootstrap.min.css')}}"  rel="stylesheet">
+  <link href="{{asset('/Home/css/normalize.css')}}"  rel="stylesheet">
+  <link href="{{asset('/Home/css/public.css')}}"  rel="stylesheet">
+  <link href="{{asset('/Home/css/validator.css')}}"  rel="stylesheet">
+  <link href="{{asset('/Home/css/completer.css')}}" rel="stylesheet">
+  <link href="{{asset('/Home/css/jedate.css')}}"  rel="stylesheet">
+  <link href="{{asset('/Home/css/date.css')}}"  rel="stylesheet">
+  <link href="{{asset('/Home/css/magic-check.css')}}"  rel="stylesheet" >
+  <link href="{{asset('/Home/css/jquery-ui.css')}}"  rel="stylesheet">  
+  <link href="{{asset('/Home/css/index.css')}}"  rel="stylesheet">  
+  <script src="{{asset('/Home/js/jquery.min.js')}}" ></script>
+  <script src="{{asset('/Home/js/bootstrap.min.js')}}" ></script>
+ <script type="text/javascript" src="{{asset('/Home/js/public.js')}}" ></script>
+  <script type="text/javascript" src="{{asset('/Home/js/jedate.js')}}" ></script>
+  <script type="text/javascript" src="{{asset('/Home/js/date.js')}}" ></script>
+  <script type="text/javascript" src="{{asset('/Home/js/jquery-validate.js')}}" ></script>
+  <script type="text/javascript" src="{{asset('/Home/js/validator.js')}}" ></script>
+  <script type="text/javascript" src="{{asset('/Home/js/jquery-ui-1.10.2.js')}}" ></script>
+  <script type="text/javascript" src="{{asset('/Home/js/index.js')}}" ></script>
 
   
 </head>
@@ -35,6 +35,7 @@
 @if (count($errors) > 0)
     <div class="mws-form-message warning">
     	注册失败
+      
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -42,8 +43,11 @@
         </ul>
     </div>
 @endif
+
+
   <div class="form-box row">
     <form action="{{ asset('/home/dozhuce') }}" class="form-horizontal" role="form" id="register-form" method="post">
+
     	{{csrf_field() }}
       <div class="form-group">
         <label for="uname" class="col-sm-2  control-label">帐 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 号 :</label>

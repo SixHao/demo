@@ -19,6 +19,7 @@ $(function(){
         maxlength:20,
 		messages:{
 			required:'请输入帐号！',
+			unique:'用户名已经存在',
 			minlength:'帐号不能小于{0}位！',
             maxlength:'帐号不能小于{0}位！'
 		}
@@ -139,7 +140,11 @@ $(function(){
         }
     });
 
-
+	//用户名验证规则
+	$.validator.addMethod('uname',function(value,element){
+        var uname=  /^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u;
+        return this.optional(element)||(uname.test(value));
+    });
     //邮箱验证规则
     $.validator.addMethod('email',function(value,element){
         var email =  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;

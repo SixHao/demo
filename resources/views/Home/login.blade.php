@@ -9,22 +9,22 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="/home/AmazeUI-2.4.2/assets/css/amazeui.min.css" />
-    <link href="/home/css/dlstyle.css" rel="stylesheet" type="text/css">
-    <script src="/home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-    <script src="/home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+    <link rel="stylesheet" href="{{asset('/home/AmazeUI-2.4.2/assets/css/amazeui.min.css')}}" />
+    <link href="{{asset('/home/css/dlstyle.css')}}" rel="stylesheet" type="text/css">
+    <script src="{{asset('/home/AmazeUI-2.4.2/assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('/home/AmazeUI-2.4.2/assets/js/amazeui.min.js')}}"></script>
   </head>
   
   <body>
     <div class="login-boxtitle">
-      <a href="/home/home/demo.html">
-        <img alt="" src="/home/images/log_1.png" /></a>
+      <a href="{{asset('/home/home/demo.html')}}">
+        <img alt="" src="{{asset('/home/images/log_1.png')}}" /></a>
     </div>
-    <div class="res-banner " style="height: 413px;">
+    <div class="res-banner " style="height: 450px;">
       <div class="res-main">
         <div class="login-banner-bg">
           <span></span>
-          <img src="/home/images/big.jpg" /></div>
+          <img src="{{asset('/home/images/big.jpg')}}" /></div>
         <div class="login-box" ">
           <div class="am-tabs" id="doc-my-tabs">
             <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
@@ -53,7 +53,7 @@
 
             <div class="am-tabs-bd">
               <div class="am-tab-panel am-active">
-                <form method="post" action="/home/dologin">
+                <form method="post" action="{{asset('/home/dologin')}}">
                   {{ csrf_field() }}
                   <div class="user-email">
                     <label for="email">
@@ -74,16 +74,13 @@
                
               </div>
               <div class="am-tab-panel">
-                <form method="post" action="/home/dologin">
+                <form method="post" action="{{asset('/home/dologin')}}">
                   {{ csrf_field() }}
                   <div class="user-phone">
                     <label for="phone">
                       <i class="am-icon-mobile-phone am-icon-md"></i>
                     </label>
                     <input type="tel" name="phone" id="phone" placeholder="请输入手机号"></div>
-                 
-          
-       
                   <div class="user-pass">
                     <label for="password">
                       <i class="am-icon-lock"></i>
@@ -99,7 +96,7 @@
                 <hr></div>
 
               <div class="am-tab-panel am-active">
-                <form method="post" action="/home/dologin">
+                <form method="post" action="{{asset('/home/dologin')}}">
                   {{ csrf_field() }}
                   <div class="user-email">
                     <label for="email">

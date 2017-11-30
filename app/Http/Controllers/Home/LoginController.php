@@ -17,10 +17,10 @@ class LoginController extends Controller
     //返回登录页面
     public function login()
     {
-    	//  //判断用户是否登录
-    	//  if(session('user')){
-    	// 	return back();
-    	// }
+    	 //判断用户是否登录
+    	 if(session('user')){
+    		return back();
+    	}
     	return view('home/login');
     }
     //处理提交过来的登录数据
