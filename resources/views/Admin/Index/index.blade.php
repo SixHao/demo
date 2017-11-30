@@ -1,5 +1,8 @@
 @extends('layout/Alayout')
 
+@section('title')
+    <title>后台首页</title>
+@endsection
 @section('content')
 
 

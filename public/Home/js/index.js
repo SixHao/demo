@@ -19,8 +19,7 @@ $(function(){
         maxlength:20,
 		messages:{
 			required:'请输入帐号！',
-			unique:'用户名已经存在',
-			minlength:'帐号不能小于{0}位！',
+		      minlength:'帐号不能小于{0}位！',
             maxlength:'帐号不能小于{0}位！'
 		}
 	});

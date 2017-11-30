@@ -50,17 +50,17 @@
 //后台商品模块
 
 //    添加商品
-
+Route::get('/admin/goods/add','Admin\Goods\GoodsController@add');
 //    执行添加
-
+Route::post('/admin/goods/store','Admin\Goods\GoodsController@store');
 //    商品列表
-
+Route::get('/admin/goods/index','Admin\Goods\GoodsController@index');
 //    修改商品
-
+Route::get('/admin/goods/edit','Admin\Goods\GoodsController@edit');
 //    执行修改
-
+Route::post('/admin/goods/update','Admin\Goods\GoodsController@update');
 //    删除商品
-
+Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
 
 
 //后天分类模块
