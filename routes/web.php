@@ -144,8 +144,8 @@
 
 
 //后台活动模块
-
-
+//      添加活动
+Route::get('/admin/active','Admin\Active\ActiveController@create');
 
 
 
@@ -189,5 +189,5 @@
 
 
 //前台首页
-
+Route::get('/home/index','Home\IndexController@index');
 
