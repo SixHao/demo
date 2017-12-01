@@ -18,9 +18,9 @@
 
 //后台登录页面
 //    登录模块
-
+Route::get('/admin/login','Admin\LoginController@login');
 //    登录验证
-
+Route::post('/admin/dologin','Admin\LoginController@dologin');
 //    退出登录
 
 
@@ -191,3 +191,50 @@
 //前台首页
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/home/shopcart','Home\CartController@shopcart');
+Route::get('/home/shopcart','Home\CartController@cart');
+
+
+
+
+
+Route::get('/home/pay','Home\PayController@pay');

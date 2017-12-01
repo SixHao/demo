@@ -257,7 +257,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="{{ asset('login.html') }}">
+                <a href="{{ asset('login.blade.php') }}">
                     <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
                 </a>
             </li>
