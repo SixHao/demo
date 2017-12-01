@@ -7,15 +7,15 @@
 
     @yield('title')
 
-    <link href="{{ asset('/home/AmazeUI-2.4.2/assets/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/home/AmazeUI-2.4.2/assets/css/admin.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/Home/AmazeUI-2.4.2/assets/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/Home/AmazeUI-2.4.2/assets/css/admin.css') }}" rel="stylesheet" type="text/css" />
 
-    <link href="{{ asset('/home/basic/css/demo.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/Home/basic/css/demo.css') }}" rel="stylesheet" type="text/css" />
 
-    <link href="{{ asset('/home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('/home/css/skin.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('home/AmazeUI-2.4.2/assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('/home/AmazeUI-2.4.2/assets/js/amazeui.min.js') }}"></script>
+    <link href="{{ asset('/Home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/Home/css/skin.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('/Home/AmazeUI-2.4.2/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/Home/AmazeUI-2.4.2/assets/js/amazeui.min.js') }}"></script>
 
 </head>
 
@@ -32,7 +32,7 @@
             </div>
         </ul>
         <ul class="message-r">
-            <div class="topMessage home">
+            <div class="topMessage Home">
                 <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
             </div>
             <div class="topMessage my-shangcheng">
@@ -49,9 +49,9 @@
     <!--悬浮搜索框-->
 
     <div class="nav white">
-        <div class="logo"><img src="{{ asset('/home/images/logo.png') }}" /></div>
+        <div class="logo"><img src="{{ asset('/Home/images/logo.png') }}" /></div>
         <div class="logoBig">
-            <li><img src="{{ asset('/home/images/logobig.png') }}" /></li>
+            <li><img src="{{ asset('/Home/images/logobig.png') }}" /></li>
         </div>
 
         <div class="search-bar pr">
@@ -99,7 +99,7 @@
 </div>
 <!--引导 -->
 <div class="navCir">
-    <li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
+    <li class="active"><a href="Home.html"><i class="am-icon-Home "></i>首页</a></li>
     <li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
     <li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
     <li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
@@ -116,7 +116,7 @@
                 </a>
                 <div class="ibar_login_box status_login ">
                     <div class="avatar_box ">
-                        <p class="avatar_imgbox "><img src="{{ asset('/home/images/no-img_mid_.jpg') }} " /></p>
+                        <p class="avatar_imgbox "><img src="{{ asset('/Home/images/no-img_mid_.jpg') }} " /></p>
                         <ul class="user_info ">
                             <li>用户名sl1903</li>
                             <li>级&nbsp;别普通会员</li>
@@ -161,7 +161,7 @@
 
             <div id="brand " class="item ">
                 <a href="#">
-                    <span class="wdsc "><img src="{{ asset('/home/images/wdsc.png') }} " /></span>
+                    <span class="wdsc "><img src="{{ asset('/Home/images/wdsc.png') }} " /></span>
                 </a>
                 <div class="mp_tooltip ">
                     我的收藏
@@ -171,7 +171,7 @@
 
             <div id="broadcast " class="item ">
                 <a href="# ">
-                    <span class="chongzhi "><img src="{{ asset('/home/images/chongzhi.png') }} " /></span>
+                    <span class="chongzhi "><img src="{{ asset('/Home/images/chongzhi.png') }} " /></span>
                 </a>
                 <div class="mp_tooltip ">
                     我要充值
@@ -187,7 +187,7 @@
                 <!--二维码 -->
                 <li class="qtitem ">
                     <a href="#none "><span class="mpbtn_qrcode "></span></a>
-                    <div class="mp_qrcode " style="display:none; "><img src="{{ asset('/home/images/weixin_code_145.png') }} " /><i class="icon_arrow_white "></i></div>
+                    <div class="mp_qrcode " style="display:none; "><img src="{{ asset('/Home/images/weixin_code_145.png') }} " /><i class="icon_arrow_white "></i></div>
                 </li>
                 <li class="qtitem ">
                     <a href="#top " class="return_top "><span class="top "></span></a>
@@ -266,9 +266,9 @@
     </div>
 </div>
 <script>
-    window.jQuery || document.write('<script src="{{ asset('/home/basic/js/jquery.min.js') }} "><\/script>');
+    window.jQuery || document.write('<script src="{{ asset('/Home/basic/js/jquery.min.js') }} "><\/script>');
 </script>
-<script type="text/javascript " src="{{ asset('/home/basic/js/quick_links.js') }} "></script>
+<script type="text/javascript " src="{{ asset('/Home/basic/js/quick_links.js') }} "></script>
 </body>
 
 </html>

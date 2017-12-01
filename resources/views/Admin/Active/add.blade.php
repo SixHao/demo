@@ -35,8 +35,8 @@
                         </div>
                         <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-border-form tpl-form-border-br">
-
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ asset('/admin/active/store') }}" method="post">
+                            {{ csrf_field() }}
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">活动编码 <span class="tpl-form-line-small-title">Code</span></label>
                                     <div class="am-u-sm-9">
@@ -46,9 +46,9 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-phone" class="am-u-sm-3 am-form-label">活动类型 <span class="tpl-form-line-small-title">Type</span></label>
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">活动类别 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}" name="aststus" style="display: none;">
+                                        <select data-am-selected="{searchBox: 1}" name="atype" style="display: none;">
                                             <option value="1">秒杀</option>
                                             <option value="2">特惠</option>
                                             <option value="3">团购</option>
@@ -59,44 +59,23 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-phone" class="am-u-sm-3 am-form-label">商品类别 <span class="tpl-form-line-small-title">Type</span></label>
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">商品名称 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}" name="tname" style="display: none;">
-                                            <option value="1">秒杀</option>
-                                            <option value="2">特惠</option>
-                                            <option value="3">团购</option>
-                                            <option value="4">超值</option>
+                                        <select data-am-selected="{searchBox: 1}" name="gid" style="display: none;">
+                                            <option value="1">家具</option>
+                                            <option value="2">电器</option>
+                                            <option value="3">食品</option>
+                                            <option value="4">移动设备</option>
                                         </select>
 
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">SEO关键字 <span class="tpl-form-line-small-title">SEO</span></label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" placeholder="输入SEO关键字">
-                                    </div>
-                                </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">折扣 <span class="tpl-form-line-small-title">Discount</span></label>
                                     <div class="am-u-sm-9">
-                                        <div class="am-form-group am-form-file">
-                                            <div class="tpl-form-file-img">
-                                                <img src="assets/img/a5.png" alt="">
-                                            </div>
-                                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                                <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
-                                            <input id="doc-form-file" type="file" multiple="">
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">添加分类 <span class="tpl-form-line-small-title">Type</span></label>
-                                    <div class="am-u-sm-9">
-                                        <input type="text" id="user-weibo" placeholder="请添加分类用点号隔开">
+                                        <input type="text" name="discount" id="user-weibo" placeholder="请写入1-10之间的数字">
                                         <div>
 
                                         </div>
@@ -104,29 +83,19 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">隐藏文章</label>
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">状态 <span class="tpl-form-line-small-title">Status</span></label>
                                     <div class="am-u-sm-9">
-                                        <div class="tpl-switch">
-                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" checked="">
-                                            <div class="tpl-switch-btn-view">
-                                                <div>
-                                                </div>
-                                            </div>
+                                        开始: <input type="radio" name="discount" id="user-weibo" value="1">
+                                        结束: <input type="radio" name="discount" id="user-weibo" value="0">
+                                        <div>
+
                                         </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
-                                    <div class="am-u-sm-9">
-                                        <textarea class="" rows="10" id="user-intro" placeholder="请输入文章内容"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        <button class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                                     </div>
                                 </div>
                             </form>

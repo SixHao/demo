@@ -35,7 +35,8 @@ class ActiveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+        dd($data);
     }
 
     /**

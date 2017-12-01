@@ -2,7 +2,7 @@
 
 @section('title')
     <title>网站首页</title>
-@stop
+@endsection
 @section('content')
 
     <div class="shopNav">
@@ -32,7 +32,7 @@
                     <ul class="category-list" id="js_climit_li">
                         <li class="appliance js_toggle relative first">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/cake.png') }}"></i><a class="ml-22" title="点心">点心/蛋糕</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/cake.png') }}"></i><a class="ml-22" title="点心">点心/蛋糕</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -83,7 +83,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/cookies.png') }}"></i><a class="ml-22" title="饼干、膨化">饼干/膨化</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/cookies.png') }}"></i><a class="ml-22" title="饼干、膨化">饼干/膨化</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -143,7 +143,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/meat.png') }}"></i><a class="ml-22" title="熟食、肉类">熟食/肉类</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/meat.png') }}"></i><a class="ml-22" title="熟食、肉类">熟食/肉类</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -196,7 +196,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/bamboo.png') }}"></i><a class="ml-22" title="素食、卤味">素食/卤味</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/bamboo.png') }}"></i><a class="ml-22" title="素食、卤味">素食/卤味</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -246,7 +246,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/nut.png') }}"></i><a class="ml-22" title="坚果、炒货">坚果/炒货</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/nut.png') }}"></i><a class="ml-22" title="坚果、炒货">坚果/炒货</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -298,7 +298,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/candy.png') }}"></i><a class="ml-22" title="糖果、蜜饯">糖果/蜜饯</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/candy.png') }}"></i><a class="ml-22" title="糖果、蜜饯">糖果/蜜饯</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -348,7 +348,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/chocolate.png') }}"></i><a class="ml-22" title="巧克力">巧克力</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/chocolate.png') }}"></i><a class="ml-22" title="巧克力">巧克力</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -400,7 +400,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/fish.png') }}"></i><a class="ml-22" title="海味、河鲜">海味/河鲜</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/fish.png') }}"></i><a class="ml-22" title="海味、河鲜">海味/河鲜</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -458,7 +458,7 @@
                         </li>
                         <li class="appliance js_toggle relative">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/tea.png') }}"></i><a class="ml-22" title="花茶、果茶">花茶/果茶</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/tea.png') }}"></i><a class="ml-22" title="花茶、果茶">花茶/果茶</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -507,7 +507,7 @@
                         </li>
                         <li class="appliance js_toggle relative last">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/home/images/package.png') }}"></i><a class="ml-22" title="品牌、礼包">品牌/礼包</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/package.png') }}"></i><a class="ml-22" title="品牌、礼包">品牌/礼包</a></h3>
                                 <em>&gt;</em></div>
                             <div class="menu-item menu-in top">
                                 <div class="area-in">
@@ -583,22 +583,22 @@
     <!--小导航 -->
     <div class="am-g am-g-fixed smallnav">
         <div class="am-u-sm-3">
-            <a href="sort.html"><img src="{{ asset('/home/images/navsmall.jpg') }}" />
+            <a href="sort.html"><img src="{{ asset('/Home/images/navsmall.jpg') }}" />
                 <div class="title">商品分类</div>
             </a>
         </div>
         <div class="am-u-sm-3">
-            <a href="#"><img src="{{ asset('/home/images/huismall.jpg') }}" />
+            <a href="#"><img src="{{ asset('/Home/images/huismall.jpg') }}" />
                 <div class="title">大聚惠</div>
             </a>
         </div>
         <div class="am-u-sm-3">
-            <a href="#"><img src="{{ asset('/home/images/mansmall.jpg') }}" />
+            <a href="#"><img src="{{ asset('/Home/images/mansmall.jpg') }}" />
                 <div class="title">个人中心</div>
             </a>
         </div>
         <div class="am-u-sm-3">
-            <a href="#"><img src="{{ asset('/home/images/moneysmall.jpg') }}" />
+            <a href="#"><img src="{{ asset('/Home/images/moneysmall.jpg') }}" />
                 <div class="title">投资理财</div>
             </a>
         </div>
@@ -612,19 +612,19 @@
 
             <ul>
                 <li class="title-first"><a target="_blank" href="#">
-                        <img src="{{ asset('/home/images/TJ2.jpg') }}">
+                        <img src="{{ asset('/Home/images/TJ2.jpg') }}">
                         <span>[特惠]</span>商城爆品1分秒
                     </a></li>
                 <li class="title-first"><a target="_blank" href="#">
                         <span>[公告]</span>商城与广州市签署战略合作协议
-                        <img src="{{ asset('/home/images/TJ.jpg') }}">
+                        <img src="{{ asset('/Home/images/TJ.jpg') }}">
                         <p>XXXXXXXXXXXXXXXXXX</p>
                     </a></li>
 
                 <div class="mod-vip">
                     <div class="m-baseinfo">
                         <a href="../person/index.html">
-                            <img src="{{ asset('/home/images/getAvatar.do.jpg') }}">
+                            <img src="{{ asset('/Home/images/getAvatar.do.jpg') }}">
                         </a>
                         <em>
                             Hi,<span class="s-name">小叮当</span>
@@ -632,8 +632,8 @@
                         </em>
                     </div>
                     <div class="member-logout">
-                        <a class="am-btn-warning btn" href="{{ asset('/home/login.html') }}">登录</a>
-                        <a class="am-btn-warning btn" href="{{ asset('/home/register.html') }}">注册</a>
+                        <a class="am-btn-warning btn" href="{{ asset('/Home/login.html') }}">登录</a>
+                        <a class="am-btn-warning btn" href="{{ asset('/Home/register.html') }}">注册</a>
                     </div>
                     <div class="member-login">
                         <a href="#"><strong>0</strong>待收货</a>
@@ -649,7 +649,7 @@
                 <li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
 
             </ul>
-            <div class="advTip"><img src="{{ asset('/home/images/advTip.jpg') }}"/></div>
+            <div class="advTip"><img src="{{ asset('/Home/images/advTip.jpg') }}"/></div>
         </div>
     </div>
     <div class="clear"></div>
@@ -692,7 +692,7 @@
 
         <div class="am-g am-g-fixed recommendation">
             <div class="clock am-u-sm-3" ">
-            <img src="{{ asset('/home/images/2016.png') }} ">
+            <img src="{{ asset('/Home/images/2016.png') }} ">
             <p>今日<br>推荐</p>
         </div>
         <div class="am-u-sm-4 am-u-lg-3 ">
@@ -701,7 +701,7 @@
                 <h4>开年福利篇</h4>
             </div>
             <div class="recommendationMain one">
-                <a href="introduction.html"><img src="{{ asset('/home/images/tj.png') }}"></a>
+                <a href="introduction.html"><img src="{{ asset('/Home/images/tj.png') }}"></a>
             </div>
         </div>
         <div class="am-u-sm-4 am-u-lg-3 ">
@@ -710,7 +710,7 @@
                 <h4>让爱早回家</h4>
             </div>
             <div class="recommendationMain two">
-                <img src="{{ asset('/home/images/tj1.png') }} ">
+                <img src="{{ asset('/Home/images/tj1.png') }} ">
             </div>
         </div>
         <div class="am-u-sm-4 am-u-lg-3 ">
@@ -719,7 +719,7 @@
                 <h4>甜甜蜜蜜</h4>
             </div>
             <div class="recommendationMain three">
-                <img src="{{ asset('/home/images/tj2.png') }} ">
+                <img src="{{ asset('/Home/images/tj2.png') }} ">
             </div>
         </div>
 
@@ -740,7 +740,7 @@
                 <div class="icon-sale one "></div>
                 <h4>秒杀</h4>
                 <div class="activityMain ">
-                    <img src="{{ asset('/home/images/activity1.jpg') }} ">
+                    <img src="{{ asset('/Home/images/activity1.jpg') }} ">
                 </div>
                 <div class="info ">
                     <h3>春节送礼优选</h3>
@@ -751,7 +751,7 @@
                 <div class="icon-sale two "></div>
                 <h4>特惠</h4>
                 <div class="activityMain ">
-                    <img src="{{ asset('/home/images/activity2.jpg') }}">
+                    <img src="{{ asset('/Home/images/activity2.jpg') }}">
                 </div>
                 <div class="info ">
                     <h3>春节送礼优选</h3>
@@ -762,7 +762,7 @@
                 <div class="icon-sale three "></div>
                 <h4>团购</h4>
                 <div class="activityMain ">
-                    <img src="{{ asset('/home/images/activity3.jpg') }} ">
+                    <img src="{{ asset('/Home/images/activity3.jpg') }} ">
                 </div>
                 <div class="info ">
                     <h3>春节送礼优选</h3>
@@ -773,7 +773,7 @@
                 <div class="icon-sale "></div>
                 <h4>超值</h4>
                 <div class="activityMain ">
-                    <img src="{{ asset('/home/images/activity.jpg') }} ">
+                    <img src="{{ asset('/Home/images/activity.jpg') }} ">
                 </div>
                 <div class="info ">
                     <h3>春节送礼优选</h3>
@@ -825,7 +825,7 @@
                             零食大礼包
                         </div>
                     </div>
-                    <img src="{{ asset('/home/images/act1.png') }} " />
+                    <img src="{{ asset('/Home/images/act1.png') }} " />
                 </a>
                 <div class="triangle-topright"></div>
             </div>
@@ -840,7 +840,7 @@
                     </div>
                     <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                 </div>
-                <a href="# "><img src="{{ asset('/home/images/2.jpg') }}" /></a>
+                <a href="# "><img src="{{ asset('/Home/images/2.jpg') }}" /></a>
             </div>
 
             <div class="am-u-sm-7 am-u-md-4 text-two">
@@ -853,7 +853,7 @@
                     </div>
                     <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                 </div>
-                <a href="# "><img src="{{ asset('/home/images/1.jpg') }}" /></a>
+                <a href="# "><img src="{{ asset('/Home/images/1.jpg') }}" /></a>
             </div>
 
 
@@ -867,7 +867,7 @@
                     </div>
                     <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                 </div>
-                <a href="# "><img src="{{ asset('/home/images/5.jpg') }}" /></a>
+                <a href="# "><img src="{{ asset('/Home/images/5.jpg') }}" /></a>
             </div>
 
             <div class="am-u-sm-3 am-u-md-2 text-three sug">
@@ -880,7 +880,7 @@
                     </div>
                     <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                 </div>
-                <a href="# "><img src="{{ asset('/home/images/3.jpg') }}" /></a>
+                <a href="# "><img src="{{ asset('/Home/images/3.jpg') }}" /></a>
             </div>
 
             <div class="am-u-sm-3 am-u-md-2 text-three ">
@@ -893,7 +893,7 @@
                     </div>
                     <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                 </div>
-                <a href="# "><img src="{{ asset('/home/images/4.jpg') }}" /></a>
+                <a href="# "><img src="{{ asset('/Home/images/4.jpg') }}" /></a>
             </div>
 
             <div class="am-u-sm-3 am-u-md-2 text-three last big ">
@@ -906,7 +906,7 @@
                     </div>
                     <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                 </div>
-                <a href="# "><img src="{{ asset('/home/images/5.jpg') }}" /></a>
+                <a href="# "><img src="{{ asset('/Home/images/5.jpg') }}" /></a>
             </div>
 
         </div>
@@ -944,7 +944,7 @@
                     <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
                 </div>
                 <a href="# ">
-                    <img src="{{ asset('/home/images/act1.png') }} " />
+                    <img src="{{ asset('/Home/images/act1.png') }} " />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福
@@ -955,7 +955,7 @@
             </div>
             <div class="am-u-sm-4 text-four">
                 <a href="# ">
-                    <img src="{{ asset('/home/images/6.jpg') }}" />
+                    <img src="{{ asset('/Home/images/6.jpg') }}" />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福
@@ -969,7 +969,7 @@
             </div>
             <div class="am-u-sm-4 text-four sug">
                 <a href="# ">
-                    <img src="{{ asset('/home/images/7.jpg') }}" />
+                    <img src="{{ asset('/Home/images/7.jpg') }}" />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福
@@ -984,7 +984,7 @@
 
             <div class="am-u-sm-6 am-u-md-3 text-five big ">
                 <a href="# ">
-                    <img src="{{ asset('/home/images/10.jpg') }}" />
+                    <img src="{{ asset('/Home/images/10.jpg') }}" />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福
@@ -998,7 +998,7 @@
             </div>
             <div class="am-u-sm-6 am-u-md-3 text-five ">
                 <a href="# ">
-                    <img src="{{ asset('/home/images/4.jpg') }}" />
+                    <img src="{{ asset('/Home/images/4.jpg') }}" />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福
@@ -1012,7 +1012,7 @@
             </div>
             <div class="am-u-sm-6 am-u-md-3 text-five sug">
                 <a href="# ">
-                    <img src="{{ asset('/home/images/9.jpg') }}" />
+                    <img src="{{ asset('/Home/images/9.jpg') }}" />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福
@@ -1026,7 +1026,7 @@
             </div>
             <div class="am-u-sm-6 am-u-md-3 text-five big">
                 <a href="# ">
-                    <img src="{{ asset('/home/images/10.jpg') }}" />
+                    <img src="{{ asset('/Home/images/10.jpg') }}" />
                     <div class="outer-con ">
                         <div class="title ">
                             雪之恋和风大福

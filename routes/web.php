@@ -50,17 +50,17 @@
 //后台商品模块
 
 //    添加商品
-
+Route::get('/admin/goods/add','Admin\Goods\GoodsController@add');
 //    执行添加
-
+Route::post('/admin/goods/store','Admin\Goods\GoodsController@store');
 //    商品列表
-
+Route::get('/admin/goods/index','Admin\Goods\GoodsController@index');
 //    修改商品
-
+Route::get('/admin/goods/edit','Admin\Goods\GoodsController@edit');
 //    执行修改
-
+Route::post('/admin/goods/update','Admin\Goods\GoodsController@update');
 //    删除商品
-
+Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
 
 
 //后天分类模块
@@ -145,9 +145,9 @@
 
 //后台活动模块
 //      添加活动
-Route::get('/admin/active','Admin\Active\ActiveController@create');
-
-
+Route::get('/admin/active/add','Admin\Active\ActiveController@create');
+//      执行添加操作
+Route::post('/admin/active/store','Admin\ActiveController@store');
 
 
 
@@ -172,19 +172,17 @@ Route::get('/admin/active','Admin\Active\ActiveController@create');
 
 //前台登录模块
 
-//    登录模块
-
-//    验证登录
-
-
-
+// 登录模块
+    Route::get('/home/login','Home\LoginController@login');
+//处理登录数据的路由
+    Route::post('/home/dologin','Home\LoginController@dologin');
 
 //前台注册模块
-
 //    注册用户
+Route::get('/home/zhuce','Home\ZhuceController@zhuce');
 
-//    验证注册信息
-
+//   注册的验证
+Route::post('/home/dozhuce','Home\ZhuceController@dozhuce');
 
 
 
