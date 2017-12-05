@@ -1,7 +1,7 @@
 @extends('layout/Alayout')
 
 @section('title')
-    <title>修改用户</title>
+    <title>用户修改</title>
 @endsection
 @section('content')
         <!-- 内容区域 -->
@@ -89,14 +89,14 @@
                                                     <input type="hidden" name="uface" value="{{$data->uface}}" id="upload_file">
                                                     <img id="imghead" width="50px" src="{{$data->uface}}" \>
                                                 </div>
-                                                <input id="doc-form-file" type="file" multiple="true" name="uface1">
+                                                <input id="doc-form-file" onclick="abc()" type="file" multiple="true" name="uface1">
                                                 <script type="text/javascript">
-                                $(function () {
+                                function abc() {
                                     $("#doc-form-file").change(function () {
                                         $('#imghead').show();
                                         uploadImage();
                                     });
-                                });
+                                };
                                 function uploadImage() {
                                     // 判断是否有选择上传文件
                                     var imgPath = $("#doc-form-file").val();
@@ -152,9 +152,10 @@
         </div>
     </div>
     </div>
-
-
-
+<script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/admin/assets/js/laydate.dev.js') }}"></script>
 <script type="text/javascript">
   laydate({

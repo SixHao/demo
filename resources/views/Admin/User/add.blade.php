@@ -1,9 +1,10 @@
 @extends('layout/Alayout')
 
 @section('title')
-    <title>添加用户</title>
+    <title>用户添加</title>
 @endsection
-@section('content')        <!-- 内容区域 -->
+@section('content')
+        <!-- 内容区域 -->
         <div class="tpl-content-wrapper">
 
             <div class="row-content am-cf">
@@ -103,14 +104,14 @@
                                                 <input type="hidden" name="uface" value="/uploads/default.jpg" id="upload_file">
                                                     <img id="imghead" width="50px" src="{{asset('/uploads/default.jpg')}}" \>
                                                 </div>
-                                                <input id="doc-form-file" type="file" multiple="true" name="uface1">
+                                                <input id="doc-form-file" onclick="abc()" type="file" multiple="true" name="uface1">
                                                 <script type="text/javascript">
-                                $(function () {
+                                function abc() {
                                     $("#doc-form-file").change(function () {
                                         $('#imghead').show();
                                         uploadImage();
                                     });
-                                });
+                                };
                                 function uploadImage() {
                                     // 判断是否有选择上传文件
                                     var imgPath = $("#doc-form-file").val();
@@ -166,9 +167,10 @@
         </div>
     </div>
     </div>
-
-
-
+<script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/admin/assets/js/laydate.dev.js') }}"></script>
 <script type="text/javascript">
   laydate({

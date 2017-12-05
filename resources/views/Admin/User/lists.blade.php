@@ -4,6 +4,7 @@
     <title>用户列表</title>
 @endsection
 @section('content')
+
 <!-- 内容区域 -->
 <div class="tpl-content-wrapper">
     <div class="row-content am-cf">
@@ -143,10 +144,13 @@
 </div>
 </div>
 </div>
-
-
-<script src="{{ asset('/admin/assets/js/jquery.js') }}"></script>
-
+<script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/app.js') }}">
+</script><script src="{{ asset('/admin/assets/js/ch-ui.admin.js') }}">
+</script><script src="{{ asset('/admin/assets/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
  <script>
         
     function userDel(uid) {

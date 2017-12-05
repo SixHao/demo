@@ -10,20 +10,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <link rel="icon" type="image/png" href="{{ asset('/admin/assets/i/favicon.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('/admin/assets/i/app-icon72x72@2x.png') }}">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="{{ asset('/admin/assets/js/echarts.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/amazeui.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/app.css') }}">
+    <script src="{{ asset('/admin/assets/js/echarts.min.js') }}"></script>
     <script src="{{ asset('/admin/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/admin/assets/js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{asset('/layer/layer.js')}}"></script>
     <script type="text/javascript" src="{{asset('/admin/assets/js/ch-ui.admin.js')}}"></script>
 	<script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
+	<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
+	<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('/admin/assets/js/app.js') }}"></script>
 
 </head>
 

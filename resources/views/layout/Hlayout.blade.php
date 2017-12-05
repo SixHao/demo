@@ -11,7 +11,10 @@
     <link href="{{ asset('/Home/AmazeUI-2.4.2/assets/css/admin.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('/Home/basic/css/demo.css') }}" rel="stylesheet" type="text/css" />
-
+    <script>
+    window.jQuery || document.write('<script src="{{ asset('/Home/basic/js/jquery.min.js') }} "><\/script>');
+</script>
+<script type="text/javascript " src="{{ asset('/Home/basic/js/quick_links.js') }} "></script>
     <link href="{{ asset('/Home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/Home/css/skin.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('/Home/AmazeUI-2.4.2/assets/js/jquery.min.js') }}"></script>
@@ -265,10 +268,7 @@
         </div>
     </div>
 </div>
-<script>
-    window.jQuery || document.write('<script src="{{ asset('/Home/basic/js/jquery.min.js') }} "><\/script>');
-</script>
-<script type="text/javascript " src="{{ asset('/Home/basic/js/quick_links.js') }} "></script>
+
 </body>
 
 </html>

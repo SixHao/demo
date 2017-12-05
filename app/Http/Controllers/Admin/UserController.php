@@ -64,7 +64,7 @@ class UserController extends Controller
      public function insert(Request $request)
     {
          // 1. 获取用户提交的表单数据
-        $input = Input::except('_token','uface1');
+        $input = Input::except('_token');
         // dd($input);
 //        2. 表单验证
 
