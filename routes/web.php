@@ -33,18 +33,18 @@
 //后台用户模块
 
 //    添加用户
-
+Route::get('/admin/user/add', 'Admin\UserController@add');
 //    执行添加
-
+Route::post('/admin/user/insert', 'Admin\UserController@insert');
 //    用户列表
-
+Route::get('/admin/user/list', 'Admin\UserController@list');
 //    用户修改
-
+Route::get('/admin/user/edit/{uid}', 'Admin\UserController@edit');
 //    执行修改
-
+Route::post('/admin/user/update/{uid}', 'Admin\UserController@update');
 //    用户删除
-
-
+Route::get('/admin/user/delete/{uid}', 'Admin\UserController@delete');
+Route::post('/admin/user/upload','Admin\UserController@upload');
 
 
 //后台商品模块
