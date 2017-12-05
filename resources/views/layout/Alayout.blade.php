@@ -20,6 +20,10 @@
     <script src="{{ asset('/admin/assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{asset('/layer/layer.js')}}"></script>
     <script type="text/javascript" src="{{asset('/admin/assets/js/ch-ui.admin.js')}}"></script>
+	<script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
 
 </head>
 
@@ -276,10 +280,7 @@
 
 </div>
 </div>
-<script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
+
 
 </body>
 
