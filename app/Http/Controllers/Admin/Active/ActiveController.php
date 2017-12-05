@@ -7,80 +7,76 @@ use App\Http\Controllers\Controller;
 
 class ActiveController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * 返回一个添加视图
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //  返回添加活动视图
+    public function add()
     {
         return view('admin/active/add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    //  执行添加活动
+
+    public function create(Request $request)
     {
+        $this->validate($request,[
+            'discount'=> 'numeric|min:1|max:10',
+        ],[
+            'discount.numeric'=>'折扣请填写数字类型',
+            'discount.min'=>'折扣请填写1-10之间的数',
+            'discount.max'=>'折扣请填写1-10之间的数',
+        ]);
         $data = $request->except('_token');
-        dd($data);
+        $res = \DB::table('activitys')->insert($data);
+        if ($res)
+        {
+            return redirect('/admin/active/index')->with(['inif'=>'添加成功']);
+        } else {
+            return back()->with(['info'=>'添加失败']);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    // 活动列表
+
+    public function index()
     {
-        //
+        $data = \DB::table('activitys')
+                    ->join('goods','activitys.gid','=','goods.gid')->paginate(5);
+//        dd($data);
+        return view('/admin/active/index',['data'=>$data]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+//    返回修改活动视图
+    public function edit(Request $request)
     {
-        //
+        $data = \DB::table('activitys')->where('aid' , $request->input('aid'))->first();
+
+//        dd($data);
+
+        if ($data->is_over == 0)
+        {
+            \DB::table('activitys')->where('aid',$request->input('aid'))->update(['astatus' =>1,'is_over'=>1]);
+            return response()->json(['astatus' => 0]);
+        } elseif($data->is_over == 1){
+            \DB::table('activitys')->where('aid',$request->input('aid'))->update(['astatus'=>0,'is_over'=>0]);
+            return response()->json(['astatus' => 1]);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function delete($aid)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $res = \DB::table('activitys')->where('aid',$aid)->delete();
+        $data = [];
+        if ($res)
+        {
+            $data['error'] = 0;
+            $data['msg'] = '删除成功';
+        } else {
+            $data['error'] = 1;
+            $data['msg'] = '删除失败';
+        }
+        return $data;
     }
 }

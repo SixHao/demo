@@ -11,9 +11,23 @@
         <div class="container-fluid am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单 <small>Amaze UI</small></div>
-                    <p class="page-header-description">Amaze UI 有许多不同的表格可用。</p>
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单
+                        <small>
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color: red;">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(session('info'))
+                                    <div class="alert alert-danger">{{session('info')}}</div>
+                            @endif
+                        </small></div>
                 </div>
+
                 <div class="am-u-lg-3 tpl-index-settings-button">
                     <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
                 </div>
@@ -35,7 +49,7 @@
                         </div>
                         <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ asset('/admin/active/store') }}" method="post">
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/active/create') }}" method="post">
                             {{ csrf_field() }}
                                 <div class="am-form-group">
                                     <label for="user-name" class="am-u-sm-3 am-form-label">活动编码 <span class="tpl-form-line-small-title">Code</span></label>
@@ -85,8 +99,8 @@
                                 <div class="am-form-group">
                                     <label for="user-weibo" class="am-u-sm-3 am-form-label">状态 <span class="tpl-form-line-small-title">Status</span></label>
                                     <div class="am-u-sm-9">
-                                        开始: <input type="radio" name="discount" id="user-weibo" value="1">
-                                        结束: <input type="radio" name="discount" id="user-weibo" value="0">
+                                        开始: <input type="radio" name="astatus" id="user-weibo" value="1">
+                                        结束: <input type="radio" name="astatus" id="user-weibo" value="0">
                                         <div>
 
                                         </div>

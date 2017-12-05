@@ -18,9 +18,9 @@
 
 //后台登录页面
 //    登录模块
-
+Route::get('/admin/login','Admin\LoginController@login');
 //    登录验证
-
+Route::post('/admin/dologin','Admin\LoginController@dologin');
 //    退出登录
 
 
@@ -145,15 +145,15 @@ Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
 
 //后台活动模块
 //      添加活动
-Route::get('/admin/active/add','Admin\Active\ActiveController@create');
+Route::get('/admin/active/add','Admin\Active\ActiveController@add');
 //      执行添加操作
-Route::post('/admin/active/store','Admin\ActiveController@store');
-
-
-
-
-
-
+Route::post('/admin/active/create','Admin\Active\ActiveController@create');
+//      活动列表
+Route::get('/admin/active/index','Admin\Active\ActiveController@index');
+//      修改活动
+Route::post('/admin/active/edit','Admin\Active\ActiveController@edit');
+//      删除活动
+Route::post('/admin/active/delete/{aid}','Admin\Active\ActiveController@delete');
 
 
 
@@ -189,3 +189,50 @@ Route::post('/home/dozhuce','Home\ZhuceController@dozhuce');
 //前台首页
 Route::get('/home/index','Home\IndexController@index');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/home/shopcart','Home\CartController@shopcart');
+Route::get('/home/shopcart','Home\CartController@cart');
+
+
+
+
+
+Route::get('/home/pay','Home\PayController@pay');

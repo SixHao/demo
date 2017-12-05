@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/app.css') }}">
     <script src="{{ asset('/admin/assets/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{asset('/layer/layer.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/admin/assets/js/ch-ui.admin.js')}}"></script>
 
 </head>
 
@@ -257,7 +259,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="{{ asset('login.html') }}">
+                <a href="{{ asset('login.blade.php') }}">
                     <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
                 </a>
             </li>
