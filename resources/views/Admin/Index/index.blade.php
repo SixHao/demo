@@ -72,5 +72,11 @@
         </div>
     </div>
     </div>
-
+    <script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/admin/assets/js/laydate.dev.js') }}"></script>
+</body>
+</html>
 @stop
