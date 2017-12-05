@@ -565,7 +565,7 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function() {
+        $(document).onmouseup(function() {
             $("li").hover(function() {
                 $(".category-content .category-list li.first .menu-in").css') }}("display", "none");
                 $(".category-content .category-list li.first").removeClass("hover");
