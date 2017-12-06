@@ -258,25 +258,26 @@
                 </ul>
             </li>
 
-            {{--<li class="sidebar-nav-link">--}}
-                {{--<a href="javascript:;" class="sidebar-nav-sub-title">--}}
-                    {{--<i class="am-icon-table sidebar-nav-link-logo"></i> 网站配置模块--}}
-                    {{--<span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="sidebar-nav sidebar-nav-sub">--}}
-                    {{--<li class="sidebar-nav-link">--}}
-                        {{--<a href="{{url('admin/config/create')}}">--}}
-                            {{--<span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加网站配置--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
 
-                    {{--<li class="sidebar-nav-link">--}}
-                        {{--<a href="{{url('admin/config')}}">--}}
-                            {{--<span class="am-icon-angle-right sidebar-nav-link-logo"></span> 网站配置列表--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 网站配置模块
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link">
+                        <a href="{{url('admin/config/create')}}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加网站配置
+                        </a>
+                    </li>
+
+                    <li class="sidebar-nav-link">
+                        <a href="{{url('admin/config')}}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 网站配置列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="sidebar-nav-link">
                 <a href="{{ asset('sign-up.html') }}">

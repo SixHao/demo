@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 
 //后台登录页面
@@ -197,6 +197,24 @@ Route::get('/home/index','Home\IndexController@index');
 
 
 
+//批量修改网站配置路由
+Route::post('admin/config/contentchange','Admin\Config\ConfigController@ContentChange');
+
+
+//同步网站配置表中的内容到webconfig配置文件中
+Route::get('admin/config/putfile','Admin\Config\ConfigController@PutFile');
+
+//    网站配置
+// 添加配置
+Route::get('admin/config/add','Admin\Config\ConfigController@add');
+// 执行添加操作
+Route::post('admin/config/doadd','Admin\Config\ConfigController@doadd');
+// 配置列表
+Route::get('admin/config/index','Admin\Config\ConfigController@index');
+// 修改配置
+Route::post('admin/config','Admin\Config\ConfigController@add');
+// 删除配置
+Route::post('admin/config','Admin\Config\ConfigController@add');
 
 
 
