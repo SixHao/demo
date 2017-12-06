@@ -63,18 +63,20 @@ Route::post('/admin/goods/update','Admin\Goods\GoodsController@update');
 Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
 
 
-//后天分类模块
-
-
-
-
-
-
-
-
-
-
-
+//后台友情链接模块
+//    添加友情链接
+Route::get('/admin/friend/add', 'Admin\Friend\FriendController@add');
+//    执行添加
+Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
+//    友情链接列表
+Route::get('/admin/friend/list', 'Admin\Friend\FriendController@list');
+//    友情链接修改
+Route::get('/admin/friend/edit/{fid}', 'Admin\Friend\FriendController@edit');
+//    执行修改
+Route::post('/admin/friend/update/{fid}', 'Admin\Friend\FriendController@update');
+//    友情链接删除
+Route::get('/admin/friend/delete/{fid}', 'Admin\Friend\FriendController@delete');
+Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
 
 
 
@@ -162,7 +164,7 @@ Route::post('/admin/active/delete/{aid}','Admin\Active\ActiveController@delete')
 //后台密码修改模块
 
 //    修改密码
-
+// Route::post('/admin/user/editpwd', 'Admin/')
 //    执行修改
 
 

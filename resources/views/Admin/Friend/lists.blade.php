@@ -1,8 +1,5 @@
 @extends('layout/Alayout')
 
-@section('title')
-    <title>用户列表</title>
-@endsection
 @section('content')
 
 <!-- 内容区域 -->
@@ -12,7 +9,7 @@
             <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                 <div class="widget am-cf">
                     <div class="widget-head am-cf">
-                        <div class="widget-title  am-cf">用户管理</div>
+                        <div class="widget-title  am-cf">友情链接</div>
                     </div>
                     <div class="widget-body  am-fr">
 
@@ -20,7 +17,7 @@
                             <div class="am-form-group">
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span><a style="color: white" href="{{ url('/admin/user/add') }}"> 用户添加</a></button>
+                                        <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span><a style="color: white" href="{{ url('/admin/friend/add') }}"> 友情链接添加</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +25,7 @@
                          @if(session('msg'))
                             <div style="color:red" class="alert alert-danger">{{session('msg')}}</div>
                         @endif
-                        <form action="{{ asset('admin/user/list') }}" method="get">
+                        <form action="{{ asset('admin/friend/list') }}" method="get">
                         <div class="am-u-sm-12">
                             <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                 <thead>
@@ -47,22 +44,16 @@
                 </option>
             </select>
         </th>
-        <th>用户名:</th>
-        <td colspan="3"><input style="color: #4B5357" type="text" name="keywords1" value="{{$request->keywords1}}" placeholder="用户名"></td>
-        <th>邮箱:</th>
-        <td colspan="3"><input style="color: #4B5357" type="text" name="keywords2" value="{{$request->keywords2}}" placeholder="邮箱"></td>
+        <th>链接名:</th>
+        <td><input style="color: #4B5357" type="text" name="keywords1" value="{{$request->keywords1}}" placeholder="链接名"></td>
         <td><input type="submit" style="background: #5EB95E" value="查询"></td>
         </tr>
                                     <tr>
                                         <th>ID</th>
-                                        <th>用户名</th>
-                                        <th>性别</th>
-                                        <th>电话</th>
-                                        <th>邮箱</th>
-                                        <th>地址</th>
-                                        <th>生日</th>
-                                        <th>权限</th>
-                                        <th>头像</th>
+                                        <th>链接名称</th>
+                                        <th>链接地址</th>
+                                        <th>链接logo</th>
+                                        <th>内容</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -72,43 +63,23 @@
                                 @endif
                                 @foreach($data as $key => $v)
                                     <tr class="gradeX">
-                                        <td>{{ $v->uid }}</td>
-                                        <td>{{ $v->uname }}</td>
-                                        <td>
-                                        @if($v->sex == 'w')
-                                        女
-                                        @elseif($v->sex == 'm')
-                                        男
-                                        @else
-                                        保密
-                                        @endif
-                                          </td>
-                                        <td>{{ $v->phone }}</td>
-                                        <td>{{ $v->email }}</td>
-                                        <td>{{ $v->addr }}</td>
-                                        <td>{{ date('Y-m-d',$v->birthday) }}</td>
-                                        <td>
-                                        @if($v->auth == '0')
-                                        超级管理员
-                                        @elseif($v->auth == '1')
-                                        普通管理员
-                                        @else
-                                        普通用户
-                                        @endif
-                                        </td>
+                                        <td>{{ $v->fid }}</td>
+                                        <td>{{ $v->fname }}</td>
+                                        <td>{{ $v->furl }}</td>
                                         <td><img  width="50px" height="30px" 
-                                        @if($v->uface == '/updates/default.jpg')
+                                        @if($v->flogo == '/updates/default.jpg')
                                         src="{{ asset('/uploads/default.jpg') }}"
                                         @else
-                                        src="{{ $v->uface }}"
+                                        src="{{ $v->flogo }}"
                                         @endif
                                        ></td>
+                                        <td>{{ $v->fcontent }}</td>
                                         <td>
                                             <div class="tpl-table-black-operation">
-                                                <a href="{{url('/admin/user/edit')}}/{{$v->uid}}">
+                                                <a href="{{url('/admin/friend/edit')}}/{{$v->fid}}">
                                                     <i class="am-icon-pencil"></i> 编辑
                                                 </a>
-                                                <a href="javascript:;" onclick="userDel({{$v->fid}})" class="tpl-table-black-operation-del">
+                                                <a href="javascript:;" onclick="urlDel({{$v->fid}})" class="tpl-table-black-operation-del">
                                                     <i class="am-icon-trash"></i> 删除
                                                 </a>
                                             </div>
@@ -153,13 +124,16 @@
 <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
  <script>
         
-    function userDel(fid) {
+    function urlDel(fid) {
 
         //询问框
         layer.confirm('您确认删除吗？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/friend/delete')}}/"+fid,{"_method":"get"},function(data){
+//                如果用户发出删除请求，应该使用ajax向服务器发送删除请求
+//                $.get("请求服务器的路径","携带的参数", 获取执行成功后的额返回数据);
+            //admin/user/1
+            $.post("{{url('/admin/friend/delete')}}/"+fid,{"_method":"get"},function(data){
                
               // data是json格式的字符串，在js中如何将一个json字符串变成json对象
                if(data.error == 0){
