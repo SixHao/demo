@@ -74,7 +74,7 @@ class FriendController extends Controller
             'fname.regex' => '链接名必须汉字字母下划线',
             'fname.min' => '链接名最少为4位',
             'fname.max' => '链接名最多为10位',
-            'furl.email' => '邮箱格式不正确',
+            'furl.email' => '链接格式不正确',
             'furl.required' => '链接地址不能为空',
             'flogo1.image' => '请选择一张图片',
             'fcontent.required' => '链接内容不能为空',
