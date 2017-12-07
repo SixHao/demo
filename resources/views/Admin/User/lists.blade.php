@@ -108,7 +108,7 @@
                                                 <a href="{{url('/admin/user/edit')}}/{{$v->uid}}">
                                                     <i class="am-icon-pencil"></i> 编辑
                                                 </a>
-                                                <a href="javascript:;" onclick="userDel({{$v->fid}})" class="tpl-table-black-operation-del">
+                                                <a href="javascript:;" onclick="userDel({{$v->uid}})" class="tpl-table-black-operation-del">
                                                     <i class="am-icon-trash"></i> 删除
                                                 </a>
                                             </div>
@@ -159,13 +159,13 @@
 <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
  <script>
         
-    function userDel(fid) {
+    function userDel(uid) {
 
         //询问框
         layer.confirm('您确认删除吗？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/friend/delete')}}/"+fid,{"_method":"get"},function(data){
+            $.post("{{url('admin/user/delete')}}/"+uid,{"_method":"get"},function(data){
                
               // data是json格式的字符串，在js中如何将一个json字符串变成json对象
                if(data.error == 0){
