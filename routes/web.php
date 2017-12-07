@@ -164,8 +164,46 @@ Route::post('/admin/active/delete/{aid}','Admin\Active\ActiveController@delete')
 //后台密码修改模块
 
 //    修改密码
-// Route::post('/admin/user/editpwd', 'Admin/')
+Route::get('/admin/user/editpwd', 'Admin\UserController@editpwd');
 //    执行修改
+Route::post('/admin/user/doeditpwd/{uid}', 'Admin\UserController@doeditpwd');
+
+
+
+//后台轮播图
+//    添加图片
+Route::get('/admin/slidershow/add', 'Admin\SlidershowController@add');
+//    执行添加
+Route::post('/admin/slidershow/doadd', 'Admin\SlidershowController@doadd');
+//    图片列表
+Route::get('/admin/slidershow/list', 'Admin\SlidershowController@list');
+//    图片修改
+Route::get('/admin/slidershow/edit/{bid}', 'Admin\SlidershowController@edit');
+//    执行修改
+Route::post('/admin/slidershow/update/{bid}', 'Admin\SlidershowController@update');
+//    图片删除
+Route::get('/admin/slidershow/delete/{bid}', 'Admin\SlidershowController@delete');
+Route::post('/admin/slidershow/upload', 'Admin\SlidershowController@upload');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
