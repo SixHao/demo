@@ -56,15 +56,30 @@ Route::post('/admin/goods/store','Admin\Goods\GoodsController@store');
 //    商品列表
 Route::get('/admin/goods/index','Admin\Goods\GoodsController@index');
 //    修改商品
-Route::get('/admin/goods/edit','Admin\Goods\GoodsController@edit');
+Route::get('/admin/goods/edit/{gid}','Admin\Goods\GoodsController@edit');
 //    执行修改
 Route::post('/admin/goods/update','Admin\Goods\GoodsController@update');
 //    删除商品
-Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
+Route::post('/admin/goods/destroy/{gid}','Admin\Goods\GoodsController@destroy');
+//    图片上传
+Route::post('/admin/goods/upload','Admin\Goods\GoodsController@upload');
+Route::post('/admin/goods/ajax','Admin\Goods\GoodsController@ajax');
 
-
-//后天分类模块
-
+//后台分类模块
+//    添加分类
+Route::get('/admin/cate/add','Admin\Cate\CateController@add');
+//添加子分类
+Route::get('/admin/cate/create/{tid}','Admin\Cate\CateController@create');
+//    执行添加
+Route::post('/admin/cate/store','Admin\Cate\CateController@store');
+//    分类列表
+Route::get('/admin/cate/index','Admin\Cate\CateController@index');
+//    修改分类
+Route::get('/admin/cate/edit/{tid}','Admin\Cate\CateController@edit');
+//    执行修改
+Route::post('/admin/cate/update/{tid}','Admin\Cate\CateController@update');
+//    删除分类
+Route::post('/admin/cate/destroy/{tid}','Admin\Cate\CateController@destroy');
 
 
 
@@ -164,6 +179,18 @@ Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
 //    修改密码
 
 //    执行修改
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

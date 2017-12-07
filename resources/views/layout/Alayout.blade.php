@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/amazeui.datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('/admin/assets/css/app.css') }}">
     <script src="{{ asset('/admin/assets/js/jquery.min.js') }}"></script>
-
+    <script src="{{ asset('/admin/assets/js/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('/admin/assets/js/moment.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/home/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/Admin/assets/js/ch-ui.admin.js') }}"></script>
+    <script src="{{ asset('/layer/layer.js') }}"></script>
 </head>
 
 <body data-type="index">

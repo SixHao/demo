@@ -1,7 +1,7 @@
 @extends('layout/Alayout')
 
 @section('title')
-    <title>后台首页</title>
+    <title>商品修改</title>
 @endsection
 @section('content')
         <!-- 内容区域 -->
@@ -13,14 +13,14 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">添加商品</div>
+                                <div class="widget-title am-fl">修改商品</div>
                                 @if(session('msg'))
                             <li style="color:red">{{session('msg')}}</li>
                            @endif
                             </div>
                             <div class="widget-body am-fr">
 
-                                <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/goods/store') }}" id="goods_form" method="post" enctype="multipart/form-data">
+                                <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/goods/update') }}" id="goods_form" method="post" enctype="multipart/form-data">
 
               <div class="box-body">
               @if (count($errors) > 0)
@@ -34,15 +34,15 @@
               @endif
               {{ csrf_field() }}
                                    <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label">父级分类</label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">分类</label>
                                         <div class="am-u-sm-9">
-                               <select name="tid"  style="background-color:#4b5357">
+                              <select name="tid"  style="background-color:#4b5357">
                             <option value="0">==所有分类==</option>
                             @foreach($cates as $k=>$v)
-                            @if($v->pid == '0' )
-                            <option value="{{$v->tid}}" @if(old('tid') == $v->tid ) selected @endif >{{$v->tname}}</option>
+                            @if($v->pid == '0')
+                            <option @if($v->tid == $goods['tid']) selected @endif value="{{$v->tid}}">{{$v->tname}}</option>
                             @else
-                            <option value="{{$v->tid}}" @if(old('tid') == $v->tid ) selected @endif >{{str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$v->lev)}}{{$v->tname}}</option>
+                            <option @if($v->tid == $goods['tid']) selected @endif value="{{$v->tid}}">{{str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',$v->lev)}}{{$v->tname}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -52,30 +52,31 @@
                                         <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">商品名称 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" class="tpl-form-input" id="gname" placeholder="请输入商品名称"
-                                            name="gname" value="{{ old('gname') }}" >
+                                            <input type="hidden" name="gid" value="{{ $goods['gid'] }}">
+                                            <input type="text" class="tpl-form-input" id="gname" value="{{ $goods['gname'] }}" placeholder="请输入商品名称"
+                                            name="gname">
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">商品定价</label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" value="{{ old('gprice') }}" class="tpl-form-input" id="gprice" placeholder="请输入商品定价" name="gprice">
+                                            <input type="text" class="tpl-form-input" id="gprice" value="{{ $goods['gprice'] }}" placeholder="请输入商品定价" name="gprice">
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">商品库存 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" value="{{ old('stock') }}" class="tpl-form-input" id="stock" placeholder="请输入商品库存" name="stock">
+                                            <input type="text" class="tpl-form-input" id="stock" value="{{ $goods['stock'] }}" placeholder="请输入商品库存" name="stock">
                                         </div>
                                     </div>
                                    <div class="am-form-group">
-                                        <label for="user-name" class="am-u-sm-3 am-form-label" >商品图片 </label>
+                                        <label for="user-name" class="am-u-sm-3 am-form-label" >缩略图 </label>
                                         <div class="am-u-sm-9" " >
 
-                                            <input type="text" value="{{ old('gpic') }}" size="50" id="goods_thumb" class="" name="gpic"> 
+                                            <input type="hidden" value="{{ $goods['gpic'] }}" size="50" id="goods_thumb" class="" name="gpic"> 
                                          
-                                             <img src="{{ old('gpic') }}" id="img1" alt="" style="width:200px;height:200px;" name="img1">
-                                             <input id="file_upload" type="file" class="" name="file_upload" multiple="true" >
+                                             <img src="{{ asset($goods['gpic']) }}" id="img1" alt="" style="width:200px;height:200px;" name="img1">
+                                             <input id="file_upload" name="file_upload" type="file" class="" multiple="true" >
                                             
                                         </div>
 
@@ -130,13 +131,13 @@
                                         <label for="user-name" class="am-u-sm-3 am-form-label">商品描述</label>
                                         <div class="am-u-sm-9">
                                             <textarea style="width:600px;height:100px;" class="tpl-form-input" id="gdesc" placeholder="请添加商品描述"
-                                            name="gdesc">{{ old('gdesc') }}</textarea>
+                                            name="gdesc">{{ $goods['gdesc'] }}</textarea>
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label for="user-email" class="am-u-sm-3 am-form-label">上架时间 </label>
                                         <div class="am-u-sm-9">
-                                            <input type="text" value="{{ old('ctime') }}" class="am-form-field tpl-form-no-bg" placeholder="上架时间" data-am-datepicker="" readonly="" name="ctime" id="ctime">
+                                            <input type="text" class="am-form-field tpl-form-no-bg" value="{{ date('Y-m-d',$goods['ctime']) }}" placeholder="上架时间" data-am-datepicker="" readonly="" name="ctime" id="ctime">
                                             <small>上架时间为必填</small>
                                         </div>
                                     </div>
@@ -148,15 +149,16 @@
                                         <label for="user-email" class="am-u-sm-3 am-form-label">商品状态 </label>
                                         <div class="am-u-sm-9" style="margin:8px auto;">
                                         
-                                         <input type="radio" name="status" checked value="0" @if(old('status') == '0') checked @endif>新品
-                                         <input type="radio" name="status" @if(old('status') == '1') checked @endif value="1">上架
-                                         <input type="radio" name="status" @if(old('status') == '2')  checked @endif value="2">下架
+                                         <input type="radio" name="status" @if($goods['status'] == 0) checked @endif value="0">新品
+                                         <input type="radio" name="status" @if($goods['status'] == 1) checked @endif value="1">上架
+                                         <input type="radio" name="status" @if($goods['status'] == 2) checked @endif value="2">下架
+                                        
                                         </div>
                                     </div>
                                 <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
                                             <button type="submit" style="background-color:#595b5d;border-color:#8a8e90; " class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
-                                            <button type="submit" style="background-color:#595b5d;border-color:#8a8e90; margin-left:100px;" class="am-btn am-btn-primary tpl-btn-bg-color-success ">返回</button>
+                                           <a   href="{{url('/admin/goods/index')}}" style="background-color:#595b5d;border-color:#8a8e90; margin-left:100px;" class="am-btn am-btn-primary tpl-btn-bg-color-success ">返回</a>
                                         </div>
                                         
                                     </div>
