@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -127,7 +128,7 @@ class UserController extends Controller
     {
           // 1. 根据传过来的ID获取要修改的用户记录
         $data = User::find($uid);
-        // dd($data);
+     // dd($data);
 
 //        2.返回修改页面（带上要修改的用户记录）
         return view('admin.user.edit',compact('data'));
@@ -178,5 +179,49 @@ class UserController extends Controller
         return $data;
   
     }
-    
+
+    public function editpwd()
+    {
+          // 1. 从session获取要修改的用户记录
+        
+            $res = \Session::get('users');
+//        2.返回修改页面（带上要修改的用户记录）
+        return view('/admin/user/editpwd');
+
+    }
+
+     // 执行修改
+    public function doeditpwd(Request $request, $uid)
+    {
+         // 1. 通过id找到要修改那个用户
+        $data = User::find($uid);
+
+//        2. 通过$request获取要修改的值
+
+       $input = $request->except('_token', 'uid','pwd');
+// dd($input['oldpwd']);
+
+//          3密码是否正确
+//        $user->user_pass     $input['user_pass']
+
+        $users = User::where('uid',$uid)->first();
+ // dd($users);
+       if(!Hash::check(trim($input['oldpwd']),$users->pwd)){
+            return redirect('admin/user/editpwd')->with('errors','密码不正确');
+        }
+       $data->pwd = \Hash::make($input['newpwd']);
+     // dd($input);
+//        3. 使用模型的update进行更新
+//        $user->update(['user_name'=>'zhangsan']);
+        // $res = update users set pwd = "newpwd" where uid = "$uid";
+            // $res = \DB::table('users')->where('uid',$uid)->update($data);
+            $res = $data->save();
+//        4. 根据更新是否成功，跳转页面
+        if($res){
+            $request->session()->flush();
+            return redirect('admin/login');
+        }else{
+            return redirect('admin/user/editpwd/'.$users->uid);
+        }
+}
 }

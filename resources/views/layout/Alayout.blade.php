@@ -60,7 +60,7 @@
                     </li>
                     <!-- 登录 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:;">修改密码  </a>
+                        <a href="/admin/user/editpwd">修改密码 </a>
                     </li>
 
                     <!-- 退出 -->
