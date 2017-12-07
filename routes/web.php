@@ -63,20 +63,6 @@ Route::post('/admin/goods/update','Admin\Goods\GoodsController@update');
 Route::get('/admin/goods/delete','Admin\Goods\GoodsController@delete');
 
 
-//后台友情链接模块
-//    添加友情链接
-Route::get('/admin/friend/add', 'Admin\Friend\FriendController@add');
-//    执行添加
-Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
-//    友情链接列表
-Route::get('/admin/friend/list', 'Admin\Friend\FriendController@list');
-//    友情链接修改
-Route::get('/admin/friend/edit/{fid}', 'Admin\Friend\FriendController@edit');
-//    执行修改
-Route::post('/admin/friend/update/{fid}', 'Admin\Friend\FriendController@update');
-//    友情链接删除
-Route::get('/admin/friend/delete/{fid}', 'Admin\Friend\FriendController@delete');
-Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
 
 
 
@@ -114,7 +100,18 @@ Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
 
 
 //后台权限模块
-
+//    添加权限
+Route::get('/admin/role/add','Admin\Auth\RoleController@add');
+//    执行添加
+Route::post('/admin/role/store','Admin\Auth\RoleController@store');
+//    权限列表
+Route::get('/admin/role/index','Admin\Auth\RoleController@index');
+//    修改权限
+Route::get('/admin/role/edit','Admin\Auth\RoleController@edit');
+//    执行修改
+Route::post('/admin/role/update','Admin\Auth\RoleController@update');
+//    删除权限
+Route::get('/admin/role/delete','Admin\Auth\RoleController@delete');
 
 
 
@@ -166,6 +163,48 @@ Route::post('/admin/active/delete/{aid}','Admin\Active\ActiveController@delete')
 //    修改密码
 // Route::post('/admin/user/editpwd', 'Admin/')
 //    执行修改
+
+
+
+
+
+
+
+
+//后台友情链接模块
+//    添加友情链接
+Route::get('/admin/friend/add', 'Admin\Friend\FriendController@add');
+//    执行添加
+Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
+//    友情链接列表
+Route::get('/admin/friend/list', 'Admin\Friend\FriendController@list');
+//    友情链接修改
+Route::get('/admin/friend/edit/{fid}', 'Admin\Friend\FriendController@edit');
+//    执行修改
+Route::post('/admin/friend/update/{fid}', 'Admin\Friend\FriendController@update');
+//    友情链接删除
+Route::get('/admin/friend/delete/{fid}', 'Admin\Friend\FriendController@delete');
+Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
