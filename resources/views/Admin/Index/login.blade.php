@@ -46,6 +46,7 @@
                     <div class="alert alert-danger">
                         <ul>
                             @if(is_object($errors))
+
                                 @foreach ($errors->all() as $error)
                                     <li style="color:greenyellow; text-align: center;">{{ $error }}</li>
                                 @endforeach

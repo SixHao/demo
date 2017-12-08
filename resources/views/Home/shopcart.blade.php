@@ -11,9 +11,10 @@
 		<link href="{{asset('Home/basic/css/demo.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('Home/css/cartstyle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('Home/css/optstyle.css')}}" rel="stylesheet" type="text/css" />
-
+		{{--<script src="{{asset('Admin/assets/js/jquery.js')}}"></script>--}}
 		<script type="text/javascript" src="{{asset('Home/js/jquery.js')}}"></script>
-
+		<script src="{{asset('Admin/assets/js/ch-ui.admin.js')}}"></script>
+		<script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
 	</head>
 
 	<body>
@@ -30,13 +31,13 @@
 			</ul>
 			<ul class="message-r">
 				<div class="topMessage home">
-					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+					<div class="menu-hd"><a href="index" target="_top" class="h">商城首页</a></div>
 				</div>
 				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+					<div class="menu-hd MyShangcheng"><a href="myinfo" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
 				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+					<div class="menu-hd"><a id="mc-menu-hd" href="shopcart" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 				</div>
 				<div class="topMessage favorite">
 					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -53,7 +54,7 @@
 
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
-					<form>
+					<form action="home/">
 						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 					</form>
@@ -109,7 +110,7 @@
 								<ul class="item-content clearfix">
 									<li class="td td-chk">
 										<div class="cart-checkbox ">
-											<input class="check" id="J_CheckBox_170037950254" name="items[]" value="170037950254" type="checkbox">
+											<input class="check" id="J_CheckBox_170037950254" name="check" value="170037950254" type="checkbox">
 											<label for="J_CheckBox_170037950254"></label>
 										</div>
 									</li>
@@ -128,7 +129,7 @@
 										<div class="item-props item-props-can">
 											<span class="sku-line">{{"$v->gdesc"}}</span>
 
-											<span tabindex="0" class="btn-edit-sku theme-login">修改</span>
+											<span tabindex="1" class="btn-edit-sku theme-login">修改</span>
 											<i class="theme-login am-icon-sort-desc"></i>
 										</div>
 									</li>
@@ -139,7 +140,7 @@
 													<em class="price-original">{{$v->gprice}}</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="0">{{$v->gprice}}</em>
+													<em class="J_Price price-now" tabindex="1">{{$v->gprice}}</em>
 												</div>
 											</div>
 										</div>
@@ -148,68 +149,56 @@
 										<div class="amount-wrapper ">
 											<div class="item-amount ">
 												<div class="sl">
-													<input class="min am-btn" name="" type="button" value="-" />
-													<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-													<input class="add am-btn" name="" type="button" value="+" />
+													<input id="pn-dec" class="min am-btn" name="" type="button" value="-" />
+													<input id="p-cnt" class="text_box" name="" type="text" value="{{$v->gunmber}}" style="width:30px;" />
+													<input id="pn-add" class="add am-btn" name="" type="button" value="+" />
 												</div>
 											</div>
 										</div>
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="0" class="J_ItemSum number">{{$v->gprice}}</em>
+											<em tabindex="1" class="J_ItemSum number">{{$v->gprice*($v->gunmber)}}</em>
 										</div>
 									</li>
 									<li class="td td-op">
 										<div class="td-inner">
-											<a title="移入收藏夹" class="btn-fav" href="#">
-                  移入收藏夹</a>
-											<a href="javascript:;" data-point-url="#" class="delete">
-                  删除</a>
+											<a title="移入收藏夹" class="btn-fav" href="#">移入收藏夹</a>
+											<a href="javascript:;" onclick="del({{$v->gid}})" hidefocus="true" data-point-url="" class="delete">删除</a>
 										</div>
 									</li>
 								</ul>
 								
-								
-								
-								
 
-
-					@endforeach
 
 
 					<div class="clear"></div>
 
 					<tr class="item-list">
-						<div class="bundle  bundle-last ">
-							<div class="bundle-hd">
-								<div class="bd-promos">
-									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;</div>
-									<div class="act-promo">
-										<a href="#" target="_blank">第二支半价，第三支免费<span class="gt">&gt;&gt;</span></a>
-									</div>
-									<span class="list-change theme-login">编辑</span>
-								</div>
-							</div>
+
 
 				<div class="clear"></div>
+
+							@endforeach
 
 				<div class="float-bar-wrapper">
 					<div id="J_SelectAll2" class="select-all J_SelectAll">
 						<div class="cart-checkbox">
-							<input class="check-all check" id="J_SelectAllCbx2" name="select-all" value="true" type="checkbox">
+							<input class="check-all check" id="checkall" name="select-all" value="true" type="checkbox">
 							<label for="J_SelectAllCbx2"></label>
 						</div>
 						<span>全选</span>
+
 					</div>
+
 					<div class="operations">
-						<a href="#" hidefocus="true" class="deleteAll">删除</a>
+						<a href="javascript:;" onclick="delete({{ $v->gid }})" hidefocus="true" class="deleteAll">删除</a>
 						<a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
 					</div>
 					<div class="float-bar-right">
 						<div class="amount-sum">
 							<span class="txt">已选商品</span>
-							<em id="J_SelectedItemsCount"></em><span class="txt">件</span>
+							<em id="J_SelectedItemsCount">{{$v->gunmber}}</em><span class="txt">件</span>
 							<div class="arrow-box">
 								<span class="selected-items-arrow"></span>
 								<span class="arrow"></span>
@@ -217,10 +206,10 @@
 						</div>
 						<div class="price-sum">
 							<span class="txt">合计:</span>
-							<strong class="price">¥<em id="J_Total">0.00</em></strong>
+							<strong class="price">¥<em id="AlltotalPrice"></em></strong>
 						</div>
 						<div class="btn-area">
-							<a href="pay.blade.php" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+							<a href="pay" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
 								<span>结&nbsp;算</span></a>
 						</div>
 					</div>
@@ -317,6 +306,73 @@
 			<li class="active"><a href="shopcart.blade.php"><i class="am-icon-shopping-basket"></i>购物车</a></li>
 			<li><a href="{{asset('Home/person/index.html')}}"><i class="am-icon-user"></i>我的</a></li>
 		</div>
+
+				<script>
+                    function del(gid){
+                        //询问框
+                        layer.confirm('您确认删除吗？', {
+                            btn: ['确认','取消'] //按钮
+                        }, function(){
+//                如果用户发出删除请求，应该使用ajax向服务器发送删除请求
+//                $.get("请求服务器的路径","携带的参数", 获取执行成功后的额返回数据);
+                            //admin/user/1
+
+							$.ajax(
+								{
+									url:"{{ url('/home/cart/delete') }}/"+gid,
+									type:'get',
+									data:{'gid':'gid','_token':"{{ csrf_token() }}"},
+									success:function(data){
+                                        if(data.error == 0){
+										layer.msg(data.msg, {icon: 6});
+										var t=setTimeout("location.href = location.href;",2000);
+										}else{
+										layer.msg(data.msg, {icon: 5});
+										var t=setTimeout("location.href = location.href;",2000);
+										}
+									},
+									dataType:'json'
+								}
+							);
+                               
+                        }, function(){
+
+                        });
+                    }
+						                    //全选框  
+						$("#checkall").click(function(){  
+						    if($(this).attr("checked")){  
+						        $("input[name='check']").attr("checked",true);  
+						    }else{  
+						        $("input[name='check']").attr("checked",false);  
+						    }  
+						})  
+						//单选框  
+						$("input[name='check']").change(function(){  
+						    if($("input[name='check']").not("input:checked").size() <= 0){  
+						        $("#allCheck").attr("checked",true);  
+						    }else{  
+						        $("#allCheck").attr("checked",false);  
+						    }  
+						})  
+
+						var jia  = document.getElementById('pn-add');
+                        var jian = document.getElementById('pn-dec');
+                        var num = document.getElementById('p-cnt');
+						jia.onclick = function(){
+                            //alert(num.value); 
+                            num.value++;
+                        };
+                        jian.onclick = function(){
+                            
+                            num.value--;
+                            if (num.value<=1){
+                                num.value = 1;
+                            }
+                        }
+
+				</script>
+
 	</body>
 
 </html>
