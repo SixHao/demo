@@ -9,26 +9,23 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 
-
 //后台登录页面
 //    登录模块
-Route::get('/admin/login','Admin\LoginController@login');
+Route::get('/admin/login', 'Admin\LoginController@login');
 //    登录验证
-Route::post('/admin/dologin','Admin\LoginController@dologin');
+Route::post('/admin/dologin', 'Admin\LoginController@dologin');
 //    退出登录
-
-
 
 //后台首页模块
 
 //    显示后台首页
-    Route::get('/admin/index','Admin\Index\IndexController@index');
+Route::get('/admin/index', 'Admin\Index\IndexController@index');
 
 //后台用户模块
 
@@ -44,17 +41,16 @@ Route::get('/admin/user/edit/{uid}', 'Admin\UserController@edit');
 Route::post('/admin/user/update/{uid}', 'Admin\UserController@update');
 //    用户删除
 Route::get('/admin/user/delete/{uid}', 'Admin\UserController@delete');
-Route::post('/admin/user/upload','Admin\UserController@upload');
-
+Route::post('/admin/user/upload', 'Admin\UserController@upload');
 
 //后台商品模块
 
 //    添加商品
-Route::get('/admin/goods/add','Admin\Goods\GoodsController@add');
+Route::get('/admin/goods/add', 'Admin\Goods\GoodsController@add');
 //    执行添加
-Route::post('/admin/goods/store','Admin\Goods\GoodsController@store');
+Route::post('/admin/goods/store', 'Admin\Goods\GoodsController@store');
 //    商品列表
-Route::get('/admin/goods/index','Admin\Goods\GoodsController@index');
+Route::get('/admin/goods/index', 'Admin\Goods\GoodsController@index');
 //    修改商品
 Route::get('/admin/goods/edit/{gid}/{page}','Admin\Goods\GoodsController@edit');
 //    执行修改
@@ -65,6 +61,11 @@ Route::post('/admin/goods/destroy/{gid}','Admin\Goods\GoodsController@destroy');
 Route::post('/admin/goods/upload','Admin\Goods\GoodsController@upload');
 Route::post('/admin/goods/ajax','Admin\Goods\GoodsController@ajax');
 
+Route::get('/admin/goods/edit', 'Admin\Goods\GoodsController@edit');
+//    执行修改
+Route::post('/admin/goods/update', 'Admin\Goods\GoodsController@update');
+//    删除商品
+Route::get('/admin/goods/delete', 'Admin\Goods\GoodsController@delete');
 
 //后台分类模块
 //    添加分类
@@ -83,38 +84,7 @@ Route::post('/admin/cate/update/{tid}','Admin\Cate\CateController@update');
 Route::post('/admin/cate/destroy/{tid}','Admin\Cate\CateController@destroy');
 
 
-
-//后台分类模块
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //后台角色模块
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //后台权限模块
 //    添加权限
@@ -130,50 +100,21 @@ Route::post('/admin/role/update','Admin\Auth\RoleController@update');
 //    删除权限
 Route::get('/admin/role/delete','Admin\Auth\RoleController@delete');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //后台订单模块
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 订单列表
+Route::get('/admin/order/index', 'Admin\Order\OrderController@index');
 
 //后台活动模块
 //      添加活动
-Route::get('/admin/active/add','Admin\Active\ActiveController@add');
+Route::get('/admin/active/add', 'Admin\Active\ActiveController@add');
 //      执行添加操作
-Route::post('/admin/active/create','Admin\Active\ActiveController@create');
+Route::post('/admin/active/create', 'Admin\Active\ActiveController@create');
 //      活动列表
-Route::get('/admin/active/index','Admin\Active\ActiveController@index');
+Route::get('/admin/active/index', 'Admin\Active\ActiveController@index');
 //      修改活动
-Route::post('/admin/active/edit','Admin\Active\ActiveController@edit');
+Route::post('/admin/active/edit', 'Admin\Active\ActiveController@edit');
 //      删除活动
-Route::post('/admin/active/delete/{aid}','Admin\Active\ActiveController@delete');
-
-
-
-
+Route::post('/admin/active/delete/{aid}', 'Admin\Active\ActiveController@delete');
 
 //后台密码修改模块
 
@@ -201,10 +142,23 @@ Route::post('/admin/slidershow/upload', 'Admin\SlidershowController@upload');
 
 
 
-
-
-
-
+//    网站配置
+// 添加配置
+Route::get('admin/config/add', 'Admin\Config\ConfigController@add');
+// 执行添加操作
+Route::post('admin/config/insert', 'Admin\Config\ConfigController@insert');
+// 配置列表
+Route::get('admin/config/index', 'Admin\Config\ConfigController@index');
+//    配置修改
+Route::get('/admin/config/edit/{wid}', 'Admin\Config\ConfigController@edit');
+// 修改配置
+Route::post('admin/config/update/{wid}', 'Admin\Config\ConfigController@update');
+// 删除配置
+Route::post('admin/config/delete/{wid}', 'Admin\Config\ConfigController@delete');
+// 批量修改网站配置路由
+Route::post('admin/config/ContentChange', 'Admin\Config\ConfigController@ContentChange');
+//同步网站配置表中的内容到webconfig配置文件中
+Route::get('admin/config/putfile', 'Admin\Config\ConfigController@PutFile');
 
 
 
@@ -243,285 +197,17 @@ Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//前台登录模块
-
-
-
-
 //前台首页
-Route::get('/home/index','Home\IndexController@index');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/home/index', 'Home\IndexController@index');
 
 //购物车
-Route::get('/home/cart','Home\CartController@shopcart');
+Route::get('/home/cart', 'Home\CartController@shopcart');
 //删除
-Route::get('/home/cart/delete/{gid}','Home\CartController@delete');
+Route::get('/home/cart/delete/{gid}', 'Home\CartController@delete');
 
+Route::get('/home/pay', 'Home\PayController@pay');
 
+Route::get('/home/shopcart', 'Home\CartController@shopcart');
+Route::get('/home/shopcart', 'Home\CartController@cart');
 
-
-
-Route::get('/home/pay','Home\PayController@pay');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/home/shopcart','Home\CartController@shopcart');
-Route::get('/home/shopcart','Home\CartController@cart');
-
-
-
-
-
-Route::get('/home/pay','Home\PayController@pay');
+Route::get('/home/pay', 'Home\PayController@pay');

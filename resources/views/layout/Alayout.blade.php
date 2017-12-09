@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @yield('title')
+	<title>网站后台</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,7 +131,7 @@
                     </li>
                 </ul>
             </li>
-            
+
 
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
@@ -171,8 +172,8 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="sidebar-nav-link">
+			
+			<li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 活动管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
@@ -191,7 +192,21 @@
                     </li>
                 </ul>
             </li>
-
+			
+            
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 订单管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">                   
+                    <li class="sidebar-nav-link">
+                        <a href="{{ asset('admin/order/index') }}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 订单列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
@@ -212,7 +227,6 @@
                     </li>
                 </ul>
             </li>
-
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 权限配置
@@ -232,7 +246,7 @@
                     </li>
                 </ul>
             </li>
-            
+
 
              <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
