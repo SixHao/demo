@@ -38,20 +38,14 @@
                           <input type="text" placeholder="请输入您想链接的地址" name="url" value="">
                       </div>
                   </div>
-                  <div class="am-form-group">
-                      <label class="am-u-sm-3 am-form-label">图片顺序 <span class="tpl-form-line-small-title">order</span></label>
-                      <div class="am-u-sm-9">
-                          <input type="text" placeholder="请输入您想放置图片的顺序" name="order" value="">
-                      </div>
-                  </div>
 
                                     <div class="am-form-group">
                                         <label for="user-weibo" class="am-u-sm-3 am-form-label">添加轮播图 <span class="tpl-form-line-small-title">Images</span></label>
                                         <div class="am-u-sm-9">
                                             <div class="am-form-group am-form-file">
                                                 <div class="tpl-form-file-img">
-                                                <input type="hidden" name="src" value="/uploads/default.jpg" id="upload_file">
-                                                    <img id="imghead" width="700px" height="500px" src="{{asset('/uploads/default.jpg')}}" \>
+                                                <input type="hidden" name="src" value="/uploads/defaultpic.jpg" id="upload_file">
+                                                    <img id="imghead" width="250px" height="100px" src="{{asset('/uploads/defaultpic.jpg')}}" \>
                                                 </div>
                                                 <input id="doc-form-file" onclick="abc()" type="file" multiple="true" name="src1">
                                                 <script type="text/javascript">

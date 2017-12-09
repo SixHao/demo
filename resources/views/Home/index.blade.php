@@ -33,18 +33,18 @@
                         @foreach($cates as $k1=>$v1 )
                         <li style="height: 43px;" class="appliance js_toggle relative first">
                             <div class="category-info">
-                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/cake.png') }}"></i><a href="{{ url('/home/list') }}/{{ $v1->tid }}" class="ml-22" title="点心">{{ $v1->tname }}</a></h3>
+                                <h3 class="category-name b-category-name"><i><img src="{{ asset('/Home/images/cake.png') }}"></i><a href="{{ url('/home/goodslist') }}/{{ $v1->tid }}" class="ml-22" title="点心">{{ $v1->tname }}</a></h3>
                                 <em>&gt;</em></div>
-                            <div class="menu-item menu-in top">
-                                <div class="area-in">
+                            <div class="menu-item menu-in top"  style=" background-color: rgba(255,255,255,0.7);border:0px;width:1085px;">
+                                <div class="area-in" >
                                     <div class="area-bg">
                                         <div class="menu-srot">
                                             <div class="sort-side">
                                                 @foreach($v1['sub'] as $k2=>$v2)
-                                                <dl class="dl-sort">
-                                                    <dt><a href="{{ url('/home/list') }}/{{ $v2->tid }}" title="蛋糕">{{ $v2->tname }}</a></dt>
+                                                <dl class="dl-sort"  ">
+                                                    <dt><a href="{{ url('/home/goodslist') }}/{{ $v2->tid }}" title="蛋糕">{{ $v2->tname }}</a></dt>
                                                     @foreach($v2['sub'] as $k3 => $v3)
-                                                    <dd><a title="蒸蛋糕" href="{{ url('/home/list') }}/{{ $v3->tid }}"><span>{{ $v3->tname }}</span></a></dd>
+                                                    <dd><a title="蒸蛋糕" href="{{ url('/home/goodslist') }}/{{ $v3->tid }}"><span style="color: #000;">{{ $v3->tname }}</span></a></dd>
                                                     @endforeach
                                                 </dl>
                                                 @endforeach
@@ -183,11 +183,9 @@
     <!--轮播 -->
     <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
         <ul class="am-slides">
-            <li class="banner1"><a href="introduction.html"><img src="{{ asset('/Home/images/ad1.jpg') }}" /></a></li>
-            <li class="banner2"><a><img src="{{ asset('/Home/images/ad2.jpg') }}" /></a></li>
-            <li class="banner3"><a><img src="{{ asset('/Home/images/ad3.jpg') }}" /></a></li>
-            <li class="banner4"><a><img src="{{ asset('/Home/images/ad4.jpg') }}" /></a></li>
-
+            @foreach($banner as $k=>$v)
+            <li class="banner1"><a href="{{ $v->url }}"><img style="width: 1350px; margin-left: -1350px;" src="{{ $v->src }}" /></a></li>
+            @endforeach
         </ul>
     </div>
     <div class="clear"></div>
@@ -238,318 +236,140 @@
         <div class="shopTitle ">
             <h4>活动</h4>
             <h3>每期活动 优惠享不停 </h3>
-            <span class="more ">
-                              <a href="# ">全部活动<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
-                        </span>
+
         </div>
         <div class="am-g am-g-fixed ">
+            @foreach($active as $k=>$v)
             <div class="am-u-sm-3 ">
-                <div class="icon-sale one "></div>
-                <h4>秒杀</h4>
+                <div class="icon-sale
+                @if($k == 1)
+                        one
+                    @elseif($k == 2)
+                        two
+                    @elseif($k == 3)
+                        three
+                    @elseif($k == 4)
+                        four
+                    @endif
+                "></div>
+                <h4>
+                    @if($v->atype == 1)
+                        秒杀
+                    @elseif($v->atype == 2)
+                        特惠
+                    @elseif($v->atype == 3)
+                        团购
+                    @elseif($v->atype == 4)
+                        超值
+                    @endif
+                </h4>
                 <div class="activityMain ">
-                    <img src="{{ asset('/Home/images/activity1.jpg') }} ">
+                    <a href="{{ url('/home/goodslist') }}/{{ $v->gid }}"> <img width="296px;" height="296px;" src="{{ $v->apic }} "></a>
                 </div>
                 <div class="info ">
-                    <h3>春节送礼优选</h3>
+                    <h3>{{ $v->aname }}</h3>
                 </div>
             </div>
-
-            <div class="am-u-sm-3 ">
-                <div class="icon-sale two "></div>
-                <h4>特惠</h4>
-                <div class="activityMain ">
-                    <img src="{{ asset('/Home/images/activity2.jpg') }}">
-                </div>
-                <div class="info ">
-                    <h3>春节送礼优选</h3>
-                </div>
-            </div>
-
-            <div class="am-u-sm-3 ">
-                <div class="icon-sale three "></div>
-                <h4>团购</h4>
-                <div class="activityMain ">
-                    <img src="{{ asset('/Home/images/activity3.jpg') }} ">
-                </div>
-                <div class="info ">
-                    <h3>春节送礼优选</h3>
-                </div>
-            </div>
-
-            <div class="am-u-sm-3 last ">
-                <div class="icon-sale "></div>
-                <h4>超值</h4>
-                <div class="activityMain ">
-                    <img src="{{ asset('/Home/images/activity.jpg') }} ">
-                </div>
-                <div class="info ">
-                    <h3>春节送礼优选</h3>
-                </div>
-            </div>
+            @endforeach
 
         </div>
     </div>
     <div class="clear "></div>
 
 
-    <div id="f1">
+    @foreach($data as $k=>$v)
+        @if($v['pid'] == 0)
+    <div id="f{{ floor(($k/3))+1 }}">
         <!--甜点-->
 
         <div class="am-container ">
             <div class="shopTitle ">
-                <h4>甜品</h4>
-                <h3>每一道甜品都有一个故事</h3>
+                <h4>{{ $v['tname'] }}</h4>
                 <div class="today-brands ">
-                    <a href="# ">桂花糕</a>
-                    <a href="# ">奶皮酥</a>
-                    <a href="# ">栗子糕 </a>
-                    <a href="# ">马卡龙</a>
-                    <a href="# ">铜锣烧</a>
-                    <a href="# ">豌豆黄</a>
+                    @foreach($data as $k2=>$v2)
+                        @if($v2['pid'] == $v['tid'])
+                    <a href="# ">{{ $v2['tname'] }}</a>
+                        @endif
+                    @endforeach
                 </div>
-                <span class="more ">
-                    <a href="# ">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
-                        </span>
             </div>
         </div>
 
-        <div class="am-g am-g-fixed floodFour">
+        <div class="am-g am-g-fixed floodFour" style="overflow: hidden;height: 480px;">
             <div class="am-u-sm-5 am-u-md-4 text-one list ">
-                <div class="word">
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
+                <div class="word" style="overflow: hidden;width: 240px; height: 150px;">
+                    @foreach($data as $k2=>$v2)
+                        @if($v2['pid'] == $v['tid'])
+                            @foreach($data as $k3=>$v3)
+                                @if($v3['pid'] == $v2['tid'])
+                                    @foreach($goods as $val)
+                                        @if($v3['tid'] == $val['tid'])
+                    <a class="outer" href="{{ url('/home/goodslist') }}/{{ $val['gid'] }}"><span class="inner"><b class="text">{{ $v3['tname'] }}</b></span></a>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+
                 </div>
-                <a href="# ">
+                <a href="#">
                     <div class="outer-con ">
                         <div class="title ">
                             开抢啦！
                         </div>
                         <div class="sub-title ">
-                            零食大礼包
+                            精美大礼包
                         </div>
                     </div>
-                    <img src="{{ asset('/Home/images/act1.png') }} " />
+                    @foreach($data as $k2=>$v2)
+                        @if($v2['pid'] == $v['tid'])
+                            @foreach($data as $k3=>$v3)
+                                @if($v3['pid'] == $v2['tid'])
+                                    @foreach($goods as $val)
+                                        @if($val['tid'] == $v3['tid'])
+                                            <img src="{{ $val['gpic'] }}" style="width:210px; height: 210px;" />
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
                 </a>
+
                 <div class="triangle-topright"></div>
             </div>
 
-            <div class="am-u-sm-7 am-u-md-4 text-two sug">
-                <div class="outer-con ">
-                    <div class="title ">
-                        雪之恋和风大福
-                    </div>
-                    <div class="sub-title ">
-                        ¥13.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="{{ asset('/Home/images/2.jpg') }}" /></a>
-            </div>
-
-            <div class="am-u-sm-7 am-u-md-4 text-two">
-                <div class="outer-con ">
-                    <div class="title ">
-                        雪之恋和风大福
-                    </div>
-                    <div class="sub-title ">
-                        ¥13.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="{{ asset('/Home/images/1.jpg') }}" /></a>
-            </div>
-
-
-            <div class="am-u-sm-3 am-u-md-2 text-three big">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="{{ asset('/Home/images/5.jpg') }}" /></a>
-            </div>
-
-            <div class="am-u-sm-3 am-u-md-2 text-three sug">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="{{ asset('/Home/images/3.jpg') }}" /></a>
-            </div>
-
-            <div class="am-u-sm-3 am-u-md-2 text-three ">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="{{ asset('/Home/images/4.jpg') }}" /></a>
-            </div>
-
-            <div class="am-u-sm-3 am-u-md-2 text-three last big ">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="{{ asset('/Home/images/5.jpg') }}" /></a>
-            </div>
-
+            @foreach($data as $k2=>$v2)
+                @if($v2['pid'] == $v['tid'])
+                    @foreach($data as $k3=>$v3)
+                        @if($v3['pid'] == $v2['tid'])
+                            @foreach($goods as $val)
+                                @if($val['tid'] == $v3['tid'])
+                                    <div class="am-u-sm-7 am-u-md-4 text-two">
+                                        <div class="outer-con ">
+                                            <div class="title " style="width: 185px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+">
+                                                {{ $val['gname'] }}
+                                            </div>
+                                            <div class="sub-title ">
+                                                ¥{{ $val['gprice'] }}
+                                            </div>
+                                        </div>
+                                        <a href="{{ url('/home/goodslist') }}/{{ $val['gid'] }}"><img width="180px;" height="180px;" src="{{ $val['gpic'] }}" /></a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
         </div>
         <div class="clear "></div>
     </div>
 
 
-    <div id="f2">
-        <!--坚果-->
-        <div class="am-container ">
-            <div class="shopTitle ">
-                <h4>坚果</h4>
-                <h3>酥酥脆脆，回味无穷</h3>
-                <div class="today-brands ">
-                    <a href="# ">腰果</a>
-                    <a href="# ">松子</a>
-                    <a href="# ">夏威夷果 </a>
-                    <a href="# ">碧根果</a>
-                    <a href="# ">开心果</a>
-                    <a href="# ">核桃仁</a>
-                </div>
-                <span class="more ">
-                    <a href="# ">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
-                        </span>
-            </div>
-        </div>
-        <div class="am-g am-g-fixed floodThree ">
-            <div class="am-u-sm-4 text-four list">
-                <div class="word">
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                </div>
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/act1.png') }} " />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                    </div>
-                </a>
-                <div class="triangle-topright"></div>
-            </div>
-            <div class="am-u-sm-4 text-four">
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/6.jpg') }}" />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                        <div class="sub-title ">
-                            ¥13.8
-                        </div>
-                        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                    </div>
-                </a>
-            </div>
-            <div class="am-u-sm-4 text-four sug">
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/7.jpg') }}" />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                        <div class="sub-title ">
-                            ¥13.8
-                        </div>
-                        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                    </div>
-                </a>
-            </div>
-
-            <div class="am-u-sm-6 am-u-md-3 text-five big ">
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/10.jpg') }}" />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                        <div class="sub-title ">
-                            ¥13.8
-                        </div>
-                        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                    </div>
-                </a>
-            </div>
-            <div class="am-u-sm-6 am-u-md-3 text-five ">
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/4.jpg') }}" />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                        <div class="sub-title ">
-                            ¥13.8
-                        </div>
-                        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                    </div>
-                </a>
-            </div>
-            <div class="am-u-sm-6 am-u-md-3 text-five sug">
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/9.jpg') }}" />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                        <div class="sub-title ">
-                            ¥13.8
-                        </div>
-                        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                    </div>
-                </a>
-            </div>
-            <div class="am-u-sm-6 am-u-md-3 text-five big">
-                <a href="# ">
-                    <img src="{{ asset('/Home/images/10.jpg') }}" />
-                    <div class="outer-con ">
-                        <div class="title ">
-                            雪之恋和风大福
-                        </div>
-                        <div class="sub-title ">
-                            ¥13.8
-                        </div>
-                        <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-
-        <div class="clear "></div>
-    </div>
-
+    @endif
+@endforeach
 
 @stop()
