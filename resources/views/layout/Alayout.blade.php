@@ -25,7 +25,6 @@
 	<script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
 	<script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('/admin/assets/js/app.js') }}"></script>
-
 </head>
 
 <body data-type="index">
@@ -188,7 +187,7 @@
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/role/list') }}">
+                        <a href="{{ asset('admin/role/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 角色列表
                         </a>
                     </li>
@@ -203,12 +202,12 @@
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
                         <a href="{{ asset('admin/auth/edit') }}">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 修改权限
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加权限
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/auth/list') }}">
+                        <a href="{{ asset('admin/auth/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 权限列表
                         </a>
                     </li>
