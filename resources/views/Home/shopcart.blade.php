@@ -24,8 +24,8 @@
 			<ul class="message-l">
 				<div class="topMessage">
 					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
+						<a href="./login" target="_top" class="h">亲，请登录</a>
+						<a href="./zhuce" target="_top">免费注册</a>
 					</div>
 				</div>
 			</ul>
@@ -98,7 +98,7 @@
 						<div class="bundle  bundle-last ">
 							<div class="bundle-hd">
 								<div class="bd-promos">
-									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;</div>
+									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥20.00</span>&nbsp;&nbsp;</div>
 									<div class="act-promo">
 										<a href="#" target="_blank">第二支半价，第三支免费<span class="gt">&gt;&gt;</span></a>
 									</div>
@@ -107,7 +107,7 @@
 							</div>
 							<div class="clear"></div>
 							<div class="bundle-main">
-								<ul class="item-content clearfix">
+								<ul id="tab" class="item-content clearfix">
 									<li class="td td-chk">
 										<div class="cart-checkbox ">
 											<input class="check" id="J_CheckBox_170037950254" name="check" value="170037950254" type="checkbox">
@@ -117,7 +117,7 @@
 									<li class="td td-item">
 										<div class="item-pic">
 											<a href="#" target="_blank" data-title="{{$v->gname}}" class="J_MakePoint" data-point="tbcart.8.12">
-												<img src="{{asset('Home/images/kouhong.jpg_80x80.jpg')}}" class="itempic J_ItemImg"></a>
+												<img src="" class="itempic J_ItemImg"></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info">
@@ -137,10 +137,11 @@
 										<div class="item-price price-promo-promo">
 											<div class="price-content">
 												<div class="price-line">
-													<em class="price-original">{{$v->gprice}}</em>
+													<em class="price-original">{{$v->gprice+20}}</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="1">{{$v->gprice}}</em>
+													{{--<em class="J_Price price-now" tabindex="1">{{$v->gprice}}</em>--}}
+													<span class="price">{{$v->gprice}}</span>
 												</div>
 											</div>
 										</div>
@@ -149,9 +150,10 @@
 										<div class="amount-wrapper ">
 											<div class="item-amount ">
 												<div class="sl">
-													<input id="pn-dec" class="min am-btn" name="" type="button" value="-" />
-													<input id="p-cnt" class="text_box" name="" type="text" value="{{$v->gunmber}}" style="width:30px;" />
-													<input id="pn-add" class="add am-btn" name="" type="button" value="+" />
+													<input class="min" name="" type="button" value="-" />
+													<input style="width:20px;" class="text_box" name="" type="text" value="3" />
+													<input class="add" name="" type="button" value="+" />
+													</table>
 												</div>
 											</div>
 										</div>
@@ -206,7 +208,7 @@
 						</div>
 						<div class="price-sum">
 							<span class="txt">合计:</span>
-							<strong class="price">¥<em id="AlltotalPrice"></em></strong>
+							<strong class="price">¥<em id="AlltotalPrice"><label id="total"></label></em></strong>
 						</div>
 						<div class="btn-area">
 							<a href="pay" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
@@ -339,7 +341,7 @@
 
                         });
                     }
-						                    //全选框  
+                    //全选框
 						$("#checkall").click(function(){  
 						    if($(this).attr("checked")){  
 						        $("input[name='check']").attr("checked",true);  
@@ -356,22 +358,9 @@
 						    }  
 						})  
 
-						var jia  = document.getElementById('pn-add');
-                        var jian = document.getElementById('pn-dec');
-                        var num = document.getElementById('p-cnt');
-						jia.onclick = function(){
-                            //alert(num.value); 
-                            num.value++;
-                        };
-                        jian.onclick = function(){
-                            
-                            num.value--;
-                            if (num.value<=1){
-                                num.value = 1;
-                            }
-                        }
-
 				</script>
+				<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+
 
 	</body>
 

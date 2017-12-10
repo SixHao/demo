@@ -210,24 +210,12 @@ Route::post('/admin/slidershow/upload', 'Admin\SlidershowController@upload');
 
 
 
-//前台登录模块
 
-// 登录模块
-    Route::get('/home/login','Home\LoginController@login');
-//处理登录数据的路由
-    Route::post('/home/dologin','Home\LoginController@dologin');
 
-//前台注册模块
-//    注册用户
-Route::get('/home/zhuce','Home\ZhuceController@zhuce');
 
-//   注册的验证
-Route::post('/home/dozhuce','Home\ZhuceController@dozhuce');
 
 
 
-//前台首页
-Route::get('/home/index','Home\IndexController@index');
 
 
 
@@ -330,14 +318,11 @@ Route::get('/home/index','Home\IndexController@index');
 
 
 
-
-
-
-
-
-//购物车
+// 购物车
 Route::get('/home/cart','Home\CartController@shopcart');
-//删除
+// 收藏夹
+Route::get('/home/collection','Home\CartController@collection');
+// 删除
 Route::get('/home/cart/delete/{gid}','Home\CartController@delete');
 
 
@@ -347,125 +332,3 @@ Route::get('/home/cart/delete/{gid}','Home\CartController@delete');
 Route::get('/home/pay','Home\PayController@pay');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/home/shopcart','Home\CartController@shopcart');
-Route::get('/home/shopcart','Home\CartController@cart');
-
-
-
-
-
-Route::get('/home/pay','Home\PayController@pay');

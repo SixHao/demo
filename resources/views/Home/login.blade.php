@@ -15,8 +15,7 @@
     <script src="{{asset('/home/AmazeUI-2.4.2/assets/js/amazeui.min.js')}}"></script>
   </head>
   
-  <body>
-    <div class="login-boxtitle">
+  <body class="login-boxtitle">
       <a href="{{asset('/home/home/demo.html')}}">
         <img alt="" src="{{asset('/home/images/log_1.png')}}" /></a>
     </div>
