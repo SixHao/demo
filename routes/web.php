@@ -86,6 +86,21 @@ Route::post('/admin/cate/destroy/{tid}','Admin\Cate\CateController@destroy');
 
 //后台角色模块
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //后台权限模块
 //    添加权限
 Route::get('/admin/role/add','Admin\Auth\RoleController@add');
@@ -162,24 +177,6 @@ Route::get('admin/config/putfile', 'Admin\Config\ConfigController@PutFile');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //后台友情链接模块
 //    添加友情链接
 Route::get('/admin/friend/add', 'Admin\Friend\FriendController@add');
@@ -194,6 +191,11 @@ Route::post('/admin/friend/update/{fid}', 'Admin\Friend\FriendController@update'
 //    友情链接删除
 Route::get('/admin/friend/delete/{fid}', 'Admin\Friend\FriendController@delete');
 Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
+
+
+
+
+
 
 //前台登录模块
 
@@ -228,6 +230,11 @@ Route::post('/home/login/ajax','Home\login\LoginController@ajax');
 
 //前台首页
 Route::get('/home/index', 'Home\IndexController@index');
+
+// 前台详情表
+Route::get('/home/details/{gid}','Home\DetailsController@index');
+// ajax商品信息数量加入购物车
+Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
 
 //购物车
 Route::get('/home/cart', 'Home\CartController@shopcart');
