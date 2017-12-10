@@ -172,6 +172,31 @@ Route::post('/admin/active/delete/{aid}','Admin\Active\ActiveController@delete')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //前台登录模块
 
 // 登录模块
@@ -286,8 +311,10 @@ Route::get('/home/index','Home\IndexController@index');
 
 
 
-
-
+// 前台详情表
+Route::get('/home/details/{gid}','Home\DetailsController@index');
+// ajax商品信息数量加入购物车
+Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
 
 
 

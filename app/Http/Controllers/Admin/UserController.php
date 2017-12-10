@@ -68,37 +68,37 @@ class UserController extends Controller
         // dd($input);
 //        2. 表单验证
 
-        $rule = [
-            'uname' => 'required|unique:users|min:4|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
-            'pwd' => 'required',
-            're_pwd' => 'same:pwd',
-            'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
-            'email' => 'email',
-            'addr' =>  'required',
-            'uface1' => 'image',
-        ];
-        $mess = [
-            'uname.required' => '用户名不能为空',
-            'uname.unique' => '此用户名已存在',
-            'uname.regex' => '用户名必须汉字字母下划线',
-            'uname.min' => '用户名最少为4位',
-            'uname.max' => '用户名最多为18位',
-            're_pwd.same' => '两次密码不一致',
-            'pwd.required' => '密码不能为空',
-            'phone.required' => '手机号不能为空',
-            'phone.size' => '手机号应为十一位',
-             'phone.regex' => '手机号格式不正确',
-            'email.email' => '邮箱格式不正确',
-            'addr.required' => '地址不能为空',
-            'uface1.image' => '请选择一张图片',
-        ];
-        $validator =  Validator::make($input,$rule,$mess);
-        //如果表单验证失败 passes()
-        if ($validator->fails()) {
-            return redirect('admin/user/add')
-                ->withErrors($validator)
-                ->withInput();
-        }
+       //  $rule = [
+       //      'uname' => 'required|unique:users|min:4|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+       //      'pwd' => 'required',
+       //      're_pwd' => 'same:pwd',
+       //      'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
+       //      'email' => 'email',
+       //      'addr' =>  'required',
+       //      'uface1' => 'image',
+       //  ];
+       //  $mess = [
+       //      'uname.required' => '用户名不能为空',
+       //      'uname.unique' => '此用户名已存在',
+       //      'uname.regex' => '用户名必须汉字字母下划线',
+       //      'uname.min' => '用户名最少为4位',
+       //      'uname.max' => '用户名最多为18位',
+       //      're_pwd.same' => '两次密码不一致',
+       //      'pwd.required' => '密码不能为空',
+       //      'phone.required' => '手机号不能为空',
+       //      'phone.size' => '手机号应为十一位',
+       //       'phone.regex' => '手机号格式不正确',
+       //      'email.email' => '邮箱格式不正确',
+       //      'addr.required' => '地址不能为空',
+       //      'uface1.image' => '请选择一张图片',
+       //  ];
+       // $validator =  Validator::make($input,$rule,$mess);
+       //  // 如果表单验证失败 passes()
+       //  if ($validator->fails()) {
+       //      return redirect('admin/user/add')
+       //          ->withErrors($validator)
+       //          ->withInput();
+       //  }
 //        3. 执行添加操作
          $data = new User();
          
@@ -110,9 +110,11 @@ class UserController extends Controller
          $data->auth = $input['auth'];
          $data->uface = $input['uface'];
          $data->birthday = strtotime($input['birthday']);
-         $data->pwd = \Hash::make($data['pwd']);
-         // dd($data);
+         $data->pwd = \Hash::make($input['pwd']);
 
+         // $res = \Hash::check('tttttt',$data->pwd);
+         // dd($res);
+         // dd($data);
          $res = $data->save();
 
 //        4. 判断是否添加成功

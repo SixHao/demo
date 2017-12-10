@@ -95,7 +95,8 @@
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="{{ Session::get('users')->uface }}" alt="">
+                    <img src="{{ Session::get('users')->uface }}"
+                     alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>&nbsp;&nbsp;&nbsp;{{Session::get('users')->uname}}
