@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
+
 class UserController extends Controller
 {
     public function upload(Request $request)

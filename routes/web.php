@@ -195,6 +195,35 @@ Route::post('/admin/friend/update/{fid}', 'Admin\Friend\FriendController@update'
 Route::get('/admin/friend/delete/{fid}', 'Admin\Friend\FriendController@delete');
 Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
 
+//前台登录模块
+
+//前台注册页面
+Route::get('/home/zhuce/zhuce','Home\Zhuce\ZhuceController@zhuce');
+//用户名注册
+Route::post('/home/zhuce/douserzhuce','Home\zhuce\ZhuceController@douserzhuce');
+//发送手机验证码
+ Route::post('/home/zhuce/sendcode','Home\zhuce\ZhuceController@sendCode');
+//手机号注册
+Route::post('/home/zhuce/dophonezhuce','Home\zhuce\ZhuceController@dophonezhuce');
+//邮箱注册
+Route::post('/home/zhuce/doemailzhuce','Home\zhuce\ZhuceController@doEmailzhuce');
+//邮件注册激活路由
+Route::get('/home/zhuce/active','Home\zhuce\ZhuceController@active');
+
+//登录
+Route::get('/home/login/login','Home\login\LoginController@login');
+//执行登录
+Route::post('/home/login/dologin','Home\login\LoginController@dologin');
+
+// 忘记密码
+Route::get('/home/login/forget','Home\login\LoginController@forget');
+
+//找回密码页面
+Route::get('/home/login/reset','Home\login\LoginController@reset');
+//重置密码
+Route::post('/home/login/doreset','Home\login\LoginController@doreset');
+//ajax判断邮箱用户名是否存在
+Route::post('/home/login/ajax','Home\login\LoginController@ajax');
 
 
 //前台首页
