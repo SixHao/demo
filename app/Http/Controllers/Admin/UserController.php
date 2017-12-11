@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -69,37 +70,37 @@ class UserController extends Controller
         // dd($input);
 //        2. 表单验证
 
-        $rule = [
-            'uname' => 'required|unique:users|min:4|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
-            'pwd' => 'required',
-            're_pwd' => 'same:pwd',
-            'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
-            'email' => 'email',
-            'addr' =>  'required',
-            'uface1' => 'image',
-        ];
-        $mess = [
-            'uname.required' => '用户名不能为空',
-            'uname.unique' => '此用户名已存在',
-            'uname.regex' => '用户名必须汉字字母下划线',
-            'uname.min' => '用户名最少为4位',
-            'uname.max' => '用户名最多为18位',
-            're_pwd.same' => '两次密码不一致',
-            'pwd.required' => '密码不能为空',
-            'phone.required' => '手机号不能为空',
-            'phone.size' => '手机号应为十一位',
-             'phone.regex' => '手机号格式不正确',
-            'email.email' => '邮箱格式不正确',
-            'addr.required' => '地址不能为空',
-            'uface1.image' => '请选择一张图片',
-        ];
-        $validator =  Validator::make($input,$rule,$mess);
-        //如果表单验证失败 passes()
-        if ($validator->fails()) {
-            return redirect('admin/user/add')
-                ->withErrors($validator)
-                ->withInput();
-        }
+       //  $rule = [
+       //      'uname' => 'required|unique:users|min:4|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+       //      'pwd' => 'required',
+       //      're_pwd' => 'same:pwd',
+       //      'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
+       //      'email' => 'email',
+       //      'addr' =>  'required',
+       //      'uface1' => 'image',
+       //  ];
+       //  $mess = [
+       //      'uname.required' => '用户名不能为空',
+       //      'uname.unique' => '此用户名已存在',
+       //      'uname.regex' => '用户名必须汉字字母下划线',
+       //      'uname.min' => '用户名最少为4位',
+       //      'uname.max' => '用户名最多为18位',
+       //      're_pwd.same' => '两次密码不一致',
+       //      'pwd.required' => '密码不能为空',
+       //      'phone.required' => '手机号不能为空',
+       //      'phone.size' => '手机号应为十一位',
+       //       'phone.regex' => '手机号格式不正确',
+       //      'email.email' => '邮箱格式不正确',
+       //      'addr.required' => '地址不能为空',
+       //      'uface1.image' => '请选择一张图片',
+       //  ];
+       // $validator =  Validator::make($input,$rule,$mess);
+       //  // 如果表单验证失败 passes()
+       //  if ($validator->fails()) {
+       //      return redirect('admin/user/add')
+       //          ->withErrors($validator)
+       //          ->withInput();
+       //  }
 //        3. 执行添加操作
          $data = new User();
          
@@ -111,9 +112,11 @@ class UserController extends Controller
          $data->auth = $input['auth'];
          $data->uface = $input['uface'];
          $data->birthday = strtotime($input['birthday']);
-         $data->pwd = \Hash::make($data['pwd']);
-         // dd($data);
+         $data->pwd = \Hash::make($input['pwd']);
 
+         // $res = \Hash::check('tttttt',$data->pwd);
+         // dd($res);
+         // dd($data);
          $res = $data->save();
 
 //        4. 判断是否添加成功
@@ -128,7 +131,7 @@ class UserController extends Controller
     {
           // 1. 根据传过来的ID获取要修改的用户记录
         $data = User::find($uid);
-        // dd($data);
+     // dd($data);
 
 //        2.返回修改页面（带上要修改的用户记录）
         return view('admin.user.edit',compact('data'));
@@ -179,5 +182,49 @@ class UserController extends Controller
         return $data;
   
     }
-    
+
+    public function editpwd()
+    {
+          // 1. 从session获取要修改的用户记录
+        
+            $res = \Session::get('users');
+//        2.返回修改页面（带上要修改的用户记录）
+        return view('/admin/user/editpwd');
+
+    }
+
+     // 执行修改
+    public function doeditpwd(Request $request, $uid)
+    {
+         // 1. 通过id找到要修改那个用户
+        $data = User::find($uid);
+
+//        2. 通过$request获取要修改的值
+
+       $input = $request->except('_token', 'uid','pwd');
+// dd($input['oldpwd']);
+
+//          3密码是否正确
+//        $user->user_pass     $input['user_pass']
+
+        $users = User::where('uid',$uid)->first();
+ // dd($users);
+       if(!Hash::check(trim($input['oldpwd']),$users->pwd)){
+            return redirect('admin/user/editpwd')->with('errors','密码不正确');
+        }
+       $data->pwd = \Hash::make($input['newpwd']);
+     // dd($input);
+//        3. 使用模型的update进行更新
+//        $user->update(['user_name'=>'zhangsan']);
+        // $res = update users set pwd = "newpwd" where uid = "$uid";
+            // $res = \DB::table('users')->where('uid',$uid)->update($data);
+            $res = $data->save();
+//        4. 根据更新是否成功，跳转页面
+        if($res){
+            $request->session()->flush();
+            return redirect('admin/login');
+        }else{
+            return redirect('admin/user/editpwd/'.$users->uid);
+        }
+}
 }

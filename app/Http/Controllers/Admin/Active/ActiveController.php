@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Active;
 
+use App\Http\Model\Goods;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,9 @@ class ActiveController extends Controller
     //  返回添加活动视图
     public function add()
     {
-        return view('admin/active/add');
+        $data = \DB::table('goods')->where('status' , 1)->get();
+//        dd($data);
+        return view('admin/active/add',['data'=>$data]);
     }
 
 
@@ -19,6 +22,7 @@ class ActiveController extends Controller
 
     public function create(Request $request)
     {
+
         $this->validate($request,[
             'discount'=> 'numeric|min:1|max:10',
         ],[
@@ -27,6 +31,13 @@ class ActiveController extends Controller
             'discount.max'=>'折扣请填写1-10之间的数',
         ]);
         $data = $request->except('_token');
+
+//        根据gid查找这条商品
+        $gid = (new Goods)->where('gid',$data['gid'])->first();
+//        根据商品的价格和折扣计算出实际价格
+        $data['aprice'] = $gid['gprice']*0.1*$data['discount'];
+        $data['apic'] = $gid['gpic'];
+//        插入数据库
         $res = \DB::table('activitys')->insert($data);
         if ($res)
         {

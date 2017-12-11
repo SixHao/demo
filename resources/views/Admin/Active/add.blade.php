@@ -76,12 +76,13 @@
                                     <label for="user-phone" class="am-u-sm-3 am-form-label">商品名称 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" name="gid" style="display: none;">
-                                            <option value="1">家具</option>
-                                            <option value="2">电器</option>
-                                            <option value="3">食品</option>
-                                            <option value="4">移动设备</option>
+                                            @foreach($data as $k=>$v)
+                                            <option value="{{ $v->gid }}">{{ $v->gname }}</option>
+                                            @endforeach
                                         </select>
-
+                                        {{--@foreach($data as $k=>$v)--}}
+                                            {{--<input type="hidden" name="aprice" value="{{ $v->gprice }}">--}}
+                                        {{--@endforeach--}}
                                     </div>
                                 </div>
 
@@ -99,7 +100,7 @@
                                 <div class="am-form-group">
                                     <label for="user-weibo" class="am-u-sm-3 am-form-label">状态 <span class="tpl-form-line-small-title">Status</span></label>
                                     <div class="am-u-sm-9">
-                                        开始: <input type="radio" name="astatus" id="user-weibo" value="1">
+                                        开始: <input type="radio" checked name="astatus" id="user-weibo" value="1">
                                         结束: <input type="radio" name="astatus" id="user-weibo" value="0">
                                         <div>
 

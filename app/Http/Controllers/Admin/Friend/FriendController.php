@@ -11,7 +11,7 @@ class FriendController extends Controller
 {
     public function upload(Request $request)
     {
-//        获取客户端传过来的文件
+//       获取客户端传过来的文件
         $file = $request->file('flogo');
 //        $file = $request->all();
        // dd($file);
