@@ -63,6 +63,7 @@ Route::post('/admin/goods/update/{page}','Admin\Goods\GoodsController@update');
 Route::post('/admin/goods/destroy/{gid}','Admin\Goods\GoodsController@destroy');
 //    图片上传
 Route::post('/admin/goods/upload','Admin\Goods\GoodsController@upload');
+//商品状态
 Route::post('/admin/goods/ajax','Admin\Goods\GoodsController@ajax');
 
 
@@ -258,6 +259,7 @@ Route::get('/home/zhuce/active','Home\zhuce\ZhuceController@active');
 //登录
 Route::get('/home/login/login','Home\login\LoginController@login');
 //执行登录
+//、
 Route::post('/home/login/dologin','Home\login\LoginController@dologin');
 
 // 忘记密码
