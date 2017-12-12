@@ -134,13 +134,15 @@
 
             </div>
             <div id="shopCart " class="item ">
-                <a href="# ">
+                <a href="{{ url('/home/cart') }}">
                     <span class="message "></span>
                 </a>
                 <p>
                     购物车
                 </p>
+
                 <p class="cart_num ">0</p>
+
             </div>
             <div id="asset " class="item ">
                 <a href="# ">

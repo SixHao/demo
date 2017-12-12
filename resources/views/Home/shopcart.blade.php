@@ -92,10 +92,23 @@
 					</div>
 					<div class="clear"></div>
 
-					@foreach ($data as $key=>$v)
 
+					{{--@if(empty($session['goods'])){--}}
+					{{--$session['goods']['gprice'] = 0;--}}
+					{{--$session['goods']['bcnt'] = 0;--}}
+				{{--}elseif{--}}
+					@if(is_object(session('goods'))){
+					<tr></tr>
+					}
+					@elseif
+
+
+						@endif
+					@foreach( as $k=>$v)
+				{{--@foreach(session() as $k->$v)--}}
 					<tr class="item-list">
 						<div class="bundle  bundle-last ">
+
 							<div class="bundle-hd">
 								<div class="bd-promos">
 									<div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥20.00</span>&nbsp;&nbsp;</div>
@@ -105,9 +118,10 @@
 									<span class="list-change theme-login">编辑</span>
 								</div>
 							</div>
-							<div class="clear"></div>
+
 							<div class="bundle-main">
-								<ul id="tab" class="item-content clearfix">
+
+							<ul id="tab" class="item-content clearfix">
 									<li class="td td-chk">
 										<div class="cart-checkbox ">
 											<input class="check" id="J_CheckBox_170037950254" name="check" value="170037950254" type="checkbox">
@@ -117,7 +131,7 @@
 									<li class="td td-item">
 										<div class="item-pic">
 											<a href="#" target="_blank" data-title="{{$v->gname}}" class="J_MakePoint" data-point="tbcart.8.12">
-												<img src="" class="itempic J_ItemImg"></a>
+												<img style="width: 80px" src="{{$v->gpic}}" class="itempic J_ItemImg"></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info">
@@ -127,7 +141,7 @@
 									</li>
 									<li class="td td-info">
 										<div class="item-props item-props-can">
-											<span class="sku-line">{{"$v->gdesc"}}</span>
+											<span class="sku-line">"{{$v->gdesc}}"</span>
 
 											<span tabindex="1" class="btn-edit-sku theme-login">修改</span>
 											<i class="theme-login am-icon-sort-desc"></i>
@@ -140,8 +154,7 @@
 													<em class="price-original">{{$v->gprice+20}}</em>
 												</div>
 												<div class="price-line">
-													{{--<em class="J_Price price-now" tabindex="1">{{$v->gprice}}</em>--}}
-													<span class="price">{{$v->gprice}}</span>
+													<em class="J_Price price-now" tabindex="1">{{$v->gprice}}</em>
 												</div>
 											</div>
 										</div>
@@ -151,7 +164,7 @@
 											<div class="item-amount ">
 												<div class="sl">
 													<input class="min" name="" type="button" value="-" />
-													<input style="width:20px;" class="text_box" name="" type="text" value="3" />
+													<input style="width:20px;" class="text_box" name="" type="text" value="{{$v->bcnt}}" />
 													<input class="add" name="" type="button" value="+" />
 													</table>
 												</div>
@@ -160,7 +173,7 @@
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="1" class="J_ItemSum number">{{$v->gprice*($v->gunmber)}}</em>
+											<em tabindex="1" class="J_ItemSum number">{{$v->bcnt*$v->gprice}}</em>
 										</div>
 									</li>
 									<li class="td td-op">
@@ -170,18 +183,18 @@
 										</div>
 									</li>
 								</ul>
-								
+								@endforeach
 
 
 
-					<div class="clear"></div>
+								<div class="clear"></div>
 
-					<tr class="item-list">
+
 
 
 				<div class="clear"></div>
 
-							@endforeach
+
 
 				<div class="float-bar-wrapper">
 					<div id="J_SelectAll2" class="select-all J_SelectAll">
@@ -194,13 +207,13 @@
 					</div>
 
 					<div class="operations">
-						<a href="javascript:;" onclick="delete({{ $v->gid }})" hidefocus="true" class="deleteAll">删除</a>
+						<a href="javascript:;" onclick="delete({{$v->gid}})" hidefocus="true" class="deleteAll">删除</a>
 						<a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
 					</div>
 					<div class="float-bar-right">
 						<div class="amount-sum">
 							<span class="txt">已选商品</span>
-							<em id="J_SelectedItemsCount">{{$v->gunmber}}</em><span class="txt">件</span>
+							<em id="J_SelectedItemsCount">{{$v->bcnt}}</em><span class="txt">件</span>
 							<div class="arrow-box">
 								<span class="selected-items-arrow"></span>
 								<span class="arrow"></span>
@@ -257,27 +270,20 @@
 
 						<div class="theme-signin-left">
 
-							<li class="theme-options">
-								<div class="cart-title">颜色：</div>
-								<ul>
-									<li class="sku-line selected">12#川南玛瑙<i></i></li>
-									<li class="sku-line">10#蜜橘色+17#樱花粉<i></i></li>
-								</ul>
-							</li>
+
 							<li class="theme-options">
 								<div class="cart-title">包装：</div>
 								<ul>
-									<li class="sku-line selected">包装：裸装<i></i></li>
-									<li class="sku-line">两支手袋装（送彩带）<i></i></li>
+									<li class="sku-line">{{$v->gdesc}}）<i></i></li>
 								</ul>
 							</li>
 							<div class="theme-options">
 								<div class="cart-title number">数量</div>
 								<dd>
 									<input class="min am-btn am-btn-default" name="" type="button" value="-" />
-									<input class="text_box" name="" type="text" value="1" style="width:30px;" />
+									<input class="text_box" name="" type="text" value="{{$v->bcnt}}" style="width:30px;" />
 									<input class="add am-btn am-btn-default" name="" type="button" value="+" />
-									<span  class="tb-hidden">库存<span class="stock">1000</span>件</span>
+									<span  class="tb-hidden">库存<span class="stock">{{$v->stock}}</span>件</span>
 								</dd>
 
 							</div>
@@ -290,11 +296,11 @@
 						</div>
 						<div class="theme-signin-right">
 							<div class="img-info">
-								<img src="{{asset('Home/images/kouhong.jpg_80x80.jpg')}}" />
+								<img src="{{$v->gpic}}" />
 							</div>
 							<div class="text-info">
-								<span class="J_Price price-now">¥39.00</span>
-								<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+								<span class="J_Price price-now">¥{{$v->gprice}}</span>
+								<span id="Stock" class="tb-hidden">库存<span class="stock">{{$v->stock}}</span>件</span>
 							</div>
 						</div>
 

@@ -11,7 +11,7 @@ class FriendController extends Controller
 {
     public function upload(Request $request)
     {
-//        获取客户端传过来的文件
+//       获取客户端传过来的文件
         $file = $request->file('flogo');
 //        $file = $request->all();
        // dd($file);
@@ -63,18 +63,17 @@ class FriendController extends Controller
         // dd($input);
 //        2. 表单验证
        $rule = [
-            'fname' => 'required|unique:friend|min:4|max:10|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+            'fname' => 'required|unique:friend|max:10|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
             'fcontent' => 'required',
-            'furl' => 'required|email',
+            'furl' => 'required|url',
             'flogo1' => 'image',
         ];
         $mess = [
             'fname.required' => '链接名不能为空',
             'fname.unique' => '此链接名已存在',
             'fname.regex' => '链接名必须汉字字母下划线',
-            'fname.min' => '链接名最少为4位',
             'fname.max' => '链接名最多为10位',
-            'furl.email' => '链接格式不正确',
+            'furl.url' => '链接格式不正确',
             'furl.required' => '链接地址不能为空',
             'flogo1.image' => '请选择一张图片',
             'fcontent.required' => '链接内容不能为空',

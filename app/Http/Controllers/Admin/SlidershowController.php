@@ -69,7 +69,7 @@ class SlidershowController extends Controller
         $data = new Banner();
         $data->src = $input['src'];
         $data->url = $input['url'];
-        $data->order = $input['order'];
+//        $data->order = $input['order'];
         // dd($data);
 
         $res = $data->save();

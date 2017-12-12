@@ -46,7 +46,6 @@
                                         <th>ID</th>
                                         <th>链接地址</th>
                                         <th>图片</th>
-                                        <th>顺序</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,17 +54,16 @@
                                 @endif
                                 @foreach($data as $key => $v)
                                     <tr class="gradeX">
-                                        <td>{{ $v->bid }}</td>
-                                        <td>{{ $v->url }}</td>
-                                        <td><img  width="100px" height="80px"
+                                        <td style="line-height: 60px;">{{ $v->bid }}</td>
+                                        <td style="line-height: 60px;">{{ $v->url }}</td>
+                                        <td><img  width="160px" height="60px"
                                         @if($v->src == '/updates/default.jpg')
                                         src="{{ asset('/uploads/default.jpg') }}"
                                         @else
                                         src="{{ $v->src }}"
                                         @endif
                                        ></td>
-                                        <td>{{ $v->order }}</td>
-                                        <td>
+                                        <td style="line-height: 60px;">
                                             <div class="tpl-table-black-operation">
                                                 <a href="{{url('/admin/slidershow/edit')}}/{{$v->bid}}">
                                                     <i class="am-icon-pencil"></i> 编辑
