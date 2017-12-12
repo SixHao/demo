@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @yield('title')
+	<title>网站后台</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,7 +61,7 @@
                     </li>
                     <!-- 登录 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:;">修改密码  </a>
+                        <a href="/admin/user/editpwd">修改密码 </a>
                     </li>
 
                     <!-- 退出 -->
@@ -107,7 +108,7 @@
         <!-- 菜单 -->
         <ul class="sidebar-nav">
             <li class="sidebar-nav-link">
-                <a href="{{ asset('admin/index') }}" class="active">
+                <a href="{{ url('admin/index') }}" class="active">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
@@ -119,19 +120,19 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/user/add') }}">
+                        <a href="{{ url('admin/user/add') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加用户
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/user/list') }}">
+                        <a href="{{ url('admin/user/list') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 用户列表
                         </a>
                     </li>
                 </ul>
             </li>
-            
+
 
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
@@ -140,13 +141,13 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/goods/add') }}">
+                        <a href="{{ url('admin/goods/add') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加商品
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/goods/index') }}">
+                        <a href="{{ url('admin/goods/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 商品列表
                         </a>
                     </li>
@@ -160,19 +161,53 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/cate/add') }}">
+                        <a href="{{ url('admin/cate/add') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加分类
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/cate/index') }}">
+                        <a href="{{ url('admin/cate/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 分类列表
                         </a>
                     </li>
                 </ul>
             </li>
+			
+			<li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 活动管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link">
+                        <a href="{{ url('/admin/active/add') }}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加活动
+                        </a>
+                    </li>
 
+                    <li class="sidebar-nav-link">
+                        <a href="{{ url('/admin/active/index') }}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 活动列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+			
+            
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 订单管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">                   
+                    <li class="sidebar-nav-link">
+                        <a href="{{ asset('admin/order/index') }}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 订单列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
@@ -181,19 +216,18 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/role/add') }}">
+                        <a href="{{ url('admin/role/add') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加角色
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/role/index') }}">
+                        <a href="{{ url('admin/role/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 角色列表
                         </a>
                     </li>
                 </ul>
             </li>
-
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 权限配置
@@ -201,19 +235,19 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/auth/edit') }}">
+                        <a href="{{ url('admin/auth/edit') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加权限
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/auth/index') }}">
+                        <a href="{{ url('admin/auth/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 权限列表
                         </a>
                     </li>
                 </ul>
             </li>
-            
+
 
              <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
@@ -222,13 +256,13 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/config/add') }}">
+                        <a href="{{ url('admin/config/add') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加配置
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/config/index') }}">
+                        <a href="{{ url('admin/config/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 配置列表
                         </a>
                     </li>
@@ -242,14 +276,34 @@
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/friend/add') }}">
+                        <a href="{{ url('admin/friend/add') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加友情链接
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ asset('admin/friend/list') }}">
+                        <a href="{{ url('admin/friend/list') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 配置友情链接
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 轮播图管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link">
+                        <a href="{{ url('/admin/slidershow/add') }}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加轮播图
+                        </a>
+                    </li>
+
+                    <li class="sidebar-nav-link">
+                        <a href="{{ url('/admin/slidershow/list') }}">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 轮播图列表
                         </a>
                     </li>
                 </ul>
