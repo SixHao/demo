@@ -82,6 +82,12 @@ Route::post('/admin/friend/upload', 'Admin\Friend\FriendController@upload');
 //后台订单模块
 // 订单列表
 Route::get('/admin/order/index', 'Admin\Order\OrderController@index');
+// 修改订单
+Route::get('/admin/order/edit/{oid}', 'Admin\Order\OrderController@edit');
+// 执行修改
+Route::post('/admin/order/update/{oid}', 'Admin\Order\OrderController@update');
+//订单状态
+Route::post('/admin/order/ajax','Admin\Order\OrderController@ajax');
 
 //后台活动模块
 //      添加活动
@@ -147,3 +153,5 @@ Route::get('/home/shopcart', 'Home\CartController@shopcart');
 Route::get('/home/shopcart', 'Home\CartController@cart');
 
 Route::get('/home/pay', 'Home\PayController@pay');
+//前台订单详情页
+Route::get('home/order','Home\OrderController@index');

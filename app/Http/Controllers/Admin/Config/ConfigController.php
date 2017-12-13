@@ -184,6 +184,7 @@ class ConfigController extends Controller
 //            $v->conf_content
         }
 
+
         return view('admin.config.index', compact('config'));
     }
 
