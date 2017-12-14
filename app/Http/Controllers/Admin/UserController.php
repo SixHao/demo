@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Model\role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use Mockery\Exception;
+use DB;
 
 
 class UserController extends Controller
@@ -55,6 +58,7 @@ class UserController extends Controller
 
             })
             ->paginate($request->input('num', 5));
+//        dd($data);
         return view('admin.user.lists',['data'=>$data, 'request'=> $request]);
     }
     // 添加用户
@@ -70,37 +74,37 @@ class UserController extends Controller
         // dd($input);
 //        2. 表单验证
 
-       //  $rule = [
-       //      'uname' => 'required|unique:users|min:4|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
-       //      'pwd' => 'required',
-       //      're_pwd' => 'same:pwd',
-       //      'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
-       //      'email' => 'email',
-       //      'addr' =>  'required',
-       //      'uface1' => 'image',
-       //  ];
-       //  $mess = [
-       //      'uname.required' => '用户名不能为空',
-       //      'uname.unique' => '此用户名已存在',
-       //      'uname.regex' => '用户名必须汉字字母下划线',
-       //      'uname.min' => '用户名最少为4位',
-       //      'uname.max' => '用户名最多为18位',
-       //      're_pwd.same' => '两次密码不一致',
-       //      'pwd.required' => '密码不能为空',
-       //      'phone.required' => '手机号不能为空',
-       //      'phone.size' => '手机号应为十一位',
-       //       'phone.regex' => '手机号格式不正确',
-       //      'email.email' => '邮箱格式不正确',
-       //      'addr.required' => '地址不能为空',
-       //      'uface1.image' => '请选择一张图片',
-       //  ];
-       // $validator =  Validator::make($input,$rule,$mess);
-       //  // 如果表单验证失败 passes()
-       //  if ($validator->fails()) {
-       //      return redirect('admin/user/add')
-       //          ->withErrors($validator)
-       //          ->withInput();
-       //  }
+         $rule = [
+             'uname' => 'required|unique:users|min:4|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+             'pwd' => 'required',
+             're_pwd' => 'same:pwd',
+             'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
+             'email' => 'email',
+             'addr' =>  'required',
+             'uface1' => 'image',
+         ];
+         $mess = [
+             'uname.required' => '用户名不能为空',
+             'uname.unique' => '此用户名已存在',
+             'uname.regex' => '用户名必须汉字字母下划线',
+             'uname.min' => '用户名最少为4位',
+             'uname.max' => '用户名最多为18位',
+             're_pwd.same' => '两次密码不一致',
+             'pwd.required' => '密码不能为空',
+             'phone.required' => '手机号不能为空',
+             'phone.size' => '手机号应为十一位',
+              'phone.regex' => '手机号格式不正确',
+             'email.email' => '邮箱格式不正确',
+             'addr.required' => '地址不能为空',
+             'uface1.image' => '请选择一张图片',
+         ];
+        $validator =  Validator::make($input,$rule,$mess);
+         // 如果表单验证失败 passes()
+         if ($validator->fails()) {
+             return redirect('admin/user/add')
+                 ->withErrors($validator)
+                 ->withInput();
+         }
 //        3. 执行添加操作
          $data = new User();
          
@@ -226,5 +230,57 @@ class UserController extends Controller
         }else{
             return redirect('admin/user/editpwd/'.$users->uid);
         }
-}
+    }
+
+    //  用户授权
+    public function auth($uid)
+    {
+//        获取当前用户
+        $user = User::find($uid);
+
+//        获取当前所有的角色
+        $roles = role::get();
+
+//        获取当前用户已经拥有的角色  (pluck获取数据库中一列的信息 返回一个集合要想转换成数组必须加toArray   5.3之前的版本用的是lists  返回值就是一个数组)
+
+        $own_roles = DB::table('role_user')->where('uid',$uid)->pluck('rid')->toArray();
+
+//        dd($own_roles);
+
+        return view('admin/user/auth',compact('user','roles','own_roles'));
+    }
+
+    //  执行授权
+    public function doauth(Request $request)
+    {
+        $data = $request->except('_token');
+
+
+//        数据库事件开始
+        DB::beginTransaction();
+
+//        试着运行一下
+        try{
+            //  删除当前用户以前拥有的权限
+            DB::table('role_user')->where('uid',$data['uid'])->delete();
+
+            if (!empty($data['rid']))
+            {
+                foreach ($data['rid'] as $k=>$v)
+                {
+                    DB::table('role_user')->insert(['uid'=>$data['uid'],'rid'=>$v]);
+                }
+            }
+
+        }catch (Exception $e){
+//            如果出现异常  回滚
+            DB::rollBack();
+
+        }
+//          否则执行
+        DB::commit();
+
+        return redirect('admin/user/list')->with('msg','授权成功');
+
+    }
 }

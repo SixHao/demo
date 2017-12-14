@@ -9,17 +9,15 @@
 
     <link href="{{ asset('/Home/AmazeUI-2.4.2/assets/css/amazeui.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/Home/AmazeUI-2.4.2/assets/css/admin.css') }}" rel="stylesheet" type="text/css" />
-
     <link href="{{ asset('/Home/basic/css/demo.css') }}" rel="stylesheet" type="text/css" />
-    <script>
-    window.jQuery || document.write('<script src="{{ asset('/Home/basic/js/jquery.min.js') }} "><\/script>');
-</script>
-<script type="text/javascript " src="{{ asset('/Home/basic/js/quick_links.js') }} "></script>
     <link href="{{ asset('/Home/css/hmstyle.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/Home/css/skin.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('/Home/AmazeUI-2.4.2/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('/Home/AmazeUI-2.4.2/assets/js/amazeui.min.js') }}"></script>
-
+    <script>
+        window.jQuery || document.write('<script src="{{ asset('/Home/basic/js/jquery.min.js') }} "><\/script>');
+    </script>
+    <script type="text/javascript " src="{{ asset('/Home/basic/js/quick_links.js') }} "></script>
 </head>
 
 <body>
@@ -29,23 +27,26 @@
         <ul class="message-l">
             <div class="topMessage">
                 <div class="menu-hd">
-                    <a href="#" target="_top" class="h">亲，请登录</a>
-                    <a href="#" target="_top">免费注册</a>
+                    @if(empty(session('husers')))
+                    <a href="{{ url('/home/login/login') }}" target="_top" class="h">亲，请登录</a>
+                    <a href="{{ url('/home/zhuce/zhuce') }}" target="_top">免费注册</a>
+                        @else
+                        <span>你好，{{ session('husers')->username }}</span>
+                    @endif
                 </div>
             </div>
         </ul>
         <ul class="message-r">
             <div class="topMessage Home">
-                <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+                <div class="menu-hd"><a href="{{ url('/home/index') }}" target="_top" class="h">商城首页</a></div>
             </div>
             <div class="topMessage my-shangcheng">
-                <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+                <div class="menu-hd MyShangcheng"><a href="{{ url('/home/userinfo/index') }}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
             </div>
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+                <div class="menu-hd"><a id="mc-menu-hd" href="{{ url('/home/shopcart') }}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
             </div>
-            <div class="topMessage favorite">
-                <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+
         </ul>
     </div>
 
@@ -59,8 +60,9 @@
 
         <div class="search-bar pr">
             <a name="index_none_header_sysc" href="#"></a>
-            <form>
-                <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+            <form action="{{ url('/home/goods') }}" method="post">
+                {{ csrf_field() }}
+                <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
                 <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
             </form>
         </div>
@@ -114,27 +116,34 @@
     <div id="sidebar">
         <div id="wrap">
             <div id="prof" class="item ">
-                <a href="# ">
+                <a href="{{ url('home/userinfo/personal') }} ">
                     <span class="setting "></span>
                 </a>
+                @if(empty(session('husers')))
                 <div class="ibar_login_box status_login ">
                     <div class="avatar_box ">
-                        <p class="avatar_imgbox "><img src="{{ asset('/Home/images/no-img_mid_.jpg') }} " /></p>
-                        <ul class="user_info ">
-                            <li>用户名sl1903</li>
-                            <li>级&nbsp;别普通会员</li>
-                        </ul>
-                    </div>
-                    <div class="login_btnbox ">
-                        <a href="# " class="login_order ">我的订单</a>
-                        <a href="# " class="login_favorite ">我的收藏</a>
+                        <p class="avatar_imgbox " style="margin-top: 30px;margin-left: 20px;"><img src="{{ asset('/Home/images/no-img_mid_.jpg') }} " /></p>
                     </div>
                     <i class="icon_arrow_white "></i>
                 </div>
-
+                @else
+                <div class="ibar_login_box status_login ">
+                    <div class="avatar_box ">
+                        <p class="avatar_imgbox "><img src="{{ session('husers')->pic }}" /></p>
+                        <ul class="user_info ">
+                            <li>{{ session('husers')->nickname }}</li>
+                        </ul>
+                    </div>
+                    <div class="login_btnbox ">
+                        <a href="{{ url('home/userinfo/mydetail') }} " class="login_order ">我的订单</a>
+                        <a href="{{ url('home/userinfo/safety') }} " class="login_favorite ">安全中心</a>
+                    </div>15901139697
+                    <i class="icon_arrow_white "></i>
+                </div>
+                @endif
             </div>
             <div id="shopCart " class="item ">
-                <a href="# ">
+                <a href="{{ url('/home/shopcart') }} ">
                     <span class="message "></span>
                 </a>
                 <p>

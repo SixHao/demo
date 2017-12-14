@@ -111,6 +111,9 @@
                                                 <a href="javascript:;" onclick="userDel({{$v->uid}})" class="tpl-table-black-operation-del">
                                                     <i class="am-icon-trash"></i> 删除
                                                 </a>
+                                                <a href="{{url('/admin/user/auth')}}/{{$v->uid}}">
+                                                    <i class="am-icon-pencil"></i> 授权
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

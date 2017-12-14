@@ -211,18 +211,18 @@
 
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 角色配置
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 角色管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ url('admin/role/add') }}">
+                        <a href="{{ url('/admin/role/create') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加角色
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ url('admin/role/index') }}">
+                        <a href="{{ url('/admin/role') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 角色列表
                         </a>
                     </li>
@@ -230,18 +230,18 @@
             </li>
             <li class="sidebar-nav-link">
                 <a href="javascript:;" class="sidebar-nav-sub-title">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 权限配置
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 权限管理
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
-                        <a href="{{ url('admin/auth/edit') }}">
+                        <a href="{{ url('/admin/permission/create') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 添加权限
                         </a>
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ url('admin/auth/index') }}">
+                        <a href="{{ url('admin/permission') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 权限列表
                         </a>
                     </li>
