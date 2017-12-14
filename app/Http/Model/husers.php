@@ -18,5 +18,11 @@ class husers extends Model
     // protected $dateFormat = 'U';
     // 修改主键
     public $primaryKey = 'id';
-      public $guarded = [];
+    public $guarded = [];
+    public $hidden = ['password'];
+
+    // 找关联用户昵称模型的
+    public function userinfo()    {
+        return $this->belongsTo(UserInfo::class, 'user_id', 'id');
+    }
 }

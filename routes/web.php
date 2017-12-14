@@ -235,6 +235,8 @@ Route::get('/home/index', 'Home\IndexController@index');
 Route::get('/home/details/{gid}','Home\DetailsController@index');
 // ajax商品信息数量加入购物车
 Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
+// 商品信息数量加入结算页
+Route::post('/home/pay','Home\DetailsController@insertpay');
 
 //购物车
 Route::get('/home/cart', 'Home\CartController@shopcart');
@@ -248,7 +250,7 @@ Route::get('/home/shopcart', 'Home\CartController@cart');
 
 Route::get('/home/pay', 'Home\PayController@pay');
 
+Route::get('/home/pay/editaddress/{aid}', 'Home\PayController@editaddress');
 
 
-// 前台评论
-Route::get('/home/comment/index','Home\CommentController@index');
+
