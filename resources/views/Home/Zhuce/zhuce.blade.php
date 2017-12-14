@@ -29,11 +29,11 @@
           <div class="am-tabs" id="doc-my-tabs">
             <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
               <li class="am-active">
-                <a href="/home/">邮箱</a></li>
+                <a href="/home/zhuce/doemailzhuce">邮箱</a></li>
               <li>
-                <a href="/home/">手机号</a></li>
+                <a href="/home/zhuce/dophonezhuce">手机号</a></li>
               <li>
-                <a href="/home/">用户名</a></li>
+                <a href="/home/zhuce/douserzhuce">用户名</a></li>
             </ul>
 
             <!-- 显示错误 -->

@@ -48,20 +48,9 @@
                                                     >10
                                                     </option>
                                                 </select>
-
-                                            
-                                            
-
-
-
-
-                                            <div class="am-btn-group am-btn-group-xs">
+                                          <div class="am-btn-group am-btn-group-xs">
                                                 
-                                            
-
-
-
-                                            </div>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
@@ -77,11 +66,7 @@
                                 </div>
                    </form>
 
-
-
-
-
-                                <div class="am-u-sm-12">
+                     <div class="am-u-sm-12">
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
                                         <thead>
                                             <tr>
@@ -159,13 +144,8 @@
                                 }
                             </style>
                                 <div class="am-u-lg-12 am-cf">
-
-                                        
-                                            {!! $goods->appends($request->all())->render() !!}
-
-
-                                            
-                                </div>
+                             {!! $goods->appends($request->all())->render() !!}
+                             </div>
                                  <style>
                                     .am-u-lg-12 ul{
                                         float: right;
