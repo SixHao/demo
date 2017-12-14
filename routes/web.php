@@ -216,7 +216,6 @@ Route::get('/home/zhuce/active','Home\zhuce\ZhuceController@active');
 //登录
 Route::get('/home/login/login','Home\login\LoginController@login');
 //执行登录
-//、
 Route::post('/home/login/dologin','Home\login\LoginController@dologin');
 
 // 忘记密码
@@ -245,7 +244,28 @@ Route::get('/home/cart/delete/{gid}', 'Home\CartController@delete');
 
 Route::get('/home/pay', 'Home\PayController@pay');
 
-Route::get('/home/shopcart', 'Home\CartController@shopcart');
-Route::get('/home/shopcart', 'Home\CartController@cart');
+//用户中心
+Route::get('/home/userinfo/index','Home\userinfo\UserinfoController@index');
+Route::get('/home/userinfo/personal','Home\userinfo\UserinfoController@personal');	
+//修改个人资料
+Route::post('/home/userinfo/editperson','Home\userinfo\UserinfoController@editperson');
+// 上传头像
+Route::post('/home/userinfo/upload','Home\userinfo\UserinfoController@upload');	
+// 安全设置
+Route::get('/home/userinfo/safety','Home\userinfo\UserinfoController@safety');
+// 执行密码修改
+Route::post('/home/userinfo/dosafety','Home\userinfo\UserinfoController@dosafety');	
+//加载地址页面
+Route::get('/home/userinfo/address','Home\userinfo\UserinfoController@address');
+//增加地址
+Route::post('/home/userinfo/doaddress','Home\userinfo\UserinfoController@doaddress');
+//删除地址
+Route::post('/home/userinfo/deleteaddr/{aid}','Home\userinfo\UserinfoController@deleteaddr');
+//加载订单详情
+Route::get('/home/userinfo/mydetail','Home\userinfo\UserinfoController@mydetail');
+//修改订单状态
+Route::get('/home/userinfo/editdetail','Home\userinfo\UserinfoController@editdetail');
+//历史订单
+Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetail');
 
-Route::get('/home/pay', 'Home\PayController@pay');
+

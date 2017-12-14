@@ -29,7 +29,7 @@
 
                             <form action="{{ url('admin/config/ContentChange') }}" method="post">
                                 <div class="am-u-sm-12">
-                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r" style="colspan:0;">
                                         <thead>
 
                                         <tr>
@@ -78,7 +78,7 @@
 
                                             </tr>
                                         @endforeach
-                                        <tr>
+                                        <tr style="border:0px;">
                                           <td colspan="7">
 
                                             <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
