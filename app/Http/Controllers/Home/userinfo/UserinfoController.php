@@ -134,7 +134,9 @@ class UserinfoController extends Controller
     {
           $id = session('husers')->id;
           $addr = address::where('id',$id)->get();
-          return view('home.userinfo.address',compact('addr'));
+          $default_addr = $addr->where('is_checked',1)->first()->toArray();
+          // dd($default_addr);
+          return view('home.userinfo.address',compact('addr','default_addr'));
    }
 
     //添加地址页面
@@ -242,4 +244,31 @@ class UserinfoController extends Controller
                 // 返回视图
         return view('home/userinfo/olddetail',compact('order'));
    }
+
+
+   //  设为默认地址
+    public function doadd(Request $request)
+    {
+        $input = $request->except('_token');
+        $id= session('husers')->id;
+        $res = address::where('id',$id)->where('is_checked',1)->first();
+        // dd($res);
+        // $res = address::where('aid',$input['aid'])->update(['is_checked'=>1]);
+        if($res)
+        {
+            address::where('id',$id)->where('is_checked',1)->update(['is_checked'=>0]);
+
+            $r = address::where('aid',$input['aid'])->update(['is_checked'=>1]);
+            if ($r) {
+
+            return redirect('home/userinfo/address');
+
+            } else {
+
+              return redirect('home/userinfo/address');
+
+            }
+        }
+        
+    }
 }

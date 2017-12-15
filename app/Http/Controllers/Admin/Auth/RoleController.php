@@ -10,7 +10,7 @@ class RoleController extends Controller
     //
 	public function add()
     {
-        return view('admin.role.add')
+        return view('admin.role.add');
 
     }
     public function store(Request $request)
@@ -24,7 +24,7 @@ class RoleController extends Controller
     		return redirect('admin/role/index');
 
     	} else {
-    		return back()->with('error','添加失败')；
+    		return back()->with('error','添加失败');
     	}
     }
 

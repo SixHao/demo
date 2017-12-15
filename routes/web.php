@@ -267,5 +267,7 @@ Route::get('/home/userinfo/mydetail','Home\userinfo\UserinfoController@mydetail'
 Route::get('/home/userinfo/editdetail','Home\userinfo\UserinfoController@editdetail');
 //历史订单
 Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetail');
+//设置默认地址
+Route::post('/home/userinfo/doadd','Home\userinfo\UserinfoController@doadd');
 
 
