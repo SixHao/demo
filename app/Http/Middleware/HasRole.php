@@ -62,7 +62,7 @@ class HasRole
             {
                 return $next($request);
             } else {
-                return redirect('/admin/404');
+                return redirect('/admin/');  
             }
 
 
