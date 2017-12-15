@@ -255,10 +255,14 @@ Route::post('/home/userinfo/upload','Home\userinfo\UserinfoController@upload');
 Route::get('/home/userinfo/safety','Home\userinfo\UserinfoController@safety');
 // 执行密码修改
 Route::post('/home/userinfo/dosafety','Home\userinfo\UserinfoController@dosafety');	
-//加载地址页面
+//地址列表页面
+Route::get('/home/userinfo/addresslist','Home\userinfo\UserinfoController@addresslist');
+//添加地址
 Route::get('/home/userinfo/address','Home\userinfo\UserinfoController@address');
 //增加地址
 Route::post('/home/userinfo/doaddress','Home\userinfo\UserinfoController@doaddress');
+//设置默认地址
+Route::post('/home/userinfo/doadd','Home\userinfo\UserinfoController@doadd');
 //删除地址
 Route::post('/home/userinfo/deleteaddr/{aid}','Home\userinfo\UserinfoController@deleteaddr');
 //加载订单详情
@@ -267,7 +271,6 @@ Route::get('/home/userinfo/mydetail','Home\userinfo\UserinfoController@mydetail'
 Route::get('/home/userinfo/editdetail','Home\userinfo\UserinfoController@editdetail');
 //历史订单
 Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetail');
-//设置默认地址
-Route::post('/home/userinfo/doadd','Home\userinfo\UserinfoController@doadd');
+
 
 

@@ -13,66 +13,6 @@
 				<div class="main-wrap">
 
 					<div class="user-address">
-						<!--标题 -->
-						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
-						</div>
-						<hr/>
-						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-						<span style="display: block;padding: 10px;">默认地址</span>
-						<li class="user-addresslist defaultAddr">
-								<button class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</button>
-								<p class="new-tit new-p-re">
-								<input type="hidden" name="aid" value="">
-									<span class="new-txt">{{$default_addr['rec_name']}}</span>
-									
-									<span class="new-txt-rd2">{{ substr_replace($default_addr['rec_phone'], '****',3,4)}}</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<span class="province">{{ $default_addr['rec_address'] }}</span>
-										</p>
-								</div>
-								<div class="new-addr-btn">
-									
-									<a href="javascript:;"  onclick="del({{ $default_addr['aid'] }})""><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
-						</ul>
-						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-						<span style="display: block;padding: 10px;">所有地址</span>
-							@foreach($addr as $k=>$v)
-							<form action="{{url('/home/userinfo/doadd')}}" method="post">
-							{{ csrf_field() }}
-							<li class="user-addresslist defaultAddr">
-								<button style="background-color: #ccc;" id="new-option-r" class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</button>
-								<style>
-									#new-option-r:active{
-										background-color: #ee3495;
-									}
-								</style>
-								<p class="new-tit new-p-re">
-								<input type="hidden" name="aid" value="{{ $v['aid'] }}">
-									<span class="new-txt">{{$v['rec_name']}}</span>
-									<input type="hidden" name="rec_phone" value="{{ $v['rec_phone'] }}">
-									<span class="new-txt-rd2">{{substr_replace($v['rec_phone'], '****',3,4)}}</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<span class="province">{{ $v['rec_address'] }}</span>
-										</p>
-								</div>
-								<div class="new-addr-btn">
-									
-									<a href="javascript:;"  onclick="del({{ $v['aid'] }})""><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
-							</form>
-						@endforeach
-							</ul>
-						
 						<div class="clear"></div>
 						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
 						<!--例子-->
