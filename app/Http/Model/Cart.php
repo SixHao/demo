@@ -4,12 +4,11 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class address extends Model
+class Cart extends Model
 {
     //
-    public $table = 'address';
-    public $primaryKey = 'aid';
+    public $table = 'cart';
+    public $primaryKey = 'cid';
     public $guarded = [];
     public $timestamps = false;
-
 }

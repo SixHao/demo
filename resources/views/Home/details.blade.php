@@ -92,6 +92,12 @@
             height: 70px;
         }
 
+        #info select{ border:1px #993300 solid; background:#FFFFFF;width: 150px;}
+		
+		#info{ margin:5px; text-align:center;}
+
+		#info #show{ color:#3399FF; }
+
     </style>
 @section('content')
 
@@ -104,7 +110,7 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="#">首页</a></li>
+								<li class="index"><a href="{{asset('./home/index')}}">首页</a></li>
                                 <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
@@ -117,7 +123,7 @@
 						</div>
 			</div>
 				<ol class="am-breadcrumb am-breadcrumb-slash">
-					<li><a href="#">首页</a></li>
+					<li><a href="{{asset('./home/index')}}">首页</a></li>
 					<li><a href="#">分类</a></li>
 					<li class="am-active">内容</li>
 				</ol>
@@ -132,6 +138,8 @@
 						});
 					});
 				</script>
+				<form class="theme-signin" name="loginform" action="{{ url('/home/pay') }}" method="post">
+				<input type="hidden" name="gid" value="{{$data->gid}}">
 				<div class="scoll">
 					<section class="slider">
 						<div class="flexslider">
@@ -149,10 +157,10 @@
 						</div>
 					</section>
 				</div>
-
+					
 				<!--放大镜-->
-
-				<div class="item-inform">
+  				<div class="item-inform">
+  				
 					<div id="con">
 				        <div id="ldiv">
 				            <div id="move"></div>
@@ -165,7 +173,16 @@
 				        <ul id="uid">
 				            <li><img src="{{$data->gpic}}"></li>
 				        </ul>
-				    </div>
+				        <div id="rdiv">
+				           <li><img src="{{$data->gpic}}"></li>
+				        </div>
+
+				        <ul id="uid">
+				            
+				            <li><img src="{{$data->gpic}}"></li>
+				        </ul>
+					</div>
+				</div>
 
 					<div class="clearfixRight">
 
@@ -303,30 +320,44 @@
         });
     </script>
 							<!--地址-->
-							<dl class="iteminfo_parameter freight">
+							<dl class="iteminfo_parameter freight" style="width:600px;">
 								<dt>配送至</dt>
 								<div class="iteminfo_freprice">
-									
-										<select style="width: 100px;display: inline-block;">
-											<option value="a">浙江省</option>
-											<option value="b">湖北省</option>
-										</select>
-										<select style="width: 100px;display: inline-block;">
-											<option value="a">温州市</option>
-											<option value="b">武汉市</option>
-										</select>
-										<select style="width: 100px;display: inline-block;">
-											<option value="a">瑞安区</option>
-											<option value="b">洪山区</option>
-										</select>
+									<div id="info">
+										<div>
+										<select id="s_province" name="s_province"></select> 
+									    <select id="s_city" name="s_city" ></select>  
+									    <select id="s_county" name="s_county"></select>
+									    <script class="resources library" src="{{ asset('/Home/js/area.js')}}" type="text/javascript"></script>
+									    <script type="text/javascript">_init_area();</script>
+									    </div>
+									    <div id="show"></div>
+									</div>
 								</div>
 							</dl>
 							<div class="clear"></div>
+							<script type="text/javascript">
+
+								var Gid  = document.getElementById ;
+
+								var showArea = function(){
+
+									Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+
+									Gid('s_city').value + " - 县/区" + 
+
+									Gid('s_county').value + "</h3>"
+
+										
+
+								Gid('s_county').setAttribute('onchange','showArea()');}
+
+								</script>
 
 							<!--销量-->
 							<ul class="tm-ind-panel">
 								<li class="tm-ind-item tm-ind-sellCount canClick">
-									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">{{$data->status}}</span></div>
+									<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">{{$data->salecnt}}</span></div>
 								</li>
 								<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
 									<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
@@ -348,11 +379,11 @@
 											<a href="javascript:;" title="关闭" class="close">×</a>
 										</div>
 										<div class="theme-popbod dform">
-											<form class="theme-signin" name="loginform" action="" method="">
-
+										
+										
 												<div class="theme-signin-left">
 
-													
+													<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 													
 													<div class="theme-options">
 														<div class="cart-title number">数量</div>
@@ -384,28 +415,10 @@
 							</dl>
 							<div class="clear"></div>
 							<!--活动	-->
-							<div class="shopPromotion gold">
-								<div class="hot">
-									<dt class="tb-metatit">店铺优惠</dt>
-									<div class="gold-list">
-										<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
-									</div>
-								</div>
-								<div class="clear"></div>
-								<div class="coupon">
-									<dt class="tb-metatit">优惠券</dt>
-									<div class="gold-list">
-										<ul>
-											<li>125减5</li>
-											<li>198减10</li>
-											<li>298减20</li>
-										</ul>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 
-						<div class="pay">
+						<div class="pay" style="height: 50px;width: 500px;display:inline-block;right:300px;position:absolute;top:650px">
 							<div class="pay-opt">
 							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
 							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
@@ -413,7 +426,7 @@
 							</div>
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="buy" href="{{ url('/home/order') }}?gid={{ $data->gid }}" style="height: 30px;width: 98px;background-color:#F03726;color: white; border: 1px solid #F03726">立即购买</a>
+									<button id="buy" href="javascript:;" style="height: 30px;width: 98px;background-color:#F03726;color: white; border: 1px solid #F03726" >立即购买</button>
 								</div>
 							</li>
 							<li>
@@ -423,7 +436,7 @@
 							</li>
 						</div>
 					</div>
-					</form>
+					
 					
 					<script type="text/javascript">
 						var tocart = document.getElementById('buy');
@@ -436,11 +449,11 @@
 							
 							var bcnt = $('#text_box').val();
 							var gid = $gid;
-							var num = $('.cart_num ').text();
+							var num = $('.cart_num').text();
 							var num = $('#J_MiniCartNum').text();
 							// alert(num);
 							$.ajax({
-								url:'/home/details/insertcart',
+								url:'/home/details/insertcart?gid=' + $gid,
 								type:'post',
 								data:{bcnt:bcnt,gid:gid,"_token":"{{ csrf_token() }}"},
 								success:function(data)
@@ -449,24 +462,26 @@
 									{
 										layer.msg(data.msg);
 										num++;
-										$('.cart_num ').text(num);
+										$('.cart_num').text(num);
 										$('#J_MiniCartNum').text(num);
-									} else{
+									} else if(data.status == 2){
 										layer.msg(data.msg);
+										window.location.href = "{{ url('/home/login/login') }}";
 									}
 								},
 								dataType:'json'
 							});
 					}
+				
 					</script>
 					<div class="clear"></div>
 
 				</div>
-
-				<div style="height: 50px"></div>
+								<div style="height: 50px"></div>
 				
 							
 				<!-- introduce-->
+				</form>
 
 				<div class="introduce">
 					<div class="browse">

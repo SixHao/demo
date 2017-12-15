@@ -25,6 +25,15 @@
                          @if(session('msg'))
                             <div style="color:red" class="alert alert-danger">{{session('msg')}}</div>
                         @endif
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{ asset('admin/friend/list') }}" method="get">
                         <div class="am-u-sm-12">
                             <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">

@@ -17,7 +17,18 @@
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">个人资料</strong> / <small>Personal&nbsp;information</small></div>
 						</div>
 						<hr/>
-
+						@if(session('msg'))
+							<li style="color:red">{{session('msg')}}</li>
+						@endif
+						@if (count($errors) > 0)
+							<div class="alert alert-danger">
+								<ul>
+									@foreach($errors->all() as $error)
+										<li style="color: red;">{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
 
 						<form class="am-form am-form-horizontal" id="goods_form" method="post" action="{{url('/home/userinfo/editperson')}}">
 

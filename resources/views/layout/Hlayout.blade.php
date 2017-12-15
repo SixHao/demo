@@ -32,6 +32,7 @@
                     <a href="{{ url('/home/zhuce/zhuce') }}" target="_top">免费注册</a>
                         @else
                         <span>你好，{{ session('husers')->username }}</span>
+                        <a style="padding-left: 10px;" href="{{ url('/home/outlogin') }}" target="_top">退出</a>
                     @endif
                 </div>
             </div>
@@ -62,7 +63,7 @@
             <a name="index_none_header_sysc" href="#"></a>
             <form action="{{ url('/home/goods') }}" method="post">
                 {{ csrf_field() }}
-                <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+                <input id="searchInput" name="search" type="text" value="" placeholder="搜索" autocomplete="off">
                 <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
             </form>
         </div>
@@ -80,13 +81,12 @@
 <div class="footer ">
     <div class="footer-hd ">
         <p>
-            <a href="# ">恒望科技</a>
-            <b>|</b>
-            <a href="# ">商城首页</a>
-            <b>|</b>
-            <a href="# ">支付宝</a>
-            <b>|</b>
-            <a href="# ">物流</a>
+            @foreach($friend as $k=>$v)
+                <a href="{{ $v->url }} ">{{ $v->fname }}
+                    <img style="width: 50px; height: 25px;" title="{{ $v->fcontent }}" src="{{ $v->flogo }}" alt="{{ $v->fcontent }}">
+                    <b>|</b>
+                </a>
+            @endforeach
         </p>
     </div>
     <div class="footer-bd ">

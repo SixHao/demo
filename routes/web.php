@@ -24,6 +24,7 @@ Route::get('/admin/login', 'Admin\LoginController@login');
 //    登录验证
 Route::post('/admin/dologin', 'Admin\LoginController@dologin');
 //    退出登录
+Route::get('/admin/outlogin','Admin\LoginController@outlogin');
 //404页面
 Route::get('/admin/404',function (){
     return view('errors/auth');
@@ -217,7 +218,8 @@ Route::get('/home/zhuce/active','Home\zhuce\ZhuceController@active');
 Route::get('/home/login/login','Home\login\LoginController@login');
 //执行登录
 Route::post('/home/login/dologin','Home\login\LoginController@dologin');
-
+// 退出登录
+Route::get('/home/outlogin','Home\login\LoginController@outlogin');
 // 忘记密码
 Route::get('/home/login/forget','Home\login\LoginController@forget');
 
@@ -229,8 +231,19 @@ Route::post('/home/login/doreset','Home\login\LoginController@doreset');
 Route::post('/home/login/ajax','Home\login\LoginController@ajax');
 
 
+
+
 //前台首页
 Route::get('/home/index', 'Home\IndexController@index');
+
+
+// 前台详情表
+Route::get('/home/details/{gid}','Home\DetailsController@index');
+// ajax商品信息数量加入购物车
+Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
+// 商品信息数量加入结算页
+Route::post('/home/pay','Home\DetailsController@insertpay');
+
 
 
 
@@ -275,4 +288,6 @@ Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetai
 Route::get('home/goodslist/{id}','Home\indexController@goodslist');
 //搜索商品路由
 Route::post('home/goods','Home\IndexController@search');
+
+
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin\Friend;
-use App\Http\Model\Friend;
+use App\Http\Model\friend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -117,21 +117,47 @@ class FriendController extends Controller
     public function update(Request $request, $fid)
     {
          // 1. 通过id找到要修改那个用户
-        $data = Friend::find($fid);
+        $input = $request->except('_token', 'fid','flogo1');
+
+//        2. 表单验证
+       $rule = [
+           'fname' => 'required|max:10|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+           'fcontent' => 'required',
+           'furl' => 'required|url',
+           'flogo1' => 'image',
+       ];
+        $mess = [
+            'fname.required' => '链接名不能为空',
+            'fname.regex' => '链接名必须汉字字母下划线',
+            'fname.max' => '链接名最多为10位',
+            'furl.url' => '链接格式不正确',
+            'furl.required' => '链接地址不能为空',
+            'flogo1.image' => '请选择一张图片',
+            'fcontent.required' => '链接内容不能为空',
+        ];
+        $validator =  Validator::make($input,$rule,$mess);
+        //如果表单验证失败 passes()
+        if ($validator->fails()) {
+            return redirect('admin/friend/list')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
 
 //        2. 通过$request获取要修改的值
 
-       $input = $request->except('_token', 'fid','flogo1');
+
    
 //        3. 使用模型的update进行更新
 //        $Friend->update(['Friend_name'=>'zhangsan']);
-        $res = $data->update($input);
+        $res = friend::where('fid',$fid)->update($input);
 
 //        4. 根据更新是否成功，跳转页面
         if($res){
-            return redirect('admin/friend/list');
+            return redirect('admin/friend/list')->with('msg','修改成功');
         }else{
-            return redirect('admin/friend/edit/'.$data->fid);
+            return back()->with('msg','修改失败');
         }
         
     }

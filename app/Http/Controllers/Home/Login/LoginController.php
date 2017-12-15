@@ -134,5 +134,12 @@ class LoginController extends Controller
     	return $arr;
     }
 
+//    退出登录
+
+    public function outlogin()
+    {
+        session()->flush('husers');
+        return redirect('home/index');
+    }
  
 }

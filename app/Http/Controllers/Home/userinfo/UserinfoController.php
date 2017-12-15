@@ -37,8 +37,32 @@ class UserinfoController extends Controller
     //修改个人信息
     public function editperson(Request $request)
     {
+//        获取修改完提交的数据
         	$input = $request->except('_token','username');
 
+//        	进行表单验证
+
+        $rule = [
+            'nickname' => 'regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+            'phone' => 'required|size:11|regex:/^1[34578][0-9]{9}$/',
+        ];
+        $mess = [
+            'nickname.regex' => '名称必须汉字字母下划线',
+            'phone.required' => '手机号不能为空',
+            'phone.size' => '手机号应为十一位',
+            'phone.regex' => '手机号格式不正确',
+        ];
+        $validator =  Validator::make($input,$rule,$mess);
+        // 如果表单验证失败 passes()
+        if ($validator->fails()) {
+            return redirect('home/userinfo/personal')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
+
+//            对数据进行除理
         	$input['birthday'] = $input['year'].'-'.$input['month'].'-'.$input['day'];
         	// dd($input['birthday']);
         	$data['birthday'] = strtotime($input['birthday']);
@@ -47,13 +71,15 @@ class UserinfoController extends Controller
         	$data['sex'] = $input['sex'];
         	$data['phone'] = $input['phone'];
 
+//        	修改数据库中的数据
         	husers::find($input['id'])->update($data);
         	$users = husers::find($input['id']);
-        	// dd($users);
+
+//            并把新数据更新到session中
         	session(['husers'=>$users]);
-        	// $abc = session('husers');
-        	// dd($abc);
-        	return redirect('/home/userinfo/personal');
+
+//        	返回个人信息视图
+        	return redirect('/home/userinfo/personal')->with('msg','修改成功');
     }
     //修改头像
     public function upload(Request $request)

@@ -121,7 +121,7 @@ class GoodsController extends Controller
         }
         
     })
-    ->paginate($request->input('num', 10));
+    ->paginate($request->input('num', 5));
 
    
         return view('admin.goods.index',['goods'=>$goods, 'request'=> $request]);

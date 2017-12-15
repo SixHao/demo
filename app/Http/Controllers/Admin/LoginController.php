@@ -81,6 +81,13 @@ class LoginController extends Controller
 
     }
 
+//    退出登录
+    public function outlogin()
+    {
+        session()->forget('users');
+        return redirect('admin/login');
+    }
+
 }
 
 

@@ -8,11 +8,14 @@
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper">
 
-        <div class="container-fluid am-cf">
+        <div class="row-content am-cf">
+
             <div class="row">
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单
-                        <small>
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">添加活动</div>
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     <ul>
@@ -23,26 +26,8 @@
                                 </div>
                             @endif
                             @if(session('info'))
-                                    <div class="alert alert-danger">{{session('info')}}</div>
+                                <div class="alert alert-danger">{{session('info')}}</div>
                             @endif
-                        </small></div>
-                </div>
-
-                <div class="am-u-lg-3 tpl-index-settings-button">
-                    <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row-content am-cf">
-
-            <div class="row">
-
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                    <div class="widget am-cf">
-                        <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">添加活动</div>
                             <div class="widget-function am-fr">
                                 <a href="javascript:;" class="am-icon-cog"></a>
                             </div>

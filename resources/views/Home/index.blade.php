@@ -222,7 +222,7 @@
                     @endif
                 </h4>
                 <div class="activityMain ">
-                    <a href="{{ url('/home/detials') }}/{{ $v->gid }}"> <img width="296px;" height="296px;" src="{{ $v->apic }} "></a>
+                    <a href="{{ url('/home/details') }}/{{ $v->gid }}"> <img width="296px;" height="296px;" src="{{ $v->apic }} "></a>
                 </div>
                 <div class="info ">
                     <h3>{{ $v->aname }}</h3>

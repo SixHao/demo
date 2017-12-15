@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Model\banner;
 use App\Http\Model\Cate;
+use App\Http\Model\friend;
 use App\Http\Model\Goods;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,11 @@ class IndexController extends CommonController
         // 获取所有的商品
         $goods = Goods::get();
 
-        return view('Home/index',compact('cates','banner','active','data','goods'));
+        //获取友情链接
+        $friend = friend::get();
+
+
+        return view('Home/index',compact('cates','banner','active','data','goods','friend'));
     }
 
     //  商品搜索
@@ -91,9 +96,10 @@ class IndexController extends CommonController
 //        }
 //        dd($res);
 
+//        获取友情链接
+        $friend = friend::get();
 
-
-        return view('home/goodslist',compact('goods','i','data'));
+        return view('home/goodslist',compact('goods','i','data','friend'));
     }
     
 }
