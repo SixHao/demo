@@ -164,7 +164,7 @@
                 $(obj).find("ul").animate({
                     marginTop: "-39px"
                 }, 500, function() {
-                    $(this).css') }}({
+                    $(this).css) }}({
                     marginTop: "0px"
                 }).find("li:first").appendTo(this);
             })

@@ -43,7 +43,7 @@
 											@if($v2->status !=2)
 									<li>
 										<div class="i-pic limit">
-											<img style="width: 218px; height: 218px;" src="{{ $v2->gpic }}" />
+											<a href="{{ url('/home/details') }}/{{ $v2['gid'] }}"><img style="width: 218px; height: 218px;" src="{{ $v2->gpic }}" /></a>
 											<p class="title fl">{{ $v2->gname }}</p>
 											<p class="price fl">
 												<b>¥</b>

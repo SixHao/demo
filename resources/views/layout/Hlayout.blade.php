@@ -81,12 +81,12 @@
 <div class="footer ">
     <div class="footer-hd ">
         <p>
-            @foreach($friend as $k=>$v)
-                <a href="{{ $v->url }} ">{{ $v->fname }}
-                    <img style="width: 50px; height: 25px;" title="{{ $v->fcontent }}" src="{{ $v->flogo }}" alt="{{ $v->fcontent }}">
+            
+                <a href=" ">
+                    <img style="width: 50px; height: 25px;" title="  " src="" alt="">
                     <b>|</b>
                 </a>
-            @endforeach
+            
         </p>
     </div>
     <div class="footer-bd ">

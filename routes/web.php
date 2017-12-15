@@ -249,6 +249,15 @@ Route::post('/home/pay','Home\DetailsController@insertpay');
 
 
 
+// 删除收货地址
+Route::post('/home/pay/delete/{aid}', 'Home\PayController@delete');
+
+// 添加至订单数据库
+Route::post('./home/pay/insert', 'Home\PayController@insert');
+
+Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
+
+
 
 
 
@@ -288,6 +297,7 @@ Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetai
 Route::get('home/goodslist/{id}','Home\indexController@goodslist');
 //搜索商品路由
 Route::post('home/goods','Home\IndexController@search');
+
 
 
 
