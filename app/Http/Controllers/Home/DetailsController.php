@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home;
+use App\Http\Model\friend;
 use App\Http\Model\Goods;
 use App\Http\Model\address;
 use App\Http\Model\Cart;
@@ -16,9 +17,13 @@ class DetailsController extends Controller
     //商品详情
     public function index(Request $request,$gid)
     {
+        //获取友情链接
+        $friend = friend::get();
+
+        //  根据传过来的id找到这条商品的所有信息
     	$data = Goods::find($gid);
     	// dd($data);
-    	return view('home/details',['data'=>$data]);
+    	return view('home/details',['data'=>$data,'friend'=>$friend]);
     }
 
     public function insertcart(Request $request)
@@ -67,17 +72,23 @@ class DetailsController extends Controller
         if($user){
             $input = $request->except('_token');
             $gid = $input['gid'];
-            $goods = Goods::find($gid)->toArray();
-            $goods['bcnt'] = $input['bcnt'];
+            $goods[] = Goods::find($gid);
+            // dd($input['bcnt']);
+           $goods['0']['cnt'] = $input['bcnt'];
 
-            session(['goods'=>$goods]);
-            $goods = session('goods');
-            // dd($a);
             $id = session('husers')->id;
             $address = address::where('id',$id)->get()->toArray();
-            // dd($address);
-            
-          return view('/home/pay',compact('address'));
+
+            $uid = session('husers')->id;
+            $address = address::where('id',$uid)->
+                        where('is_checked', 1)
+                        ->first();
+                        
+
+            // dd($goods);
+
+
+          return view('/home/pay',compact('address','goods'));
         } else {
             return view('home/login/login')->with('errors', '您还没有登录，请先登录！！！');
         }

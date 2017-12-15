@@ -17,10 +17,7 @@
                     <li class="qc"><a href="#">团购</a></li>
                     <li class="qc last"><a href="#">大包装</a></li>
                 </ul>
-                <div class="nav-extra">
-                    <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-                    <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-                </div>
+
             </div>
 
             <!--侧边导航 -->
@@ -167,7 +164,7 @@
                 $(obj).find("ul").animate({
                     marginTop: "-39px"
                 }, 500, function() {
-                    $(this).css') }}({
+                    $(this).css) }}({
                     marginTop: "0px"
                 }).find("li:first").appendTo(this);
             })
@@ -190,46 +187,7 @@
     </div>
     <div class="clear"></div>
 </div>
-<div class="shopMainbg">
-    <div class="shopMain" id="shopmain">
 
-        <!--今日推荐 -->
-
-        <div class="am-g am-g-fixed recommendation">
-            <div class="clock am-u-sm-3" ">
-            <img src="{{ asset('/Home/images/2016.png') }} ">
-            <p>今日<br>推荐</p>
-        </div>
-        <div class="am-u-sm-4 am-u-lg-3 ">
-            <div class="info ">
-                <h3>真的有鱼</h3>
-                <h4>开年福利篇</h4>
-            </div>
-            <div class="recommendationMain one">
-                <a href="introduction.html"><img src="{{ asset('/Home/images/tj.png') }}"></a>
-            </div>
-        </div>
-        <div class="am-u-sm-4 am-u-lg-3 ">
-            <div class="info ">
-                <h3>囤货过冬</h3>
-                <h4>让爱早回家</h4>
-            </div>
-            <div class="recommendationMain two">
-                <img src="{{ asset('/Home/images/tj1.png') }} ">
-            </div>
-        </div>
-        <div class="am-u-sm-4 am-u-lg-3 ">
-            <div class="info ">
-                <h3>浪漫情人节</h3>
-                <h4>甜甜蜜蜜</h4>
-            </div>
-            <div class="recommendationMain three">
-                <img src="{{ asset('/Home/images/tj2.png') }} ">
-            </div>
-        </div>
-
-    </div>
-    <div class="clear "></div>
     <!--热门活动 -->
 
     <div class="am-container activity ">
@@ -264,7 +222,7 @@
                     @endif
                 </h4>
                 <div class="activityMain ">
-                    <a href="{{ url('/home/goodslist') }}/{{ $v->gid }}"> <img width="296px;" height="296px;" src="{{ $v->apic }} "></a>
+                    <a href="{{ url('/home/details') }}/{{ $v->gid }}"> <img width="296px;" height="296px;" src="{{ $v->apic }} "></a>
                 </div>
                 <div class="info ">
                     <h3>{{ $v->aname }}</h3>
@@ -356,7 +314,7 @@
                                                 ¥{{ $val['gprice'] }}
                                             </div>
                                         </div>
-                                        <a href="{{ url('/home/goodslist') }}/{{ $val['gid'] }}"><img width="180px;" height="180px;" src="{{ $val['gpic'] }}" /></a>
+                                        <a href="{{ url('/home/details') }}/{{ $val['gid'] }}"><img width="180px;" height="180px;" src="{{ $val['gpic'] }}" /></a>
                                     </div>
                                 @endif
                             @endforeach
@@ -371,5 +329,4 @@
 
     @endif
 @endforeach
-
 @stop()

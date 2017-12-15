@@ -164,8 +164,15 @@
 					<div id="con">
 				        <div id="ldiv">
 				            <div id="move"></div>
-				            <li><img src="{{$data->gpic}}"></li>
+				            <img id="limg" src="{{$data->gpic}}">
 				        </div>
+				        <div id="rdiv">
+				            <img id="rimg" src="{{$data->gpic}}">
+				        </div>
+
+				        <ul id="uid">
+				            <li><img src="{{$data->gpic}}"></li>
+				        </ul>
 				        <div id="rdiv">
 				           <li><img src="{{$data->gpic}}"></li>
 				        </div>
@@ -174,7 +181,8 @@
 				            
 				            <li><img src="{{$data->gpic}}"></li>
 				        </ul>
-				    </div>
+					</div>
+				</div>
 
 					<div class="clearfixRight">
 

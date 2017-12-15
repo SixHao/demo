@@ -105,24 +105,39 @@ class SlidershowController extends Controller
     // 执行修改
     public function update(Request $request, $bid)
     {
-        // 1. 通过id找到要修改那个用户
-        $data = Banner::find($bid);
 
 //        2. 通过$request获取要修改的值
 
         $input = $request->except('_token', 'bid','src1');
 
+//        2. 表单验证
+
+        $rule = [
+            'url' => 'url',
+            'src1' => 'image',
+        ];
+        $mess = [
+            'url.url' => '请使用有效的地址',
+            'src1.image' => '请选择一张图片',
+        ];
+        $validator =  Validator::make($input,$rule,$mess);
+        //如果表单验证失败 passes()
+        if ($validator->fails()) {
+            return redirect('admin/slidershow/list')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
 
 //        3. 使用模型的update进行更新
 //        $user->update(['user_name'=>'zhangsan']);
-        $res = $data->update($input);
+        $res = banner::where('bid',$bid)->update($input);
 
 //        4. 根据更新是否成功，跳转页面
         if($res){
-            return redirect('admin/slidershow/list');
+            return redirect('admin/slidershow/list')->with('msg','修改成功');
         }else{
-            return redirect('admin/slidershow/edit/'.$data->bid);
+            return back()->with('msg','修改失败');
         }
 
     }
