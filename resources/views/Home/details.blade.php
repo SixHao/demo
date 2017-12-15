@@ -350,7 +350,7 @@
 											<a href="javascript:;" title="关闭" class="close">×</a>
 										</div>
 										<div class="theme-popbod dform">
-											<form class="theme-signin" name="loginform" action="" method="">
+											<form class="theme-signin" name="loginform" action="" method="post">
 
 												<div class="theme-signin-left">
 
@@ -438,11 +438,11 @@
 							
 							var bcnt = $('#text_box').val();
 							var gid = $gid;
-							var num = $('.cart_num ').text();
+							var num = $('.cart_num').text();
 							var num = $('#J_MiniCartNum').text();
 							// alert(num);
 							$.ajax({
-								url:'/home/details/insertcart',
+								url:'/home/details/insertcart?gid=' + $gid,
 								type:'post',
 								data:{bcnt:bcnt,gid:gid,"_token":"{{ csrf_token() }}"},
 								success:function(data)
@@ -451,7 +451,7 @@
 									{
 										layer.msg(data.msg);
 										num++;
-										$('.cart_num ').text(num);
+										$('.cart_num').text(num);
 										$('#J_MiniCartNum').text(num);
 									} else{
 										layer.msg(data.msg);

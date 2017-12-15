@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Cart;
+use App\Http\Model\ShopCart;
 use App\Http\Model\goods;
+use App\Http\Model\husers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -10,27 +13,49 @@ use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     //
-    public function shopcart(Request $request)
+    public function shopcart()
     {
-//        $data = $request->session()->all();
-//        dd($data);
-        $data = session('goods');
-        dd($data);
-//        $request->session()->put('key1','value1');
-//        $data =  $request->session();
-//        dd($data);
-        // 判断是否登录 如果没有登录就跳转到登录界面
-//        if(empty($session['homeFlag'])){
-//            $session['back'] = $_SERVER['REQUEST_URI'];
-//            header('refresh:2;url=./login/login');
-//            die('你还没登录...请先登录...');
-//        }
+        $user = Session('husers');
+//        dd($shopcart);
+        if ($user) {
+            $shopcart = Cart::find($user->id);
+            session(['cart' => $shopcart]);
+//            dd($shopcart);
+            if (!empty($shopcart)) {
+                $cart = Cart::where('uid', $user->id)->get();
+//                    dd($cart);
+                foreach ($cart as $k => $v) {
+
+                    if (($v->uid) == ($user->id)) {
+                        $goods[] = goods::find($v->gid);
+//                        dd($goods);
+                    }
+                    foreach($goods as $kk => $vv)
+                    {
+                        $vv->cnt = $v->cnt;
+                    }
+//                        dd($goods);
+//                    session(['goods' => $goods]);
+                }
+//                dd($goods);
+                $goods = array_unique($goods);
+
+                return view('Home.shopcart', compact('cart', 'goods', 'user', '$i'));
+            } else {
+                return view('Home.shopcart2');
+            }
+        } else {
+            return view('Home.shopcart2');
+        }
+
         return view('Home/shopcart',['data' => $data]);
     }
 
-    public function delete($gid)
+    public function delete($cid)
     {
-        $res = session::find($gid)->delete();
+//        return $cid;
+        $res = ShopCart::find($cid)->delete();
+//        return $res;
         $data = [];
         if($res){
             $data['error'] = 0;
@@ -42,4 +67,11 @@ class CartController extends Controller
 
         return $data;
     }
+
+
+
+
+
+
+
 }

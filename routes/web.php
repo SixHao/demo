@@ -350,12 +350,20 @@ Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
 //购物车
 Route::get('/home/cart', 'Home\CartController@shopcart');
 //删除
-Route::get('/home/cart/delete/{gid}', 'Home\CartController@delete');
+Route::get('/home/cart/delete/{cid}', 'Home\CartController@delete');
 
 Route::get('/home/pay', 'Home\PayController@pay');
+Route::post('/home/pay/doaddress', 'Home\PayController@doaddress');
 
 Route::get('/home/shopcart', 'Home\CartController@shopcart');
 Route::get('/home/shopcart', 'Home\CartController@cart');
 
-Route::get('/home/pay', 'Home\PayController@pay');
+
+
+// 空购物车
+Route::get('/home/shopcart2', 'Home\CartController@shopcart2');
+
+
+// 前台评论
+Route::get('/home/comment/index','Home\CommentController@index');
 

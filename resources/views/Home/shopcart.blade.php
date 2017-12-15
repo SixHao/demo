@@ -11,7 +11,6 @@
 		<link href="{{asset('Home/basic/css/demo.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('Home/css/cartstyle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('Home/css/optstyle.css')}}" rel="stylesheet" type="text/css" />
-		{{--<script src="{{asset('Admin/assets/js/jquery.js')}}"></script>--}}
 		<script type="text/javascript" src="{{asset('Home/js/jquery.js')}}"></script>
 		<script src="{{asset('Admin/assets/js/ch-ui.admin.js')}}"></script>
 		<script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
@@ -54,7 +53,7 @@
 
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
-					<form action="home/">
+					<form action="home/pay" method="post">
 						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 					</form>
@@ -92,20 +91,17 @@
 					</div>
 					<div class="clear"></div>
 
+				<?php $sum=0;?>
+					<?php $j=0;?>
+				@foreach($cart as $k=>$v)
+				@foreach($goods as $m=>$n)
+					<?php $j+=$v->cnt;?>
 
-					{{--@if(empty($session['goods'])){--}}
-					{{--$session['goods']['gprice'] = 0;--}}
-					{{--$session['goods']['bcnt'] = 0;--}}
-				{{--}elseif{--}}
-					@if(is_object(session('goods'))){
-					<tr></tr>
-					}
-					@elseif
+					<?php $sum+=$n->gprice*$v->cnt?>
 
 
-						@endif
-					@foreach( as $k=>$v)
-				{{--@foreach(session() as $k->$v)--}}
+						@if($v->gid == $n->gid)
+				{{--@foreach(session() as $v->$v)--}}
 					<tr class="item-list">
 						<div class="bundle  bundle-last ">
 
@@ -123,27 +119,24 @@
 
 							<ul id="tab" class="item-content clearfix">
 									<li class="td td-chk">
-										<div class="cart-checkbox ">
-											<input class="check" id="J_CheckBox_170037950254" name="check" value="170037950254" type="checkbox">
-											<label for="J_CheckBox_170037950254"></label>
-										</div>
+
 									</li>
 									<li class="td td-item">
 										<div class="item-pic">
-											<a href="#" target="_blank" data-title="{{$v->gname}}" class="J_MakePoint" data-point="tbcart.8.12">
-												<img style="width: 80px" src="{{$v->gpic}}" class="itempic J_ItemImg"></a>
+											<a href="{{ url('/home/details') }}/{{ $n->gid }}" target="_blank" data-title="" class="J_MakePoint" data-point="tbcart.8.12">
+												<img style="width: 80px" src="{{ $n->gpic }}" class="itempic J_ItemImg"></a>
 										</div>
 										<div class="item-info">
 											<div class="item-basic-info">
-												<a href="#" target="_blank" title="{{$v->gname}}" class="item-title J_MakePoint" data-point="tbcart.8.11">{{$v->gname}}</a>
+												<a href="#" target="_blank" title="{{ $n->gname }}" class="item-title J_MakePoint" data-point="tbcart.8.11">{{ $n->gname }}</a>
 											</div>
 										</div>
 									</li>
 									<li class="td td-info">
 										<div class="item-props item-props-can">
-											<span class="sku-line">"{{$v->gdesc}}"</span>
+											<span >"{{$n->gdesc}}"</span>
 
-											<span tabindex="1" class="btn-edit-sku theme-login">修改</span>
+
 											<i class="theme-login am-icon-sort-desc"></i>
 										</div>
 									</li>
@@ -151,10 +144,10 @@
 										<div class="item-price price-promo-promo">
 											<div class="price-content">
 												<div class="price-line">
-													<em class="price-original">{{$v->gprice+20}}</em>
+													<em class="price-original">{{$n->gprice+20}}</em>
 												</div>
 												<div class="price-line">
-													<em class="J_Price price-now" tabindex="1">{{$v->gprice}}</em>
+													<em class="J_Price price-now" tabindex="1">{{$n->gprice}}</em>
 												</div>
 											</div>
 										</div>
@@ -163,57 +156,42 @@
 										<div class="amount-wrapper ">
 											<div class="item-amount ">
 												<div class="sl">
-													<input class="min" name="" type="button" value="-" />
-													<input style="width:20px;" class="text_box" name="" type="text" value="{{$v->bcnt}}" />
-													<input class="add" name="" type="button" value="+" />
-													</table>
+													<em class="J_Price price-now" tabindex="1">{{$v->cnt}}</em>
 												</div>
 											</div>
 										</div>
 									</li>
 									<li class="td td-sum">
 										<div class="td-inner">
-											<em tabindex="1" class="J_ItemSum number">{{$v->bcnt*$v->gprice}}</em>
+											<em tabindex="1" class="J_ItemSum number" ng-bind="item.price*item.quantity">{{$v['cnt']*$n->gprice}}</em>
 										</div>
 									</li>
 									<li class="td td-op">
 										<div class="td-inner">
-											<a title="移入收藏夹" class="btn-fav" href="#">移入收藏夹</a>
-											<a href="javascript:;" onclick="del({{$v->gid}})" hidefocus="true" data-point-url="" class="delete">删除</a>
+											<a href="javascript:;" onclick="del({{$v['cid']}})" hidefocus="true" data-point-url="" class="delete">删除</a>
 										</div>
 									</li>
 								</ul>
+
+								{{--@endforeach--}}
+
+								@endif
+								@endforeach
 								@endforeach
 
 
-
-								<div class="clear"></div>
-
-
-
-
 				<div class="clear"></div>
-
-
-
 				<div class="float-bar-wrapper">
 					<div id="J_SelectAll2" class="select-all J_SelectAll">
-						<div class="cart-checkbox">
-							<input class="check-all check" id="checkall" name="select-all" value="true" type="checkbox">
-							<label for="J_SelectAllCbx2"></label>
-						</div>
-						<span>全选</span>
+
 
 					</div>
 
-					<div class="operations">
-						<a href="javascript:;" onclick="delete({{$v->gid}})" hidefocus="true" class="deleteAll">删除</a>
-						<a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
-					</div>
+
 					<div class="float-bar-right">
 						<div class="amount-sum">
 							<span class="txt">已选商品</span>
-							<em id="J_SelectedItemsCount">{{$v->bcnt}}</em><span class="txt">件</span>
+							<em id="J_SelectedItemsCount"></em><span class="txt"><?php echo $j?>件</span>
 							<div class="arrow-box">
 								<span class="selected-items-arrow"></span>
 								<span class="arrow"></span>
@@ -221,10 +199,11 @@
 						</div>
 						<div class="price-sum">
 							<span class="txt">合计:</span>
-							<strong class="price">¥<em id="AlltotalPrice"><label id="total"></label></em></strong>
+							<strong class="price">¥<em id="AlltotalPrice"><label id="total" ng-bind="totalPrice()"><?php echo$sum;?></label></em></strong>
 						</div>
+
 						<div class="btn-area">
-							<a href="pay" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+							<a href="pay" method="post" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
 								<span>结&nbsp;算</span></a>
 						</div>
 					</div>
@@ -256,57 +235,9 @@
 
 			</div>
 
-			<!--操作页面-->
-
-			<div class="theme-popover-mask"></div>
-
-			<div class="theme-popover">
-				<div class="theme-span"></div>
-				<div class="theme-poptit h-title">
-					<a href="javascript:;" title="关闭" class="close">×</a>
-				</div>
-				<div class="theme-popbod dform">
-					<form class="theme-signin" name="loginform" action="" method="post">
-
-						<div class="theme-signin-left">
 
 
-							<li class="theme-options">
-								<div class="cart-title">包装：</div>
-								<ul>
-									<li class="sku-line">{{$v->gdesc}}）<i></i></li>
-								</ul>
-							</li>
-							<div class="theme-options">
-								<div class="cart-title number">数量</div>
-								<dd>
-									<input class="min am-btn am-btn-default" name="" type="button" value="-" />
-									<input class="text_box" name="" type="text" value="{{$v->bcnt}}" style="width:30px;" />
-									<input class="add am-btn am-btn-default" name="" type="button" value="+" />
-									<span  class="tb-hidden">库存<span class="stock">{{$v->stock}}</span>件</span>
-								</dd>
 
-							</div>
-							<div class="clear"></div>
-							<div class="btn-op">
-								<div class="btn am-btn am-btn-warning">确认</div>
-								<div class="btn close am-btn am-btn-warning">取消</div>
-							</div>
-
-						</div>
-						<div class="theme-signin-right">
-							<div class="img-info">
-								<img src="{{$v->gpic}}" />
-							</div>
-							<div class="text-info">
-								<span class="J_Price price-now">¥{{$v->gprice}}</span>
-								<span id="Stock" class="tb-hidden">库存<span class="stock">{{$v->stock}}</span>件</span>
-							</div>
-						</div>
-
-					</form>
-				</div>
-			</div>
 		<!--引导 -->
 		<div class="navCir">
 			<li><a href="{{asset('Home/home/home.html')}}"><i class="am-icon-home "></i>首页</a></li>
@@ -316,8 +247,11 @@
 		</div>
 
 				<script>
-                    function del(gid){
+
+
+                    function del(cid){
                         //询问框
+//						alert(cid);
                         layer.confirm('您确认删除吗？', {
                             btn: ['确认','取消'] //按钮
                         }, function(){
@@ -327,9 +261,9 @@
 
 							$.ajax(
 								{
-									url:"{{ url('/home/cart/delete') }}/"+gid,
+									url:"{{ url('/home/cart/delete') }}/"+cid,
 									type:'get',
-									data:{'gid':'gid','_token':"{{ csrf_token() }}"},
+									data:{'cid':'cid','_token':"{{ csrf_token() }}"},
 									success:function(data){
                                         if(data.error == 0){
 										layer.msg(data.msg, {icon: 6});
@@ -342,27 +276,12 @@
 									dataType:'json'
 								}
 							);
-                               
+
                         }, function(){
 
                         });
                     }
-                    //全选框
-						$("#checkall").click(function(){  
-						    if($(this).attr("checked")){  
-						        $("input[name='check']").attr("checked",true);  
-						    }else{  
-						        $("input[name='check']").attr("checked",false);  
-						    }  
-						})  
-						//单选框  
-						$("input[name='check']").change(function(){  
-						    if($("input[name='check']").not("input:checked").size() <= 0){  
-						        $("#allCheck").attr("checked",true);  
-						    }else{  
-						        $("#allCheck").attr("checked",false);  
-						    }  
-						})  
+
 
 				</script>
 				<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
