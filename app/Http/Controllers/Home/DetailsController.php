@@ -62,34 +62,6 @@ class DetailsController extends Controller
     // 立即购买，商品加入订单页
     public function insertpay(Request $request)
     {
-        //  // $gid = $_POST['gid'];
-        // $uid = session('husers');
-        // // dd($uid);
-        // $uname = session('husers')->username;
-        // $arr = [];
-        // $input = $request->except('_token');
-        // // dd($input);
-        // $gid = $input['gid'];
-        // $user = session('husers');
-        // // return $user;
-        // if($user){
-        //     $order = new Order();
-        //      // dd($order);
-        //     $order->ucnt = $input['bcnt'];
-        //     $order->ormb = Goods::select(['gprice'])->find($gid);
-        //     $order->rec = Husers::select(['username'])->find($uid);
-        //     dd($order);
-        //     $order->addr = $input['s_province'].'&nbsp;'.$input['s_city'].'&nbsp;'.$input['s_county'];
-        //     $order->tel = Husers::select(['phone'])->find($uid);
-        //     $order->otime = date('Y-m-d H:i:s', time());
-        //     $res = $order->save();
-        //     // return $res;
-        // } else {
-        //     $arr['status'] = 1;
-        //     $arr['msg'] = '您还没有登录，请登录';
-        // }
-        
-
 
         $user = session('husers');
         if($user){
@@ -101,8 +73,8 @@ class DetailsController extends Controller
             session(['goods'=>$goods]);
             $goods = session('goods');
             // dd($a);
-            $uid = session('husers')->id;
-            $address = address::where('uid',$uid)->get()->toArray();
+            $id = session('husers')->id;
+            $address = address::where('id',$id)->get()->toArray();
             // dd($address);
             
           return view('/home/pay',compact('address'));

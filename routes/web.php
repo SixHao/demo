@@ -250,7 +250,14 @@ Route::get('/home/shopcart', 'Home\CartController@cart');
 
 Route::get('/home/pay', 'Home\PayController@pay');
 
-Route::get('/home/pay/editaddress/{aid}', 'Home\PayController@editaddress');
+// 删除收货地址
+Route::post('/home/pay/delete/{aid}', 'Home\PayController@delete');
+
+// 添加至订单数据库
+Route::post('./home/pay/insert', 'Home\PayController@insert');
+
+Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
+
 
 
 
