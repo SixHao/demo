@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin\Order;
 
 
+
 use App\Http\Model\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderController extends Controller
 {
@@ -66,11 +68,7 @@ class OrderController extends Controller
 //        //         表单验证
 //
         $rule = [
-            'rec' => 'required|min:2|max:10',
-
-
-
-
+            'rec' => 'required|min:2|max:10|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
             'tel'=> array('regex:/^13\d{9}$|^14\d{9}$|^15\d{9}$|^17\d{9}$|^18\d{9}$/i'),
             'addr' => 'required|min:2|max:60',
         ];
@@ -80,10 +78,9 @@ class OrderController extends Controller
             'rec.min' => '收货人最少为2位',
             'rec.max' => '收货人最多为10位',
 
-            'tel.required' => '手机号不能为空',
-            'tel.regex' => '手机号开头必须以13,14,15,17,18开头',
-            'tel.numeric' => '手机号必须是数字',
-            'tel.message' => '手机号必须11位',
+
+            'tel.regex' => '手机号格式不对',
+
 
 
             'addr.required' => '收货地址不能为空',
@@ -131,6 +128,22 @@ class OrderController extends Controller
             \DB::table('orders')->where('oid',$request->input('oid'))->update(['ostatus'=> 2]);
             return response()->json(['ostatus' => 2]);
         }
+    }
+
+
+    public function list(Request $request,$oid)
+    {
+        //  根据传过来的oid查询订单详情表,根据查询出来的订单详情表中的gid获取商品表中的相同gid的所有数据获取所有
+        $data = \DB::table('detail')
+            ->where('oid',$oid)
+            ->join('goods', 'detail.gid', '=', 'goods.gid')
+            ->select('detail.*', 'goods.*')
+            ->paginate(5);
+
+//        dd($data);
+
+
+        return view('admin/order/list', ['data' => $data,]);
     }
 
 }

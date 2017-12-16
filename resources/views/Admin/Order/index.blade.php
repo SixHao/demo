@@ -82,13 +82,18 @@
                                                     @elseif($v->ostatus == 2)
                                                         <button type="button" id="over">已发货,未收货</button>
                                                     @else
-                                                        <button type="button" id="over">已收货</button>
+                                                        <button type="button" id="over" disabled>已收货</button>
                                                     @endif
 
 
                                                 </td>
 
                                                 <td>
+                                                    <div class="tpl-tabl1e-black-operation">
+                                                        <a href="{{url('/admin/order/list')}}/{{$v->oid}}">
+                                                            <i class="am-icon-pencil"></i> 查看
+                                                        </a>
+                                                    </div>
                                                     <div class="tpl-tabl1e-black-operation">
                                                         <a href="{{url('/admin/order/edit')}}/{{$v->oid}}">
                                                             <i class="am-icon-pencil"></i> 修改

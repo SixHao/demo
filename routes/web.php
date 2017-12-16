@@ -88,6 +88,8 @@ Route::get('/admin/order/edit/{oid}', 'Admin\Order\OrderController@edit');
 Route::post('/admin/order/update/{oid}', 'Admin\Order\OrderController@update');
 //订单状态
 Route::post('/admin/order/ajax','Admin\Order\OrderController@ajax');
+//订单详情
+Route::get('/admin/order/list/{oid}','Admin\Order\OrderController@list');
 
 //后台活动模块
 //      添加活动
@@ -153,5 +155,5 @@ Route::get('/home/shopcart', 'Home\CartController@shopcart');
 Route::get('/home/shopcart', 'Home\CartController@cart');
 
 Route::get('/home/pay', 'Home\PayController@pay');
-//前台订单详情页
-Route::get('home/order','Home\OrderController@index');
+//前台订单成功页
+Route::get('/home/order','Home\OrderController@index');
