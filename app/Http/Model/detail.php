@@ -4,14 +4,13 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class detail extends Model
 {
-    public $table = 'address';
-    public $primaryKey = 'cid';
+    //
+    public $table='detail';
+    public $primaryKey = 'did';
     public $guarded = [];
     public $timestamps = false;
 
 
-
-   
 }

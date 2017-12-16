@@ -91,6 +91,26 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="am-u-lg-12 am-cf">
+                                {{--分页--}}
+                                {{ $data->links() }}
+                                <style>
+                                    .am-u-lg-12 ul{
+                                        float: right;
+                                    }
+                                    .am-u-lg-12 ul li a{
+                                        color: #fff;
+                                    }
+                                    .am-u-lg-12 ul li{
+                                        display: inline-block;
+                                        padding:6px 12px;
+                                        background-color: #666;
+                                        color: #fff;
+                                    }
+
+                                </style>
+
+                            </div>
                             <style>
                                 #over {
 

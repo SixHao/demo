@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Http\Model;
 
-
 use Illuminate\Database\Eloquent\Model;
-
 
 class permission extends Model
 {
@@ -13,4 +10,5 @@ class permission extends Model
     public $primaryKey = 'pid';
     public $guarded = [];
     public $timestamps = false;
+
 }

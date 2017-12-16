@@ -40,7 +40,7 @@ class UserInsertRequest extends Request
             'username.unique'=>'用户名已存在',
             'username.regex'=>'用户名格式错误',
             'password.required'=>'密码必填',
-            'password.between'=>'密码的长度在6-18位之间',
+			'password.between'=>'密码的长度在6-18位之间',
             'repassword.required'=>'确认密码必填',
             'repassword.same'=>'俩次密码不一致',
             'phone.required'=>'手机号必填',

@@ -94,13 +94,16 @@
 				<?php $sum=0;?>
 					<?php $j=0;?>
 				@foreach($cart as $k=>$v)
-				@foreach($goods as $m=>$n)
-					<?php $j+=$v->cnt;?>
+                        <?php $j+=$v->cnt;?>
 
-					<?php $sum+=$n->gprice*$v->cnt?>
+				@foreach($goods as $m=>$n)
+
+
+
 
 
 						@if($v->gid == $n->gid)
+                          <?php $sum+=$n->gprice*$v->cnt?>
 				{{--@foreach(session() as $v->$v)--}}
 					<tr class="item-list">
 						<div class="bundle  bundle-last ">

@@ -638,6 +638,14 @@ response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </Response>
 
 request body = <TemplateSMS>
+<<<<<<< HEAD
+                    <to>15034358724</to>
+                    <appId>8a216da86010e690016031a9cebf0f01</appId>
+                    <templateId>1</templateId>
+                    <datas><data>7395</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da86010e690016031a9ce6a0efa/SMS/TemplateSMS?sig=1190C7F0D32E9E2BD523984987070868
+=======
                     <to>18303588513</to>
                     <appId>8a216da86010e690016031a9cebf0f01</appId>
                     <templateId>1</templateId>
@@ -657,12 +665,18 @@ request body = <TemplateSMS>
                     <datas><data>1257</data><data>5</data></datas>
                   </TemplateSMS>
 request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8a216da86010e690016031a9ce6a0efa/SMS/TemplateSMS?sig=730C0527AA9BDE861EACFEB63C4B5E1C
+>>>>>>> origin/zhangguohui
 response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Response>
     <statusCode>000000</statusCode>
     <TemplateSMS>
+<<<<<<< HEAD
+        <smsMessageSid>87d1830bc5f546e1a381b45319ed4e22</smsMessageSid>
+        <dateCreated>20171214180241</dateCreated>
+=======
         <smsMessageSid>b6ebcc6a57e14a3fb3b08cc1e190b2b4</smsMessageSid>
         <dateCreated>20171211195125</dateCreated>
+>>>>>>> origin/zhangguohui
     </TemplateSMS>
 </Response>
 

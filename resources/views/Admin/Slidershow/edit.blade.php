@@ -14,22 +14,25 @@
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
                             <div class="widget-title am-fl">修改图片</div>
-
+                            @if(session('msg'))
+                                <div style="color:red" class="alert alert-danger">{{session('msg')}}</div>
+                            @endif
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                         <div class="widget-body am-fr">
 
                             <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/slidershow/update').'/'.$data->bid }}" method="post" enctype="multipart/form-data">
 
                                 <div class="box-body">
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+
                                     {{ csrf_field() }}
 
                                     <div class="am-form-group">

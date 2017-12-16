@@ -119,25 +119,11 @@ class GoodsController extends Controller
         if(!empty($gname)) {
             $query->where('gname','like','%'.$gname.'%');
         }
-        //如果邮箱不为空
-        // if(!empty($email)) {
-        //     $query->where('user_email','like','%'.$email.'%');
-        // }
+        
     })
-    ->paginate($request->input('num', 10));
+    ->paginate($request->input('num', 5));
 
-    // $users = DB::table('users')
-    //         ->join('contacts', 'users.id', '=', 'contacts.user_id')
-    //         ->join('orders', 'users.id', '=', 'orders.user_id')
-    //         ->select('users.*', 'contacts.phone', 'orders.price')
-    //         ->get();
-
-
-
-// $res = $_SERVER['QUERY_STRING'];
-
-        // dd($res);
-    // dd($goods);
+   
         return view('admin.goods.index',['goods'=>$goods, 'request'=> $request]);
     }
 

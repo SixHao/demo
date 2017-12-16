@@ -15,6 +15,8 @@ class CartController extends Controller
     //
     public function shopcart()
     {
+//        $goods = session('goods');
+//        dd($goods);
         $user = Session('husers');
 //        dd($shopcart);
         if ($user) {
@@ -35,7 +37,7 @@ class CartController extends Controller
                         $vv->cnt = $v->cnt;
                     }
 //                        dd($goods);
-//                    session(['goods' => $goods]);
+                    session(['goods' => $goods]);
                 }
 //                dd($goods);
                 $goods = array_unique($goods);
