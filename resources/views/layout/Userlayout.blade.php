@@ -127,7 +127,8 @@
 						<ul>
 							<li> <a href="{{ url('/home/userinfo/personal') }}">个人信息</a></li>
 							<li> <a href="{{ url('home/userinfo/safety') }}">安全设置</a></li>
-							<li> <a href="{{ url('home/userinfo/address') }}">收货地址</a></li>
+							<li> <a href="{{ url('home/userinfo/addresslist') }}">收货地址</a></li>
+							<li> <a href="{{ url('home/userinfo/address') }}">新增地址</a></li>
 						</ul>
 					</li>
 					<li class="person">

@@ -156,11 +156,20 @@ class UserinfoController extends Controller
             return back()->with('msg','原密码不正确');
     }
     //地址页面
-    public function address()
+    public function addresslist()
     {
+
           $id = session('husers')->id;
           $addr = address::where('id',$id)->get();
-          return view('home.userinfo.address',compact('addr'));
+           // dd($addr);
+         $default_addr = $addr->where('is_checked',1)->first();
+        // dd($default_addr);
+          return view('home.userinfo.addresslist',compact('addr','default_addr'));
+   }
+
+   public function address()
+   {
+      return view('home.userinfo.address');
    }
 
     //添加地址页面
@@ -205,7 +214,7 @@ class UserinfoController extends Controller
 
     //        4. 判断是否添加成功
             if($res){
-                return redirect('home/userinfo/address')->with('msg','添加成功');
+                return redirect('home/userinfo/addresslist')->with('msg','添加成功');
             }else{
                 return redirect('home/userinfo/address')->with('msg','添加失败');
             }  
@@ -225,6 +234,43 @@ class UserinfoController extends Controller
               $data['msg'] ="删除失败";
           }
            return $data;
+    }
+
+
+     //  设为默认地址
+    public function doadd(Request $request)
+    {
+        $input = $request->except('_token');
+        // dd($input);
+        $id= session('husers')->id;
+        // dd($id);
+        //查找是否有设置默认地址
+        $res = address::where('id',$id)->where('is_checked',1)->first();
+
+        if($res)
+        {
+            //修改当前用户默认地址的状态为0
+            address::where('id',$id)->where('is_checked',1)->update(['is_checked'=>0]);
+              // 修改传过来的新地址的默认状态
+            $r = address::where('aid',$input['aid'])->update(['is_checked'=>1]);
+            if ($r) {
+                return redirect('home/userinfo/addresslist');
+            } else {
+               return redirect('home/userinfo/addresslist');
+          }
+          // 如果没有默认地址就直接修改传过来的地址为默认地址
+         } else{
+          
+              $r = address::where('aid',$input['aid'])->update(['is_checked'=>1]);
+              if ($r) {
+                   return redirect('home/userinfo/addresslist');
+
+                } else {
+                   return redirect('home/userinfo/addresslist');
+
+                }
+            }
+        
     }
     //我的订单
    public function mydetail()
@@ -268,4 +314,7 @@ class UserinfoController extends Controller
                 // 返回视图
         return view('home/userinfo/olddetail',compact('order'));
    }
+
+
+  
 }
