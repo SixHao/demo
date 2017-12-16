@@ -241,7 +241,7 @@
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ url('admin/permission') }}">
+                        <a href="{{ url('admin/permission/index') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 权限列表
                         </a>
                     </li>

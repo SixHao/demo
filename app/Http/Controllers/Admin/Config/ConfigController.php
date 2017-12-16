@@ -85,13 +85,13 @@ class ConfigController extends Controller
             'wname.required' => '配置名称不能为空',
             'wname.unique' => '此配置名称已存在',
             'wname.regex' => '配置名称必须汉字字母下划线',
-            'wname.min' => '配置名称最少为4位',
+            'wname.min' => '配置名称最少为2位',
             'wname.max' => '配置名称最多为18位',
 
             'wtitle.required' => '配置标题不能为空',
             'wtitle.unique' => '此配置标题已存在',
             'wtitle.regex' => '配置标题必须汉字字母下划线',
-            'wtitle.min' => '配置标题最少为4位',
+            'wtitle.min' => '配置标题最少为2位',
             'wtitle.max' => '配置标题最多为18位',
 
             'wcontent.required' => '配置内容不能为空',
@@ -145,20 +145,6 @@ class ConfigController extends Controller
 
                 case 'radio':
 
-//                    $item =[
-                    //                        0=>1,
-                    //                        1=>'开启'
-                    //                    ]
-                    //
-                    //                    1|开启,0|关闭
-                    //                    =====>
-                    //                  arr=  [
-                    //                        0=>'1|开启',
-                    //                        1=>'0|关闭'
-                    //                    ]
-                    //                ========》
-                    //                    <input type="radio" name="field_type" value="1" >开启
-                    //                    <input type="radio" name="field_type" value="0" >关闭
 
 //                    存放最终拼接的结果
                     $str = '';
@@ -184,6 +170,7 @@ class ConfigController extends Controller
 //            $v->conf_content
         }
 
+
         return view('admin.config.index', compact('config'));
     }
 
@@ -207,43 +194,46 @@ class ConfigController extends Controller
 
 //        2. 通过$request获取要修改的值
 
-        $input = $request->except('_token', 'wid');
+        $input = $request->except('_token');
 
         //        2. 表单验证
 
         $rule = [
-            'wname' => 'required|min:2|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
-            'wtitle' => 'required|min:2|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
-            'wcontent' => 'required',
-            'wtips' => 'required',
-            'worder' => 'required|numeric',
+            'wname' => 'required|unique:web_config|min:2|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+            'wtitle' => 'required|unique:web_config|min:2|max:18|regex:/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u',
+            'wcontent' => 'required|unique:web_config',
+            'wtips' => 'required|unique:web_config',
+            'worder' => 'required|numeric|unique:web_config',
 
         ];
         $mess = [
             'wname.required' => '配置名称不能为空',
-
+            'wname.unique' => '此配置名称已存在',
             'wname.regex' => '配置名称必须汉字字母下划线',
-            'wname.min' => '配置名称最少为4位',
+            'wname.min' => '配置名称最少为2位',
             'wname.max' => '配置名称最多为18位',
 
             'wtitle.required' => '配置标题不能为空',
-
+            'wtitle.unique' => '此配置标题已存在',
             'wtitle.regex' => '配置标题必须汉字字母下划线',
-            'wtitle.min' => '配置标题最少为4位',
+            'wtitle.min' => '配置标题最少为2位',
             'wtitle.max' => '配置标题最多为18位',
 
             'wcontent.required' => '配置内容不能为空',
+            'wcontent.unique' => '此配置内容已存在',
 
             'wtips.required' => '配置注释不能为空',
+            'wtips.unique' => '此配置注释已存在',
 
             'worder.required' => '配置排序不能为空',
             'worder.numeric' => '配置排序必须是数字',
+            'worder.unique' => '配置排序必须是唯一',
 
         ];
         $validator = Validator::make($input, $rule, $mess);
         //如果表单验证失败 passes()
         if ($validator->fails()) {
-            return redirect('admin/config/edit')
+            return redirect('/admin/config/edit/'.$data->wid)
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -255,9 +245,9 @@ class ConfigController extends Controller
 //        4. 根据更新是否成功，跳转页面
         if ($res) {
             $this->PutFile();
-            return redirect('admin/config/index')->with('msg', '修改成功');
+            return redirect('/admin/config/index')->with('msg','修改成功');
         } else {
-            return redirect('admin/config/edit/' . $data->wid)->with('msg', '修改失败');
+            return redirect('/admin/config/edit'.$data->wid)->with('msg','修改失败');
         }
 
     }

@@ -119,7 +119,17 @@ Route::resource('permission','Permission\PermissionController');
 
 //后台订单模块
 // 订单列表
-Route::get('order/index', 'Order\OrderController@index');
+
+Route::get('/order/index', 'Order\OrderController@index');
+// 修改订单
+Route::get('/order/edit/{oid}', 'Order\OrderController@edit');
+// 执行修改
+Route::post('/order/update/{oid}', 'Order\OrderController@update');
+//订单状态
+Route::post('/order/ajax','Order\OrderController@ajax');
+//订单详情
+Route::get('/admin/order/list/{oid}','Admin\Order\OrderController@list');
+
 
 //后台活动模块
 //      添加活动
@@ -311,5 +321,11 @@ Route::get('/home/shopcart2', 'Home\CartController@shopcart2');
 
 
 
+
+
+
+Route::get('/home/pay', 'Home\PayController@pay');
+//前台订单成功页
+Route::get('/home/success','Home\OrderController@index');
 
 
