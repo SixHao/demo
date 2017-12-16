@@ -17,22 +17,43 @@
    <h2>您已成功付款</h2>
    <div class="successInfo">
      <ul>
-       <li>付款金额<em>¥{{$_SESSION['order']['ormb']}}</em></li>
+       <li>付款金额<em>¥{{ session('order')['ormb'] }}</em></li>
        <div class="user-info">
-         <p>收货人：{{$_SESSION['order']['rec']}}</p>
-         <p>联系电话：{{$_SESSION['order']['tel']}}</p>
-         <p>收货地址：{{$_SESSION['order']['addr']}}</p>
+         <p>收货人：{{ session('order')['rec']  }}</p>
+         <p>联系电话：{{ session('order')['tel']  }}</p>
+         <p>收货地址：{{ session('order')['addr']  }}</p>
        </div>
              请认真核对您的收货信息，如有错误请联系客服
 
      </ul>
-     <div class="option">
-       <span class="info">您可以</span>
-        <a href="{{url('/home/userinfo/olddetail')}}" class="J_MakePoint">查看<span>已买到的宝贝</span></a>
-        <a href="{{url('/home/userinfo/mydetail')}}" class="J_MakePoint">查看<span>交易详情</span></a>
-     </div>
+
     </div>
   </div>
 </div>
+    <script src="{{ asset('/admin/assets/js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{asset('/layer/layer.js')}}"></script>
+    <script>
+        window.onload=function() {
 
+            var wait = 5;
+            layer.msg('下单成功,'+wait+'秒后跳转');
+            timeOut();
+            function timeOut() {
+                if (wait == 1) {
+                    window.location.href = '{{ url('/home/index') }}';
+                    feedbackObj.fadeOut(100, function () {
+                        feedbackObj.remove();
+
+                    });
+                    $('#opacity-mask').fadeOut(100);
+                } else {
+                    setTimeout(function () {
+                        wait--;
+                        layer.msg('下单成功,'+wait+'秒后跳转');
+                        timeOut();
+                    }, 1000)
+                }
+            }
+        }
+    </script>
 @stop

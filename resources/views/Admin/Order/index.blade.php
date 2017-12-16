@@ -108,24 +108,31 @@
                                     </table>
                                 </div>
                             </form>
-                            <div class="am-u-lg-12 am-cf">
-                                <?php
-                                    $v = empty($input) ? '' : $input;
-                                ?>
-                                {{--分页--}}
-                                {!! $data->appends($request->all())->render() !!}
-                                <style>
-                                    .am-u-lg-12 ul li span{
-                                        padding:6px 12px;
-                                    }
-                                    .am-u-lg-12 ul li{
-                                        display: inline;
-                                    }
 
-                                </style>
-
-                            </div>
                         </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <?php
+                        $v = empty($input) ? '' : $input;
+                        ?>
+                        {{--分页--}}
+                        {!! $data->appends($request->all())->render() !!}
+                        <style>
+                            .am-u-lg-12 ul{
+                                float: right;
+                            }
+                            .am-u-lg-12 ul li a{
+                                color: #fff;
+                            }
+                            .am-u-lg-12 ul li{
+                                display: inline-block;
+                                padding:6px 12px;
+                                background-color: #666;
+                                color: #fff;
+                            }
+
+                        </style>
+
+                    </div>
                     </div>
                 <style>
                     #over {

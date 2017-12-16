@@ -17,6 +17,15 @@
                                 @if(session('msg'))
                             <div style="color:red">{{session('msg')}}</div>
                            @endif
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                             <div class="widget-body am-fr">
 
@@ -35,12 +44,9 @@
                                     <div class="am-form-group">
                                         <label for="user-email" class="am-u-sm-3 am-form-label">性别 <span class="tpl-form-line-small-title">sex</span></label>
                                         <div>
-                                         <input type="radio" name="sex" value="m" @if($data->sex == 'm') checked
-                                         @endif>男
-                                         <input type="radio" name="sex" value="w" @if($data->sex == 'w') checked
-                                         @endif>女
-                                         <input type="radio" name="sex" value="x" @if($data->sex == 'x') checked
-                                         @endif>保密
+                                         <input type="radio" name="sex" value="m" @if($data->sex == 'm') checked @endif>男
+                                         <input type="radio" name="sex" value="w" @if($data->sex == 'w') checked @endif>女
+                                         <input type="radio" name="sex" value="x" @if($data->sex == 'x') checked @endif>保密
                                         </div>
                                     </div>
 
@@ -71,10 +77,10 @@
                                         <label class="am-u-sm-3 am-form-label">权限 <span class="tpl-form-line-small-title">auth</span></label>
                                         <div class="am-u-sm-9">
                                             <select data-am-selected="{searchBox: 1}" name="auth" style="display: none;">
-  <option value="0" @if($data->auth == '0') selected @endif>超级管理员</option>
-  <option value="1" @if($data->auth == '1') selected @endif>普通管理员</option>
-  <option value="2" @if($data->auth == '2') selected @endif>普通用户</option>
-</select>
+                                              <option value="0" @if($data->auth == '0') selected @endif>超级管理员</option>
+                                              <option value="1" @if($data->auth == '1') selected @endif>普通管理员</option>
+                                              <option value="2" @if($data->auth == '2') selected @endif>普通用户</option>
+                                            </select>
                                         </div>
                                     </div>
 

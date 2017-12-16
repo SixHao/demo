@@ -10,7 +10,7 @@ class OrderController extends Controller
     public function index()
     {
 
-        return view('Home/order',setTimeout('home/index',5000));
+        return view('Home/order');
 
     }
 }

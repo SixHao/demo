@@ -13,6 +13,18 @@
                 <div class="widget am-cf">
                     <div class="widget-head am-cf">
                         <div class="widget-title  am-cf">用户管理</div>
+                        @if(session('msg'))
+                            <div style="color:red" class="alert alert-danger">{{session('msg')}}</div>
+                        @endif
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                     <div class="widget-body  am-fr">
 
@@ -25,9 +37,7 @@
                                 </div>
                             </div>
                         </div>
-                         @if(session('msg'))
-                            <div style="color:red" class="alert alert-danger">{{session('msg')}}</div>
-                        @endif
+
                         <form action="{{ asset('admin/user/list') }}" method="get">
                         <div class="am-u-sm-12">
                             <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
@@ -97,7 +107,7 @@
                                         @endif
                                         </td>
                                         <td><img  width="50px" height="30px" 
-                                        @if($v->uface == '/updates/default.jpg')
+                                        @if($v->uface == '/uploads/default.jpg')
                                         src="{{ asset('/uploads/default.jpg') }}"
                                         @else
                                         src="{{ $v->uface }}"
@@ -108,8 +118,11 @@
                                                 <a href="{{url('/admin/user/edit')}}/{{$v->uid}}">
                                                     <i class="am-icon-pencil"></i> 编辑
                                                 </a>
-                                                <a href="javascript:;" onclick="userDel({{$v->fid}})" class="tpl-table-black-operation-del">
+                                                <a href="javascript:;" onclick="userDel({{$v->uid}})" class="tpl-table-black-operation-del">
                                                     <i class="am-icon-trash"></i> 删除
+                                                </a>
+                                                <a href="{{url('/admin/user/auth')}}/{{$v->uid}}">
+                                                    <i class="am-icon-pencil"></i> 授权
                                                 </a>
                                             </div>
                                         </td>
@@ -127,12 +140,18 @@
                               {{--分页--}}
                          {!! $data->appends($request->all())->render() !!}
                 <style>
-                    .am-u-lg-12 ul li span{
-                        padding:6px 12px;
-                    }
-                    .am-u-lg-12 ul li{
-                        display: inline;
-                    }
+                                    .am-u-lg-12 ul{
+                                        float: right;
+                                    }
+                                    .am-u-lg-12 ul li a{
+                                        color: #fff;
+                                    }
+                                    .am-u-lg-12 ul li{
+                                        display: inline-block;
+                                        padding:6px 12px;
+                                        background-color: #666;
+                                        color: #fff;
+                                    }
                     
                 </style>
                
@@ -147,19 +166,19 @@
 <script src="{{ asset('/admin/assets/js/amazeui.min.js') }}"></script>
 <script src="{{ asset('/admin/assets/js/amazeui.datatables.min.js') }}"></script>
 <script src="{{ asset('/admin/assets/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('/admin/assets/js/app.js') }}">
-</script><script src="{{ asset('/admin/assets/js/ch-ui.admin.js') }}">
+<script src="{{ asset('/admin/assets/js/app.js') }}"></script>
+<script src="{{ asset('/admin/assets/js/ch-ui.admin.js') }}">
 </script><script src="{{ asset('/admin/assets/js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
  <script>
         
-    function userDel(fid) {
+    function userDel(uid) {
 
         //询问框
         layer.confirm('您确认删除吗？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/friend/delete')}}/"+fid,{"_method":"get"},function(data){
+            $.post("{{url('admin/user/delete')}}/"+uid,{"_method":"get"},function(data){
                
               // data是json格式的字符串，在js中如何将一个json字符串变成json对象
                if(data.error == 0){

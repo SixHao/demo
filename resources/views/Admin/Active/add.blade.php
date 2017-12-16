@@ -8,11 +8,14 @@
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper">
 
-        <div class="container-fluid am-cf">
+        <div class="row-content am-cf">
+
             <div class="row">
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 表单
-                        <small>
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">添加活动</div>
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     <ul>
@@ -23,26 +26,8 @@
                                 </div>
                             @endif
                             @if(session('info'))
-                                    <div class="alert alert-danger">{{session('info')}}</div>
+                                <div class="alert alert-danger">{{session('info')}}</div>
                             @endif
-                        </small></div>
-                </div>
-
-                <div class="am-u-lg-3 tpl-index-settings-button">
-                    <button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row-content am-cf">
-
-            <div class="row">
-
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                    <div class="widget am-cf">
-                        <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">添加活动</div>
                             <div class="widget-function am-fr">
                                 <a href="javascript:;" class="am-icon-cog"></a>
                             </div>
@@ -76,12 +61,13 @@
                                     <label for="user-phone" class="am-u-sm-3 am-form-label">商品名称 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" name="gid" style="display: none;">
-                                            <option value="1">家具</option>
-                                            <option value="2">电器</option>
-                                            <option value="3">食品</option>
-                                            <option value="4">移动设备</option>
+                                            @foreach($data as $k=>$v)
+                                            <option value="{{ $v->gid }}">{{ $v->gname }}</option>
+                                            @endforeach
                                         </select>
-
+                                        {{--@foreach($data as $k=>$v)--}}
+                                            {{--<input type="hidden" name="aprice" value="{{ $v->gprice }}">--}}
+                                        {{--@endforeach--}}
                                     </div>
                                 </div>
 
@@ -99,7 +85,7 @@
                                 <div class="am-form-group">
                                     <label for="user-weibo" class="am-u-sm-3 am-form-label">状态 <span class="tpl-form-line-small-title">Status</span></label>
                                     <div class="am-u-sm-9">
-                                        开始: <input type="radio" name="astatus" id="user-weibo" value="1">
+                                        开始: <input type="radio" checked name="astatus" id="user-weibo" value="1">
                                         结束: <input type="radio" name="astatus" id="user-weibo" value="0">
                                         <div>
 
