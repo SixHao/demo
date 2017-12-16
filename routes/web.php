@@ -235,10 +235,9 @@ Route::post('/home/login/ajax','Home\login\LoginController@ajax');
 
 //前台首页
 Route::get('/home/index', 'Home\IndexController@index');
-
-
 // 前台详情表
 Route::get('/home/details/{gid}','Home\DetailsController@index');
+
 // ajax商品信息数量加入购物车
 Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
 // 商品信息数量加入结算页
@@ -253,7 +252,7 @@ Route::post('/home/pay','Home\DetailsController@insertpay');
 Route::post('/home/pay/delete/{aid}', 'Home\PayController@delete');
 
 // 添加至订单数据库
-Route::post('./home/pay/insert', 'Home\PayController@insert');
+Route::post('/home/pay/insert', 'Home\PayController@insert');
 
 Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
 
@@ -292,15 +291,23 @@ Route::get('/home/userinfo/editdetail','Home\userinfo\UserinfoController@editdet
 Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetail');
 
 
-
-
-
-
-
 //前台商品列表
 Route::get('home/goodslist/{id}','Home\indexController@goodslist');
 //搜索商品路由
 Route::post('home/goods','Home\IndexController@search');
+
+
+//购物车
+Route::get('/home/cart', 'Home\CartController@shopcart');
+//删除
+Route::get('/home/cart/delete/{cid}', 'Home\CartController@delete');
+// 结算页
+Route::get('/home/pay', 'Home\PayController@pay');
+// 验证表单
+Route::post('/home/pay/insert','Home\PayController@insert');
+// 空购物车
+Route::get('/home/shopcart2', 'Home\CartController@shopcart2');
+
 
 
 

@@ -143,7 +143,7 @@
                 @endif
             </div>
             <div id="shopCart " class="item ">
-                <a href="{{ url('/home/shopcart') }} ">
+                <a href="{{ url('/home/cart') }} ">
                     <span class="message "></span>
                 </a>
                 <p>
