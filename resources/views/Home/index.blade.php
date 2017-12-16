@@ -262,7 +262,7 @@
                                 @if($v3['pid'] == $v2['tid'])
                                     @foreach($goods as $val)
                                         @if($v3['tid'] == $val['tid'])
-                    <a class="outer" href="{{ url('/home/goodslist') }}/{{ $val['gid'] }}"><span class="inner"><b class="text">{{ $v3['tname'] }}</b></span></a>
+                    <a class="outer" href="{{ url('/home/goodslist') }}/{{ $v3['tid'] }}"><span class="inner"><b class="text">{{ $v3['tname'] }}</b></span></a>
                                         @endif
                                     @endforeach
                                 @endif
