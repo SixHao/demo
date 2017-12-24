@@ -61,8 +61,9 @@ class LoginController extends Controller
 	   session(['husers'=>$user]);
 //         \Session::flash('huser',$user);
 //      4 如果正确跳转到后台首页 ，如果不正确返回
+
         return redirect('home/index');
-		 
+//        return redirect(url()->previous());
 
     }
     

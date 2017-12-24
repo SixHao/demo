@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Cart;
+use App\Http\Model\friend;
 use App\Http\Model\ShopCart;
 use App\Http\Model\goods;
 use App\Http\Model\husers;
@@ -15,42 +16,44 @@ class CartController extends Controller
     //
     public function shopcart()
     {
-//        $goods = session('goods');
-//        dd($goods);
+
         $user = Session('husers');
-//        dd($shopcart);
+        //        获取友情链接
+        $friend = friend::get();
+
         if ($user) {
-            $shopcart = Cart::find($user->id);
-            session(['cart' => $shopcart]);
+            $shopcart = Cart::where('uid',$user->id)->get()->toArray();
+//            session(['cart' => $shopcart]);
 //            dd($shopcart);
             if (!empty($shopcart)) {
                 $cart = Cart::where('uid', $user->id)->get();
-//                    dd($cart);
+
                 foreach ($cart as $k => $v) {
 
                     if (($v->uid) == ($user->id)) {
                         $goods[] = goods::find($v->gid);
-//                        dd($goods);
+
                     }
                     foreach($goods as $kk => $vv)
                     {
                         $vv->cnt = $v->cnt;
                     }
-//                        dd($goods);
+
                     session(['goods' => $goods]);
                 }
-//                dd($goods);
+
                 $goods = array_unique($goods);
 
-                return view('Home.shopcart', compact('cart', 'goods', 'user', '$i'));
+
+                return view('Home.shopcart', compact('cart', 'goods', 'user', '$i','friend'));
             } else {
-                return view('Home.shopcart2');
+                return view('Home.shopcart2',compact('friend'));
             }
         } else {
-            return view('Home.shopcart2');
+            return view('Home.shopcart2',compact('friend'));
         }
 
-        return view('Home/shopcart',['data' => $data]);
+        return view('Home/shopcart',compact('data','friend'));
     }
 
     public function delete($cid)

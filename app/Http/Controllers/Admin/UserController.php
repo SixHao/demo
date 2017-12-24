@@ -34,14 +34,14 @@ class UserController extends Controller
            $newpath = '/uploads/'.$newfile;
            //将上传的图片名称返回到前台，目的是前台显示图片
             return $newpath;
+
         }
     }
     //用户列表
       // 多条件带分页搜索查询
     public function list(Request $request)
     { 
-//        $request->all()
-//        $request->all()
+
         $data = User::orderBy('uid','asc')
             ->where(function($query) use($request){
                 //检测关键字
@@ -107,7 +107,6 @@ class UserController extends Controller
          }
 //        3. 执行添加操作
          $data = new User();
-         
          $data->uname = $input['uname'];
          $data->sex = $input['sex'];
          $data->phone = $input['phone'];
@@ -135,7 +134,6 @@ class UserController extends Controller
     {
           // 1. 根据传过来的ID获取要修改的用户记录
         $data = User::find($uid);
-     // dd($data);
 
 //        2.返回修改页面（带上要修改的用户记录）
         return view('admin.user.edit',compact('data'));
@@ -150,7 +148,7 @@ class UserController extends Controller
 
 //        2. 通过$request获取要修改的值
 
-       $input = $request->except('_token', 'uid','uface1');
+       $input = $request->except('_token','uface1');
 //        dd($input);
 //       表单验证
 
@@ -183,8 +181,13 @@ class UserController extends Controller
         $input['birthday'] = strtotime($input['birthday']);
        
 
-//        3. 使用模型的update进行更新
+        if(session('users')->uid == $input['uid'])
+        {
+            session('users')->uface = $input['uface'];
+        }
 
+//        3. 使用模型的update进行更新
+        
         $res = User::where('uid',$uid)->update($input);
 //            dd($res);
 //        4. 根据更新是否成功，跳转页面

@@ -32,7 +32,7 @@
                                 <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/user/update/'.$data->uid)}}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     {{--提交方式为put--}}
-                                   
+                                   <input type="hidden" name="uid" value="{{ $data->uid }}">
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">用户名 <span class="tpl-form-line-small-title">uname</span></label>
                                         <div class="am-u-sm-9">

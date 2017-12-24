@@ -45,17 +45,13 @@
 
                 </span>
             </div>
-            <!-- 搜索 -->
-            <div class="am-fl tpl-header-search">
-                <form class="tpl-header-search-form" action="javascript:;">
-                    <button class="tpl-header-search-btn am-icon-search"></button>
-                    <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
-                </form>
-            </div>
             <!-- 其它功能-->
             <div class="am-fr tpl-header-navbar">
                 <ul>
                     <!-- 欢迎语 -->
+                    <li class="am-text-sm tpl-header-navbar-welcome">
+                        <a href="{{ url('/') }}" target="_blank" >前台首页</a>
+                    </li>
                     <li class="am-text-sm tpl-header-navbar-welcome">
                         <a href="javascript:;">欢迎你, <span>{{Session::get('users')->uname}}</span> </a>
                     </li>
@@ -241,7 +237,7 @@
                     </li>
 
                     <li class="sidebar-nav-link">
-                        <a href="{{ url('admin/permission/index') }}">
+                        <a href="{{ url('admin/permission') }}">
                             <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 权限列表
                         </a>
                     </li>

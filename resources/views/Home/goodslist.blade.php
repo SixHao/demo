@@ -59,7 +59,7 @@
 									@endforeach
 								</ul>
 							</div>
-							<div class="search-side" style="padding-top:15px;height: 1010px; overflow: hidden;" >
+							<div class="search-side" style="padding-top:15px;height: 1015px; overflow: hidden;" >
 
 								<div class="side-title">
 									热卖商品
@@ -71,15 +71,17 @@
 
 								<li>
 									<div class="i-pic check">
-										<img src="{{ $v2->gpic }}" />
-										<p class="check-title">{{ $v2->gname }}</p>
-										<p class="price fl">
-											<b>¥</b>
-											<strong>{{ $v2->gprice }}</strong>
-										</p>
-										<p class="number fl">
-											销量<span>{{ $v2->salecnt }}</span>
-										</p>
+										<a href="{{ url('/home/details') }}/{{ $v2->gid }}">
+												<img style="width: 218px; height: 218px;" src="{{ $v2->gpic }}" />
+											<p class="check-title">{{ $v2->gname }}</p>
+											<p class="price fl">
+												<b>¥</b>
+												<strong>{{ $v2->gprice }}</strong>
+											</p>
+											<p class="number fl">
+												销量<span>{{ $v2->salecnt }}</span>
+											</p>
+										</a>
 									</div>
 								</li>
 										@endif

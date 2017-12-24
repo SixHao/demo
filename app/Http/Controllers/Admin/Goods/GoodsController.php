@@ -127,20 +127,18 @@ class GoodsController extends Controller
         return view('admin.goods.index',['goods'=>$goods, 'request'=> $request]);
     }
 
-    public function edit($gid,$page)
+    public function edit($gid)
     {
-        // $data = $request->all();
-        // dd($page);
+ 
         $goods = Goods::find($gid);
         $cates =  (new Cate)->tree();
-        // dd($goods);
-        return view('/admin/goods/edit',compact('goods','cates','gid','page'));
+        return view('/admin/goods/edit',compact('goods','cates','gid'));
     }
 
     //执行修改
-    public function update(Request $request,$page)
+    public function update(Request $request)
     {
-         // dd($page);
+      
         // $goods = Goods::get();
         $input = request()->except('_token','file_upload');
         // $cates =  (new Cate)->tree();
@@ -178,11 +176,13 @@ class GoodsController extends Controller
 
         //  $res = $user->update($input);
         $input['ctime'] = strtotime($input['ctime']);
+
+        // dd($input);
         $res = \DB::table('goods')->where('gid',$request['gid'])->update($input);
         // dd($res);
         if($res)
         {
-          return redirect('/admin/goods/index?'.$page)->with('msg','修改成功');
+          return redirect('/admin/goods/index')->with('msg','修改成功');
         } else {
           return back()->with('msg','修改失败');
         }

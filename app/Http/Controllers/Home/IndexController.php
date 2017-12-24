@@ -83,18 +83,6 @@ class IndexController extends CommonController
         }
 
 
-//        $cate = Cate::get();
-//
-////        dd($cate);
-//        foreach($cate as $k=>$v)
-//        {
-//            foreach($v['sub'] as $m=>$n)
-//            {
-//                $res = $n;
-//            }
-//
-//        }
-//        dd($res);
 
 //        获取友情链接
         $friend = friend::get();

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Permission;
 use App\Http\Model\permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class PermissionController extends Controller
 {
@@ -40,6 +42,24 @@ class PermissionController extends Controller
 //        1.获取提交的数据
         $input = $request->except('_token');
 //        2.表单验证
+        // dd($input);
+        $rule = [
+             'pname' => 'required',
+             'pdesc' => 'required|min:28',
+         ];
+         $mess = [
+             'pname.required' => '权限名称不能为空',
+             'pdesc.required' => '权限内容不能为空',
+             'pdesc.min' => '权限内容最小字符为28位'
+         ];
+        $validator =  Validator::make($input,$rule,$mess);
+         // 如果表单验证失败 passes()
+         if ($validator->fails()) {
+             return redirect('admin/permission/create')
+                 ->withErrors($validator)
+                 ->withInput();
+         }
+
 //        3.插入到数据库
         $res = permission::create($input);
 //        4.给用户反馈
@@ -85,6 +105,22 @@ class PermissionController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->except('_token','_method');
+         $rule = [
+             'pname' => 'required',
+             'pdesc' => 'required|min:28',
+         ];
+         $mess = [
+             'pname.required' => '权限名称不能为空',
+             'pdesc.required' => '权限内容不能为空',
+             'pdesc.min' => '权限内容最小字符为28位'
+         ];
+        $validator =  Validator::make($input,$rule,$mess);
+         // 如果表单验证失败 passes()
+         if ($validator->fails()) {
+             return redirect('admin/permission/edit')
+                 ->withErrors($validator)
+                 ->withInput();
+         }
         $res = permission::find($id)->update($input);
         if ($res)
         {

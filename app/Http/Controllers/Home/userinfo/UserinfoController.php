@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home\userinfo;
 
+use App\Http\Model\friend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\husers;
@@ -24,15 +25,19 @@ class UserinfoController extends Controller
           $orders1 = Order::where('ostatus',1)->count();
           $orders2 = Order::where('ostatus',2)->count();
           $orders3 = Order::where('ostatus',3)->count();
-          // dd($orders);
-        	return view('home.userinfo.index',compact('active','goods','orders1','orders2','orders3'));
+
+        //        获取友情链接
+        $friend = friend::get();
+        	return view('home.userinfo.index',compact('active','goods','orders1','orders2','orders3','friend'));
     }
     //加载个人信息页面
     public function personal()
     {
         	$husers = session('husers');
+        //        获取友情链接
+        $friend = friend::get();
         	
-        	return view('home.userinfo.personal',compact('husers'));
+        	return view('home.userinfo.personal',compact('husers','friend'));
     } 
     //修改个人信息
     public function editperson(Request $request)
@@ -110,7 +115,9 @@ class UserinfoController extends Controller
     //  加载密码修改页面
     public function safety()
     {
-        return view('home/userinfo/safety');
+        //        获取友情链接
+        $friend = friend::get();
+        return view('home/userinfo/safety',compact('friend'));
     }
 
     // 执行密码修改
@@ -161,18 +168,24 @@ class UserinfoController extends Controller
 
           $id = session('husers')->id;
           $addr = address::where('id',$id)->get();
-           // dd($addr);
+
          $default_addr = $addr->where('is_checked',1)->first();
-        // dd($default_addr);
-          return view('home.userinfo.addresslist',compact('addr','default_addr'));
+
+        //        获取友情链接
+        $friend = friend::get();
+
+          return view('home.userinfo.addresslist',compact('addr','default_addr','friend'));
    }
 
+//   添加地址页面
    public function address()
    {
-      return view('home.userinfo.address');
+//        获取友情链接
+       $friend = friend::get();
+      return view('home.userinfo.address',compact('friend'));
    }
 
-    //添加地址页面
+    //执行添加地址
     public function doaddress()
     {
            // 1. 获取用户提交的表单数据
@@ -286,9 +299,10 @@ class UserinfoController extends Controller
                 ->get()
                 ->toArray();
 
-        // dd($order);
+//       //        获取友情链接
+       $friend = friend::get();
 
-        return view('home/userinfo/mydetail',compact('order'));
+        return view('home/userinfo/mydetail',compact('order','friend'));
    }
    // 修改订单状态
    public function editdetail()
@@ -310,9 +324,11 @@ class UserinfoController extends Controller
                 ->select('detail.*', 'orders.*', 'goods.*')
                 ->get()
                 ->toArray();
-          
+
+       //        获取友情链接
+       $friend = friend::get();
                 // 返回视图
-        return view('home/userinfo/olddetail',compact('order'));
+        return view('home/userinfo/olddetail',compact('order','friend'));
    }
 
 

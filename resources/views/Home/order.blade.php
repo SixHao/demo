@@ -35,7 +35,7 @@
     <script>
         window.onload=function() {
 
-            var wait = 5;
+            var wait = 3;
             layer.msg('下单成功,'+wait+'秒后跳转');
             timeOut();
             function timeOut() {

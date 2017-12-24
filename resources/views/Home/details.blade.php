@@ -449,6 +449,7 @@
 							
 							var bcnt = $('#text_box').val();
 							var gid = $gid;
+							// alert(gid);
 							var num = $('.cart_num').text();
 							var num = $('#J_MiniCartNum').text();
 							// alert(num);
@@ -466,7 +467,8 @@
 										$('#J_MiniCartNum').text(num);
 									} else if(data.status == 2){
 										layer.msg(data.msg);
-										window.location.href = "{{ url('/home/login/login') }}";
+										setTimeout('window.location.href = "{{ url('/home/login/login') }}";',1000);
+										
 									}
 								},
 								dataType:'json'

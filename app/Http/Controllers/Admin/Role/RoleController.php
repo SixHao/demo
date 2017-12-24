@@ -6,6 +6,8 @@ use App\Http\Model\permission;
 use App\Http\Model\role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class RoleController extends Controller
@@ -43,6 +45,22 @@ class RoleController extends Controller
 //        1.获取提交的数据
         $input = $request->except('_token');
 //        2.表单验证
+       $rule = [
+             'rname' => 'required',
+             'rdesc' => 'required|min:28',
+         ];
+         $mess = [
+             'rname.required' => '权限名称不能为空',
+             'rdesc.required' => '权限内容不能为空',
+             'rdesc.min' => '权限内容最小字符为28位'
+         ];
+        $validator =  Validator::make($input,$rule,$mess);
+         // 如果表单验证失败 passes()
+         if ($validator->fails()) {
+             return redirect('admin/role/create')
+                 ->withErrors($validator)
+                 ->withInput();
+         }
 //        3.插入到数据库
         $res = role::create($input);
 //        4.给用户反馈

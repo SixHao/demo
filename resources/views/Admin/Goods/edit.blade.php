@@ -20,7 +20,7 @@
                             </div>
                             <div class="widget-body am-fr">
 
-                                <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/goods/update') }}/{{ $page }}" id="goods_form" method="post" enctype="multipart/form-data">
+                                <form class="am-form tpl-form-border-form tpl-form-border-br" action="{{ url('/admin/goods/update') }}/{{$goods['gid']}}" id="goods_form" method="post" enctype="multipart/form-data">
 
               <div class="box-body">
               @if (count($errors) > 0)

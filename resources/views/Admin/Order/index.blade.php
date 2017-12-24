@@ -26,33 +26,23 @@
                             @if(session('msg'))
                                 <div style="color:red" class="alert alert-danger">{{session('msg')}}</div>
                             @endif
-                            <form action="" method="">
+                            <form action="{{ url('/admin/order/index') }}" method="get">
+                                <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+                                    <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                                        <input type="text" class="am-form-field " placeholder="请输入订单号" value="{{ $request->oid }}" name="oid">
+                                        <span class="am-input-group-btn">
+                                        <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"></button>
+                                      </span>
+                                    </div>
+                                </div>
+                            </form>
                                 <div class="am-u-sm-12">
                                     <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                         <thead>
                                         <tr>
-
-                                            <th>
-                                                每页条数：
-                                                <select name="num"  style="background: #5EB95E">
-                                                    <option value="5"
-                                                            @if($request['num'] == 5)  selected  @endif
-                                                    >5
-                                                    </option>
-                                                    <option value="10"
-                                                            @if($request['num'] == 10)  selected  @endif
-                                                    >10
-                                                    </option>
-                                                </select>
-                                            </th>
-                                            <th>订单号:</th>
-                                            <td><input style="color: #4B5357" type="text" name="oid" value="{{$request->oid}}" placeholder="订单号"></td>
-                                            <td><input type="submit" style="background: #5EB95E" value="查询"></td>
-                                        </tr>
-                                        <tr>
                                             <th>订单号</th>
                                             <th>订单总额</th>
-                                            <th>商品总数量</th>
+                                            <th>总数量</th>
                                             <th>收货人</th>
                                             <th>收货人手机</th>
                                             <th>收货地址</th>
@@ -63,17 +53,14 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if(session('info'))
-                                            <div class="alert alert-danger">{{session('info')}}</div>
-                                        @endif
                                         @foreach($data as $key => $v)
                                             <tr class="gradeX">
                                                 <td class="ids first">{{$v->oid}}</td>
-                                                <td class="">{{$v->ormb}}</td>
-                                                <td class="">{{$v->ucnt}}</td>
+                                                <td style="width: 68px;">{{$v->ormb}}</td>
+                                                <td style="width: 54px;">{{$v->ucnt}}</td>
                                                 <td class="">{{$v->rec}}</td>
                                                 <td class="">{{$v->tel}}</td>
-                                                <td class="addr">{{$v->addr}}</td>
+                                                <td style="width: 100px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" class="addr">{{$v->addr}}</td>
                                                 <td class="">{{$v->msg}}</td>
                                                 <td class="">{{$v->otime}}</td>
                                                 <td class="over">
@@ -88,17 +75,11 @@
 
                                                 </td>
 
-                                                <td>
-                                                    <div class="tpl-tabl1e-black-operation">
-                                                        <a href="{{url('/admin/order/list')}}/{{$v->oid}}">
+                                                <td class="am-text-middle">
+                                                    <div class="tpl-table-black-operation">
+                                                        <a style="color: #f35842; border-color:#f35842; " href="{{url('/admin/order/list')}}/{{$v->oid}}">
                                                             <i class="am-icon-pencil"></i> 查看
                                                         </a>
-                                                    </div>
-                                                    <div class="tpl-tabl1e-black-operation">
-                                                        <a href="{{url('/admin/order/edit')}}/{{$v->oid}}">
-                                                            <i class="am-icon-pencil"></i> 修改
-                                                        </a>
-
                                                     </div>
                                                 </td>
                                             </tr>
@@ -107,15 +88,11 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </form>
+
 
                         </div>
                     <div class="am-u-lg-12 am-cf">
-                        <?php
-                        $v = empty($input) ? '' : $input;
-                        ?>
-                        {{--分页--}}
-                        {!! $data->appends($request->all())->render() !!}
+                        {{ $data->links() }}
                         <style>
                             .am-u-lg-12 ul{
                                 float: right;

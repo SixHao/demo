@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Cart;
+use App\Http\Model\friend;
 use App\Http\Model\Goods;
 use App\Http\Model\Order;
 use App\Http\Model\Huser;
@@ -34,9 +35,9 @@ class PayController extends Controller
 //            dd($goods);
         //获取地址信息
         $address = address::where('id',$id)->where('is_checked',1)->first();
-//        dd($address);
-//        session(['address'=>$address]);
-        return view('/Home/pay', compact('goods','address'));
+        //        获取友情链接
+        $friend = friend::get();
+        return view('/Home/pay', compact('goods','address','friend'));
 
     }
 

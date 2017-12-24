@@ -106,7 +106,7 @@
                                                 </td>
                                                 <td class="am-text-middle">
                                                     <div class="tpl-table-black-operation">
-                                                        <a href="{{ url('/admin/goods/edit/') }}/{{ $v->gid }}@if( empty($_SERVER['QUERY_STRING']) )/page=1 @else/{{ $_SERVER['QUERY_STRING'] }}  @endif">
+                                                        <a href="{{ url('/admin/goods/edit') }}/{{$v->gid}}">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
                                                         <a href="javascript:;"  onclick="del({{ $v->gid }})" class="tpl-table-black-operation-del">

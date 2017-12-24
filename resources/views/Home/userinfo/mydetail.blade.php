@@ -41,6 +41,7 @@
 									<td class="td-inner">交易操作</td>
 								</div>
 							</div>
+							@if(!empty($order))
 							@foreach($order as $k=>$v)
 							<div class="order-main">
 								
@@ -83,7 +84,7 @@
 												</li>
 												<li class="td td-number">
 													<div class="item-number">
-														<span>×</span>{{ $v->bcnt }}
+														<span>×</span>{{ $v->ucnt }}
 													</div>
 												</li>
 												
@@ -114,18 +115,13 @@
 														
 													</div>
 												</li>
-												
+												@if( $v->ostatus == 3 )
 												<li class="td td-change">
-													<a href="
-													@if( $v->ostatus == 3 )
-													{{ url('/home/userinfo/editdetail') }}?oid={{ $v->oid }}
-													@else
-													javasdript:;
-													@endif
-													"><div class="am-btn am-btn-danger anniu" style="margin-left:30px;">
-														确认收货</div></a>
+													<a href="{{ url('/home/userinfo/editdetail') }}?oid={{ $v->oid }}">
+														<div class="am-btn am-btn-danger anniu" style="margin-left:30px;">确认收货</div>
+													</a>
 												</li>
-												
+												@endif
 											</div>
 										</div>
 										
@@ -136,6 +132,7 @@
 								
 							</div>
 							@endforeach
+							@endif
 						</div>
 					</div>
 

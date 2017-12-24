@@ -51,15 +51,10 @@
 													</div>
 													
 												</li>
-												
-												<li class="td td-price">
-													<div class="item-price" style="width:102%;">
-														单价：{{$v->bprice}}
-													</div>
-												</li>
+
 												<li class="td td-number">
 													<div class="item-number" style="width:150%;margin-left: 50px;">
-														数量：<span>×</span>{{$v->bcnt}}
+														数量：<span>×</span>{{$v->ucnt}}
 													</div>
 												</li>
 												

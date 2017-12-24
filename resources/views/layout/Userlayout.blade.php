@@ -48,7 +48,7 @@
 								<div class="menu-hd MyShangcheng"><a href="{{ url('/home/userinfo/index') }}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
-								<div class="menu-hd"><a id="mc-menu-hd" href="{{ url('/home/shopcart') }}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+								<div class="menu-hd"><a id="mc-menu-hd" href="{{ url('/home/cart') }}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 							</div>
 
 						</ul>
@@ -57,8 +57,8 @@
 						<!--悬浮搜索框-->
 
 						<div class="nav white">
-							<div class="logoBig">
-								<li><img src="../images/logobig.png" /></li>
+							<div class="logoBig" style="margin-left: -50px;">
+								<li><a href="{{ url('/') }}"><img src="{{ asset('/home/images/logobig.png') }}" /></a></li>
 							</div>
 
 							<div class="search-bar pr">
@@ -96,13 +96,12 @@
 				<div class="footer">
 					<div class="footer-hd">
 						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
+							@foreach($friend as $k=>$v)
+								<a href="{{ $v->furl }}">{{ $v->fname }}
+									<img style="width: 50px; height: 25px;" title="{{ $v->fcontent }}" src="{{ $v->flogo }}" alt="">
+									<b>|</b>
+								</a>
+							@endforeach
 						</p>
 					</div>
 					<div class="footer-bd">
@@ -125,6 +124,7 @@
 					</li>
 					<li class="person">
 						<ul>
+							<li> <a href="{{ url('/admin/login') }}" target="_blank">登录后台</a></li>
 							<li> <a href="{{ url('/home/userinfo/personal') }}">个人信息</a></li>
 							<li> <a href="{{ url('home/userinfo/safety') }}">安全设置</a></li>
 							<li> <a href="{{ url('home/userinfo/addresslist') }}">收货地址</a></li>

@@ -65,9 +65,9 @@ Route::post('goods/store', 'Goods\GoodsController@store');
 //    商品列表
 Route::get('goods/index', 'Goods\GoodsController@index');
 //    修改商品
-Route::get('goods/edit/{gid}/{page}','Goods\GoodsController@edit');
+Route::get('goods/edit/{gid}','Goods\GoodsController@edit');
 //    执行修改
-Route::post('goods/update/{page}','Goods\GoodsController@update');
+Route::post('goods/update/{gid}','Goods\GoodsController@update');
 //    删除商品
 Route::post('goods/destroy/{gid}','Goods\GoodsController@destroy');
 //    图片上传
@@ -107,28 +107,17 @@ Route::post('role/doauth','Role\RoleController@doauth');
 Route::resource('permission','Permission\PermissionController');
 
 
-
-
-
-
-
-
-
-
-
-
 //后台订单模块
 // 订单列表
-
-Route::get('/order/index', 'Order\OrderController@index');
+Route::get('order/index', 'Order\OrderController@index');
 // 修改订单
-Route::get('/order/edit/{oid}', 'Order\OrderController@edit');
+Route::get('order/edit/{oid}', 'Order\OrderController@edit');
 // 执行修改
-Route::post('/order/update/{oid}', 'Order\OrderController@update');
+Route::post('order/update/{oid}', 'Order\OrderController@update');
 //订单状态
-Route::post('/order/ajax','Order\OrderController@ajax');
+Route::post('order/ajax','Order\OrderController@ajax');
 //订单详情
-Route::get('/admin/order/list/{oid}','Admin\Order\OrderController@list');
+Route::get('order/list/{oid}','Order\OrderController@list');
 
 
 //后台活动模块
@@ -209,6 +198,7 @@ Route::post('friend/upload', 'Friend\FriendController@upload');
 
 
 
+
 //前台登录模块
 
 //前台注册页面
@@ -241,91 +231,67 @@ Route::post('/home/login/doreset','Home\login\LoginController@doreset');
 Route::post('/home/login/ajax','Home\login\LoginController@ajax');
 
 
-
-
 //前台首页
+Route::get('/', 'Home\IndexController@index');
 Route::get('/home/index', 'Home\IndexController@index');
-// 前台详情表
-Route::get('/home/details/{gid}','Home\DetailsController@index');
-
-// ajax商品信息数量加入购物车
-Route::post('/home/details/insertcart','Home\DetailsController@insertcart');
-// 商品信息数量加入结算页
-Route::post('/home/pay','Home\DetailsController@insertpay');
-
-
-
-
-
-
-// 删除收货地址
-Route::post('/home/pay/delete/{aid}', 'Home\PayController@delete');
-
-// 添加至订单数据库
-Route::post('/home/pay/insert', 'Home\PayController@insert');
-
-Route::post('/admin/friend/insert', 'Admin\Friend\FriendController@insert');
-
-
-
-
-
-
-//用户中心首页
-Route::get('/home/userinfo/index','Home\userinfo\UserinfoController@index');
-//个人信息
-Route::get('/home/userinfo/personal','Home\userinfo\UserinfoController@personal');	
-//修改个人资料
-Route::post('/home/userinfo/editperson','Home\userinfo\UserinfoController@editperson');
-// 上传头像
-Route::post('/home/userinfo/upload','Home\userinfo\UserinfoController@upload');	
-// 安全设置
-Route::get('/home/userinfo/safety','Home\userinfo\UserinfoController@safety');
-// 执行密码修改
-Route::post('/home/userinfo/dosafety','Home\userinfo\UserinfoController@dosafety');	
-//地址列表页面
-Route::get('/home/userinfo/addresslist','Home\userinfo\UserinfoController@addresslist');
-//添加地址
-Route::get('/home/userinfo/address','Home\userinfo\UserinfoController@address');
-//增加地址
-Route::post('/home/userinfo/doaddress','Home\userinfo\UserinfoController@doaddress');
-//设置默认地址
-Route::post('/home/userinfo/doadd','Home\userinfo\UserinfoController@doadd');
-//删除地址
-Route::post('/home/userinfo/deleteaddr/{aid}','Home\userinfo\UserinfoController@deleteaddr');
-//加载订单详情
-Route::get('/home/userinfo/mydetail','Home\userinfo\UserinfoController@mydetail');
-//修改订单状态
-Route::get('/home/userinfo/editdetail','Home\userinfo\UserinfoController@editdetail');
-//历史订单
-Route::get('/home/userinfo/olddetail','Home\userinfo\UserinfoController@olddetail');
-
 
 //前台商品列表
 Route::get('home/goodslist/{id}','Home\indexController@goodslist');
 //搜索商品路由
 Route::post('home/goods','Home\IndexController@search');
 
+// 前台详情表
+Route::get('/home/details/{gid}','Home\DetailsController@index');
 
-//购物车
-Route::get('/home/cart', 'Home\CartController@shopcart');
-//删除
-Route::get('/home/cart/delete/{cid}', 'Home\CartController@delete');
-// 结算页
-Route::get('/home/pay', 'Home\PayController@pay');
-// 验证表单
-Route::post('/home/pay/insert','Home\PayController@insert');
-// 空购物车
-Route::get('/home/shopcart2', 'Home\CartController@shopcart2');
+// ajax商品信息数量加入购物车
+Route::post('home/details/insertcart','Home\DetailsController@insertcart');
+
+Route::group(['middleware'=>['hislogin'],'prefix'=>'home','namespace'=>'Home'],function (){
 
 
+//用户中心首页
+    Route::get('userinfo/index','userinfo\UserinfoController@index');
+//个人信息
+    Route::get('userinfo/personal','userinfo\UserinfoController@personal');
+//修改个人资料
+    Route::post('userinfo/editperson','userinfo\UserinfoController@editperson');
+// 上传头像
+    Route::post('userinfo/upload','userinfo\UserinfoController@upload');
+// 安全设置
+    Route::get('userinfo/safety','userinfo\UserinfoController@safety');
+// 执行密码修改
+    Route::post('userinfo/dosafety','userinfo\UserinfoController@dosafety');
+//地址列表页面
+    Route::get('userinfo/addresslist','userinfo\UserinfoController@addresslist');
+//添加地址
+    Route::get('userinfo/address','userinfo\UserinfoController@address');
+//增加地址
+    Route::post('userinfo/doaddress','userinfo\UserinfoController@doaddress');
+//设置默认地址
+    Route::post('userinfo/doadd','userinfo\UserinfoController@doadd');
+//删除地址
+    Route::post('userinfo/deleteaddr/{aid}','userinfo\UserinfoController@deleteaddr');
+//加载订单详情
+    Route::get('userinfo/mydetail','userinfo\UserinfoController@mydetail');
+//修改订单状态
+    Route::get('userinfo/editdetail','userinfo\UserinfoController@editdetail');
+//历史订单
+    Route::get('userinfo/olddetail','userinfo\UserinfoController@olddetail');
 
-
-
-
-
-Route::get('/home/pay', 'Home\PayController@pay');
+//结算页
+    Route::get('pay', 'PayController@pay');
+// 表单提交到结算页
+    Route::post('pay', 'DetailsController@insertpay');
 //前台订单成功页
-Route::get('/home/success','Home\OrderController@index');
+    Route::get('success','OrderController@index');
 
+//购物车列表页
+    Route::get('cart', 'CartController@shopcart');
+//删除购物车
+    Route::get('cart/delete/{cid}', 'CartController@delete');
+// 购物车提交 立即购买
+    Route::post('pay/insert','PayController@insert');
+// 空购物车
+    Route::get('shopcart2', 'CartController@shopcart2');
 
+});

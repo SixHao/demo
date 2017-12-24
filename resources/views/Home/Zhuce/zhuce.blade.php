@@ -17,8 +17,8 @@
   
   <body>
     <div class="login-boxtitle">
-      <a href="{{asset('/home/home/demo.html ')}}">
-        <img alt="" src="{{asset('/home/images/1504680318.png ')}}" /></a>
+      <a href="{{asset('/')}}">
+        <img alt="" src="{{asset('/home/images/logobig.png ')}}" /></a>
     </div>
     <div class="res-banner" style="height: 490px;">
       <div class="res-main">
@@ -68,6 +68,7 @@
                     <input type="password" name="repassword" id="passwordRepeat" placeholder="确认密码"></div>
                      <div class="am-cf">
                   <input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl"></div>
+                  <a class="am-btn am-btn-primary am-btn-sm am-fl" style="font-size: 16px;  margin-bottom:8px;" href="{{ url('home/login/login') }}">返回登录</a>
                 </form>
                 <div class="login-links">
                   <label for="reader-me">
@@ -149,6 +150,7 @@
                     <input type="password" name="repassword" id="passwordRepeat" placeholder="确认密码"></div>
                     <div class="am-cf">
                   	<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl"></div>
+                      <a class="am-btn am-btn-primary am-btn-sm am-fl" style="font-size: 16px;  margin-bottom:8px;" href="{{ url('home/login/login') }}">返回登录</a>
                 </form>
 
                 <div class="login-links">
@@ -177,10 +179,13 @@
                     <input type="password" name="repassword" id="passwordRepeat" placeholder="确认密码"></div>
                   <div class="am-cf">
                     <input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl"></div>
+                      <a class="am-btn am-btn-primary am-btn-sm am-fl" style="font-size: 16px; margin-bottom:8px;" href="{{ url('home/login/login') }}">返回登录</a>
                 </form>
                 <div class="login-links">
                   <label for="reader-me">
-                    <input id="reader-me" type="checkbox">点击表示您同意商城《服务协议》</label></div>
+                    <input id="reader-me" type="checkbox">点击表示您同意商城《服务协议》
+                  </label>
+                  </div>
 
               </div>
               <script>$(function() {

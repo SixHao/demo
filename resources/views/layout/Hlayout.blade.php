@@ -55,8 +55,8 @@
 
     <div class="nav white">
         <div class="logo"><img src="{{ asset('/Home/images/logo.png') }}" /></div>
-        <div class="logoBig">
-            <li><img src="{{ asset('/Home/images/logobig.png') }}" /></li>
+        <div class="logoBig" style="margin-left: -50px;">
+            <li><a href="{{ url('/') }}"><img src="{{ asset('/Home/images/logobig.png') }}" /></a></li>
         </div>
 
         <div class="search-bar pr">
@@ -81,12 +81,12 @@
 <div class="footer ">
     <div class="footer-hd ">
         <p>
-            
-                <a href=" ">
-                    <img style="width: 50px; height: 25px;" title="  " src="" alt="">
+            @foreach($friend as $k=>$v)
+                <a href="{{ $v->furl }}">{{ $v->fname }}
+                    <img style="width: 50px; height: 25px;" title="{{ $v->fcontent }}" src="{{ $v->flogo }}" alt="">
                     <b>|</b>
                 </a>
-            
+            @endforeach
         </p>
     </div>
     <div class="footer-bd ">

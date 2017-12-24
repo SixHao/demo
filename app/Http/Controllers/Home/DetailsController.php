@@ -30,7 +30,6 @@ class DetailsController extends Controller
     {
         $gid = $_POST['gid'];
          $arr = [];
-
     	$input = $request->except('_token');
 
         $user = session('husers');
@@ -83,12 +82,13 @@ class DetailsController extends Controller
             $address = address::where('id',$uid)->
                         where('is_checked', 1)
                         ->first();
-                        
-
-            // dd($goods);
 
 
-          return view('/home/pay',compact('address','goods'));
+            //        获取友情链接
+            $friend =  friend::get();
+
+
+          return view('/home/pay',compact('address','goods','friend'));
         } else {
             return view('home/login/login')->with('errors', '您还没有登录，请先登录！！！');
         }
